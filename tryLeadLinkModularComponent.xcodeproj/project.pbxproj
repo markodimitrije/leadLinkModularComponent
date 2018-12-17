@@ -12,6 +12,12 @@
 		AD837AAA21C7B4E700555917 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD837AA821C7B4E700555917 /* Main.storyboard */; };
 		AD837AAC21C7B4E900555917 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD837AAB21C7B4E900555917 /* Assets.xcassets */; };
 		AD837AAF21C7B4E900555917 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD837AAD21C7B4E900555917 /* LaunchScreen.storyboard */; };
+		AD837AB721C7B50C00555917 /* ViewStacker.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD837AB621C7B50C00555917 /* ViewStacker.xib */; };
+		AD837AB921C7BA6800555917 /* ViewStacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837AB821C7BA6800555917 /* ViewStacker.swift */; };
+		AD837ABC21C7C0F600555917 /* OneRowStacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837ABB21C7C0F600555917 /* OneRowStacker.swift */; };
+		AD837ABE21C7C0FE00555917 /* OneRowStacker.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD837ABD21C7C0FE00555917 /* OneRowStacker.xib */; };
+		AD837AC521C7C68000555917 /* LabelAndTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837AC321C7C67F00555917 /* LabelAndTextView.swift */; };
+		AD837AC621C7C68000555917 /* LabelAndTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD837AC421C7C67F00555917 /* LabelAndTextView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +28,12 @@
 		AD837AAB21C7B4E900555917 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD837AAE21C7B4E900555917 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD837AB021C7B4E900555917 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD837AB621C7B50C00555917 /* ViewStacker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewStacker.xib; sourceTree = "<group>"; };
+		AD837AB821C7BA6800555917 /* ViewStacker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStacker.swift; sourceTree = "<group>"; };
+		AD837ABB21C7C0F600555917 /* OneRowStacker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneRowStacker.swift; sourceTree = "<group>"; };
+		AD837ABD21C7C0FE00555917 /* OneRowStacker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneRowStacker.xib; sourceTree = "<group>"; };
+		AD837AC321C7C67F00555917 /* LabelAndTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAndTextView.swift; sourceTree = "<group>"; };
+		AD837AC421C7C67F00555917 /* LabelAndTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelAndTextView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				AD837AA421C7B4E700555917 /* AppDelegate.swift */,
+				AD837ABA21C7BA7100555917 /* Views */,
 				AD837AA621C7B4E700555917 /* ViewController.swift */,
 				AD837AA821C7B4E700555917 /* Main.storyboard */,
 				AD837AAB21C7B4E900555917 /* Assets.xcassets */,
@@ -62,6 +75,19 @@
 				AD837AB021C7B4E900555917 /* Info.plist */,
 			);
 			path = tryLeadLinkModularComponent;
+			sourceTree = "<group>";
+		};
+		AD837ABA21C7BA7100555917 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AD837AB621C7B50C00555917 /* ViewStacker.xib */,
+				AD837AB821C7BA6800555917 /* ViewStacker.swift */,
+				AD837ABD21C7C0FE00555917 /* OneRowStacker.xib */,
+				AD837ABB21C7C0F600555917 /* OneRowStacker.swift */,
+				AD837AC321C7C67F00555917 /* LabelAndTextView.swift */,
+				AD837AC421C7C67F00555917 /* LabelAndTextView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,7 +149,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD837AAF21C7B4E900555917 /* LaunchScreen.storyboard in Resources */,
+				AD837ABE21C7C0FE00555917 /* OneRowStacker.xib in Resources */,
+				AD837AB721C7B50C00555917 /* ViewStacker.xib in Resources */,
 				AD837AAC21C7B4E900555917 /* Assets.xcassets in Resources */,
+				AD837AC621C7C68000555917 /* LabelAndTextView.xib in Resources */,
 				AD837AAA21C7B4E700555917 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,7 +164,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD837AC521C7C68000555917 /* LabelAndTextView.swift in Sources */,
 				AD837AA721C7B4E700555917 /* ViewController.swift in Sources */,
+				AD837ABC21C7C0F600555917 /* OneRowStacker.swift in Sources */,
+				AD837AB921C7BA6800555917 /* ViewStacker.swift in Sources */,
 				AD837AA521C7B4E700555917 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

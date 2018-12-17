@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "LabelAndTextView.headlineText.setter:LabelAndTextView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "headlineLbl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewStacker.layoutComponents():ViewStacker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewStacker">
+            </PersistentString>
+            <PersistentString
+               value = "viewStacker.arrangedSubviews.count">
+            </PersistentString>
+            <PersistentString
+               value = "viewStacker.frame">
+            </PersistentString>
+            <PersistentString
+               value = "newFrame.height">
+            </PersistentString>
+            <PersistentString
+               value = "viewStacker.subviews.count">
+            </PersistentString>
+            <PersistentString
+               value = "viewStacker.subviews">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
