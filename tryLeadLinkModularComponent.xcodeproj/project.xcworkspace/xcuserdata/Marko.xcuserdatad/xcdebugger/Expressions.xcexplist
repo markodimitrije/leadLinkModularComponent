@@ -3,6 +3,26 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "OneRowStacker.layoutComponents():OneRowStacker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "size">
+            </PersistentString>
+            <PersistentString
+               value = "view.bounds.size">
+            </PersistentString>
+            <PersistentString
+               value = "CGSize.init(width: size.width * CGFloat(1)/CGFloat(components.count), height: size.height)">
+            </PersistentString>
+            <PersistentString
+               value = "size.width">
+            </PersistentString>
+            <PersistentString
+               value = "size.width * CGFloat(1)/CGFloat(components.count)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "LabelAndTextView.headlineText.setter:LabelAndTextView.swift">
          <PersistentStrings>
             <PersistentString
@@ -14,22 +34,22 @@
          contextName = "ViewStacker.layoutComponents():ViewStacker.swift">
          <PersistentStrings>
             <PersistentString
-               value = "viewStacker">
-            </PersistentString>
-            <PersistentString
-               value = "viewStacker.arrangedSubviews.count">
-            </PersistentString>
-            <PersistentString
                value = "viewStacker.frame">
-            </PersistentString>
-            <PersistentString
-               value = "newFrame.height">
             </PersistentString>
             <PersistentString
                value = "viewStacker.subviews.count">
             </PersistentString>
             <PersistentString
+               value = "newFrame.height">
+            </PersistentString>
+            <PersistentString
                value = "viewStacker.subviews">
+            </PersistentString>
+            <PersistentString
+               value = "viewStacker.arrangedSubviews.count">
+            </PersistentString>
+            <PersistentString
+               value = "viewStacker">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
