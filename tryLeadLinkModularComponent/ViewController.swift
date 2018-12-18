@@ -32,12 +32,11 @@ class ViewController: UIViewController {
     private func scenarioIsTapped(sender: UIButton) {
         
         switch sender.tag {
-            case 0: buildScenario_1() // 3-1-7
-            case 1: buildScenario_2() // 3-6-3-1-2
+            case 0: buildScenario_1() // 3-1-2
+            case 1: buildScenario_2() // 3-1-7
+            case 2: buildScenario_3() // 3-6-3-1-2
         default: break
         }
-        
-        placeByTwoInRow(count: Int(sender.titleLabel!.text!) ?? 1)
         
     }
     
@@ -66,17 +65,17 @@ class ViewController: UIViewController {
     }
     
     // testiraj multiple in rows (2)
-    // 3-1-7
+    // 3-1-2
     private func buildScenario_1() {
         
         let components_1 = createLabelAndTextView(count: 3)
-        let a = threeElementInRowView(components: components_1)
+        let a = stackElementsInOneRow(components: components_1)
         
         let components_2 = createLabelAndTextView(count: 1)
         let b = oneElementInRowView(components: components_2)
         
         let components_3 = createLabelAndTextView(count: 2)
-        let c = threeElementInRowView(components: components_3)
+        let c = stackElementsInOneRow(components: components_3)
         
         let components = [a,b,c]
         
@@ -88,9 +87,80 @@ class ViewController: UIViewController {
     
     
     
+    
+    // 3-1-7
     private func buildScenario_2() {
         
+        let components_1 = createLabelAndTextView(count: 3)
+        let a = stackElementsInOneRow(components: components_1)
+        
+        let components_2 = createLabelAndTextView(count: 1)
+        let b = oneElementInRowView(components: components_2)
+        
+        let components_3_1 = createLabelAndTextView(count: 2)
+        let c_1 = stackElementsInOneRow(components: components_3_1)
+        
+        let components_3_2 = createLabelAndTextView(count: 2)
+        let c_2 = stackElementsInOneRow(components: components_3_2)
+        
+        let components_3_3 = createLabelAndTextView(count: 2)
+        let c_3 = stackElementsInOneRow(components: components_3_3)
+        
+        let components_3_4 = createLabelAndTextView(count: 1)
+        let c_4 = stackElementsInOneRow(components: components_3_4)
+        
+        let components = [a,b,c_1,c_2,c_3,c_4]
+        
+        let frame = getRect(forComponents: components)
+        let stackerView = ViewStacker.init(frame: frame , components: components)
+        self.view.addSubview(stackerView)
+        
     }
+    
+    
+    
+    private func buildScenario_3() {
+        
+        // 3
+        
+        let components_1 = createLabelAndTextView(count: 3)
+        let a = stackElementsInOneRow(components: components_1)
+    
+        // 6
+        
+        let components_2_1 = createLabelAndTextView(count: 2)
+        let c_1 = stackElementsInOneRow(components: components_2_1)
+        
+        let components_2_2 = createLabelAndTextView(count: 2)
+        let c_2 = stackElementsInOneRow(components: components_2_2)
+        
+        let components_2_3 = createLabelAndTextView(count: 2)
+        let c_3 = stackElementsInOneRow(components: components_2_3)
+        
+        // 3
+        
+        let components_3 = createLabelAndTextView(count: 3)
+        let d = stackElementsInOneRow(components: components_3)
+        
+        // 4
+        
+        let components_4 = createLabelAndTextView(count: 1)
+        let e = stackElementsInOneRow(components: components_4)
+        
+        // 5
+        
+        let components_5 = createLabelAndTextView(count: 2)
+        let f = stackElementsInOneRow(components: components_5)
+        
+        
+        let components = [a,c_1,c_2,c_3,d, e,f]
+        
+        let frame = getRect(forComponents: components)
+        let stackerView = ViewStacker.init(frame: frame , components: components)
+        self.view.addSubview(stackerView)
+        
+    }
+    
     
     
     
@@ -107,7 +177,7 @@ class ViewController: UIViewController {
         return OneRowStacker.init(frame: rect, components: components)!
     }
     
-    private func threeElementInRowView(components: [UIView]) -> OneRowStacker {
+    private func stackElementsInOneRow(components: [UIView]) -> OneRowStacker {
         
         let rect = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: self.view.bounds.width, height: CGFloat.init(80)))
         return OneRowStacker.init(frame: rect, components: components)!
@@ -118,52 +188,6 @@ class ViewController: UIViewController {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // treba ti logika za 2 items/row i 1 item/row (odd ili even):
-    
-    private func placeByTwoInRow(count: Int) {
-        // ako je odd -> treba ti da u poslednji stack ubacis 1 element
-        // u suprotnom -> ubacujes 2 elementa
-        
-        let numberOfStacks = 1 + (count - 1) / 2
-        
-        var stacks = [UIView]()
-        
-        if numberOfStacks == 1 {
-            switch count {
-                case 1:
-                    let s = getStackForSingleElement()
-                    stacks.append(s)
-                
-            case 2:
-                let s = getStackForSingleElement()
-                stacks.append(s)
-                
-//                case 2:
-//                    let s = getStackForTwoElements()
-//                    stacks.append(s)
-//                case 3:
-//                    let s = getStackForThreeElements()
-//                    stacks.append(s)
-            default: break
-            }
-        }
-        
-       //self.view.addSubview(<#T##view: UIView##UIView#>)
-        
-    }
-    
     private func getStackForSingleElement() -> OneRowStacker {
         
         let components = createLabelAndTextView(count: 1)
@@ -171,35 +195,6 @@ class ViewController: UIViewController {
         let row = OneRowStacker.init(frame: frame, components: components)
         return row!
     }
-//
-//    private func getStackForTwoElements() -> UIStackView {
-//
-//    }
-//
-//    private func getStackForThreeElements() -> UIStackView {
-//
-////        let components = createLabelAndTextView(count: 3)
-////        let frame = getRect(forComponents: components)
-////        let stackerView = ViewStacker.init(frame: frame, components: components)
-////        return stackerView
-//    }
- 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     private func createLabelAndTextView() -> UIView {
         
@@ -209,8 +204,6 @@ class ViewController: UIViewController {
         let v = LabelAndTextView.init(frame: rect, headlineText: "initial field", inputTxt: "just chacking...")
         return v
     }
-    
-    
     
     private func createLabelAndTextView(count: Int) -> [UIView] {
         var result = [UIView]()
@@ -236,7 +229,5 @@ class ViewController: UIViewController {
         }
         return height
     }
-    
-    
     
 }

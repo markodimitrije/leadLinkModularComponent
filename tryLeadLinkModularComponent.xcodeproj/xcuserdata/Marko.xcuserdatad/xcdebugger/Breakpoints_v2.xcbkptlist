@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tryLeadLinkModularComponent/Views/OneRowStacker.swift"
-            timestampString = "566756728.553539"
+            timestampString = "566838095.821084"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "17"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tryLeadLinkModularComponent/Views/OneRowStacker.swift"
-            timestampString = "566756728.554685"
+            timestampString = "566838095.82256"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "layoutComponents()"
             landmarkType = "7">
          </BreakpointContent>

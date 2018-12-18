@@ -61,8 +61,6 @@ class OneRowStacker: UIView {
     // imas case sa 1,2,3 components.
     private func layoutComponents() {
         
-        print("components.count = \(components.count)")
-        
         for (index,view) in components.enumerated() {
         
             let mySize = view.bounds.size
@@ -87,14 +85,3 @@ class OneRowStacker: UIView {
     }
     
 }
-
-
-/*
- 
- for view in components {
- 
- stackView.addArrangedSubview(view)
- 
- }
- 
- */
