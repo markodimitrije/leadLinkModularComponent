@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD50390B21CFA7970009EB0C /* RadioBtnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD50390921CFA7960009EB0C /* RadioBtnView.xib */; };
+		AD50390C21CFA7970009EB0C /* RadioBtnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD50390A21CFA7970009EB0C /* RadioBtnView.swift */; };
 		AD837AA521C7B4E700555917 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837AA421C7B4E700555917 /* AppDelegate.swift */; };
 		AD837AA721C7B4E700555917 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837AA621C7B4E700555917 /* ViewController.swift */; };
 		AD837AAA21C7B4E700555917 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD837AA821C7B4E700555917 /* Main.storyboard */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD50390921CFA7960009EB0C /* RadioBtnView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadioBtnView.xib; sourceTree = "<group>"; };
+		AD50390A21CFA7970009EB0C /* RadioBtnView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioBtnView.swift; sourceTree = "<group>"; };
 		AD837AA121C7B4E700555917 /* tryLeadLinkModularComponent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tryLeadLinkModularComponent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD837AA421C7B4E700555917 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD837AA621C7B4E700555917 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 		AD837ABA21C7BA7100555917 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AD50390A21CFA7970009EB0C /* RadioBtnView.swift */,
+				AD50390921CFA7960009EB0C /* RadioBtnView.xib */,
 				AD837AB621C7B50C00555917 /* ViewStacker.xib */,
 				AD837AB821C7BA6800555917 /* ViewStacker.swift */,
 				AD837ABD21C7C0FE00555917 /* OneRowStacker.xib */,
@@ -153,6 +159,7 @@
 				AD837AB721C7B50C00555917 /* ViewStacker.xib in Resources */,
 				AD837AAC21C7B4E900555917 /* Assets.xcassets in Resources */,
 				AD837AC621C7C68000555917 /* LabelAndTextView.xib in Resources */,
+				AD50390B21CFA7970009EB0C /* RadioBtnView.xib in Resources */,
 				AD837AAA21C7B4E700555917 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,6 +174,7 @@
 				AD837AC521C7C68000555917 /* LabelAndTextView.swift in Sources */,
 				AD837AA721C7B4E700555917 /* ViewController.swift in Sources */,
 				AD837ABC21C7C0F600555917 /* OneRowStacker.swift in Sources */,
+				AD50390C21CFA7970009EB0C /* RadioBtnView.swift in Sources */,
 				AD837AB921C7BA6800555917 /* ViewStacker.swift in Sources */,
 				AD837AA521C7B4E700555917 /* AppDelegate.swift in Sources */,
 			);

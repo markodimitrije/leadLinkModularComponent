@@ -3,6 +3,49 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "ViewStacker.layoutComponents():ViewStacker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewStacker.arrangedSubviews.count">
+            </PersistentString>
+            <PersistentString
+               value = "viewStacker">
+            </PersistentString>
+            <PersistentString
+               value = "components.first">
+            </PersistentString>
+            <PersistentString
+               value = "(components.first as? OneRowStacker).subviews">
+            </PersistentString>
+            <PersistentString
+               value = "oneRowStacker">
+            </PersistentString>
+            <PersistentString
+               value = "newFrame.height">
+            </PersistentString>
+            <PersistentString
+               value = "viewStacker.frame">
+            </PersistentString>
+            <PersistentString
+               value = "viewStacker.subviews.count">
+            </PersistentString>
+            <PersistentString
+               value = "viewStacker.subviews">
+            </PersistentString>
+            <PersistentString
+               value = "components.first as? OneRowStacker">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "LabelAndTextView.headlineText.setter:LabelAndTextView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "headlineLbl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "OneRowStacker.layoutComponents():OneRowStacker.swift">
          <PersistentStrings>
             <PersistentString
@@ -19,37 +62,6 @@
             </PersistentString>
             <PersistentString
                value = "size.width * CGFloat(1)/CGFloat(components.count)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "LabelAndTextView.headlineText.setter:LabelAndTextView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "headlineLbl">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ViewStacker.layoutComponents():ViewStacker.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "viewStacker.frame">
-            </PersistentString>
-            <PersistentString
-               value = "viewStacker.subviews.count">
-            </PersistentString>
-            <PersistentString
-               value = "newFrame.height">
-            </PersistentString>
-            <PersistentString
-               value = "viewStacker.subviews">
-            </PersistentString>
-            <PersistentString
-               value = "viewStacker.arrangedSubviews.count">
-            </PersistentString>
-            <PersistentString
-               value = "viewStacker">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -59,25 +59,25 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eVa-Qw-hd3">
-                                <rect key="frame" x="152" y="557" width="71" height="90"/>
+                                <rect key="frame" x="150" y="557" width="75" height="90"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVX-8R-9d7">
-                                        <rect key="frame" x="0.0" y="0.0" width="71" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="30"/>
                                         <state key="normal" title="3-1-2"/>
                                         <connections>
                                             <action selector="scenarioTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EJh-lM-twV"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1H-hv-Hqy">
-                                        <rect key="frame" x="0.0" y="30" width="71" height="30"/>
+                                        <rect key="frame" x="0.0" y="30" width="75" height="30"/>
                                         <state key="normal" title="3-1-7"/>
                                         <connections>
                                             <action selector="scenarioTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HGZ-FN-abh"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="86c-Vv-8N4">
-                                        <rect key="frame" x="0.0" y="60" width="71" height="30"/>
-                                        <state key="normal" title="3-6-3-1-2"/>
+                                        <rect key="frame" x="0.0" y="60" width="75" height="30"/>
+                                        <state key="normal" title="3-6-11-1-2"/>
                                         <connections>
                                             <action selector="scenarioTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VZc-Xf-9CE"/>
                                         </connections>
@@ -90,11 +90,47 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7sG-2f-GLb">
+                                <rect key="frame" x="272" y="557" width="113" height="90"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2a-wv-oBm">
+                                        <rect key="frame" x="0.0" y="0.0" width="113" height="30"/>
+                                        <state key="normal" title="7"/>
+                                        <connections>
+                                            <action selector="radioScenarioTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sud-4q-7Un"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGg-OK-Bwg" userLabel="3-1-2 txt + 7 btns">
+                                        <rect key="frame" x="0.0" y="30" width="113" height="30"/>
+                                        <state key="normal" title="3-1-2txt + 7btns"/>
+                                        <connections>
+                                            <action selector="radioScenarioTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jWr-8u-CCy"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJm-IC-LzB">
+                                        <rect key="frame" x="0.0" y="60" width="113" height="30"/>
+                                        <state key="normal" title="3-6-11-1-2 ??"/>
+                                        <connections>
+                                            <action selector="radioScenarioTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="34i-rs-iuf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="radio btns" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cs-AQ-c8A">
+                                <rect key="frame" x="290" y="528.5" width="77" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="2Cs-AQ-c8A" firstAttribute="centerY" secondItem="hXr-TG-dmm" secondAttribute="centerY" id="4Gt-jB-tGm"/>
                             <constraint firstItem="eVa-Qw-hd3" firstAttribute="top" secondItem="hXr-TG-dmm" secondAttribute="bottom" constant="8" id="6Yn-Fq-ULg"/>
+                            <constraint firstItem="2Cs-AQ-c8A" firstAttribute="centerX" secondItem="7sG-2f-GLb" secondAttribute="centerX" id="CPj-7a-Pkd"/>
                             <constraint firstItem="hXr-TG-dmm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HFF-Sa-yyA"/>
+                            <constraint firstItem="7sG-2f-GLb" firstAttribute="top" secondItem="2Cs-AQ-c8A" secondAttribute="bottom" constant="8" id="IwW-1k-LM7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2Cs-AQ-c8A" secondAttribute="trailing" constant="8" id="c9X-hU-K3B"/>
                             <constraint firstItem="eVa-Qw-hd3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d9B-7e-jig"/>
                             <constraint firstItem="wKY-pk-d8r" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="kr3-RR-8a8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eVa-Qw-hd3" secondAttribute="bottom" constant="20" id="rNd-jZ-a2J"/>

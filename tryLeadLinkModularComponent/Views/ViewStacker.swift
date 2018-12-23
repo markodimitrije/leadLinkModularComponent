@@ -68,6 +68,11 @@ class ViewStacker: UIView {
             
         }
         
+        if let oneRowStacker = components.first as? OneRowStacker,
+            oneRowStacker.components.first is RadioBtnView {//, {
+            viewStacker.distribution = UIStackView.Distribution.fillEqually
+        }
+        
         let totalHeight = viewStacker.bounds.height
         
         viewStacker.frame = CGRect.init(origin: CGPoint.zero,
