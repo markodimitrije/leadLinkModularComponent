@@ -69,8 +69,8 @@ class ViewStacker: UIView {
         }
         
         if let oneRowStacker = components.first as? OneRowStacker,
-            oneRowStacker.components.first is RadioBtnView {//, {
-            viewStacker.distribution = UIStackView.Distribution.fillEqually
+            oneRowStacker.components.first is RowsStackedEqually {//, {
+            viewStacker.distribution = .fillEqually
         }
         
         let totalHeight = viewStacker.bounds.height
@@ -78,6 +78,10 @@ class ViewStacker: UIView {
         viewStacker.frame = CGRect.init(origin: CGPoint.zero,
                                         size: CGSize.init(width: viewStacker.bounds.width, height: (totalHeight + 8) * CGFloat(components.count)))
         
+    }
+    
+    func addAsLast(view: UIView) {
+        viewStacker.addArrangedSubview(view)
     }
     
 }

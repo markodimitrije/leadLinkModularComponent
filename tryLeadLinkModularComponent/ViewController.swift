@@ -12,8 +12,8 @@ class ViewController: UIViewController {
     
     
     
-    @IBAction func oneInRowTapped(_ sender: UIButton) {
-        oneInRowIsTapped(sender: sender)
+    @IBAction func leftBtnsTapped(_ sender: UIButton) {
+        leftScenariosTapped(sender: sender)
     }
     
     @IBAction func scenarioTapped(_ sender: UIButton) {
@@ -24,10 +24,10 @@ class ViewController: UIViewController {
         radioScenarioIsTapped(sender: sender)
     }
     
-    private func oneInRowIsTapped(sender: UIButton) {
+    private func leftScenariosTapped(sender: UIButton) {
         
         switch sender.tag {
-            case 0: placeOneElement()
+            case 0: buildScenario_7()
             case 1: placeTwoElements()
             case 2: placeThreeElements()
         default: break
@@ -194,7 +194,7 @@ class ViewController: UIViewController {
     
     
     
-    // 3-1-2 text fields + 6 btns
+    // 3-1-2 text fields + 7 btns
     private func buildScenario_5() {
         
         let rowHeight = getOneRowHeightFor(componentType: "textField")
@@ -208,7 +208,9 @@ class ViewController: UIViewController {
         let components_3 = createLabelAndTextView(count: 2)
         let c = stackElementsInOneRow(components: components_3, rowHeight: rowHeight)
         
-        let myBtnsStack = produceStackWithSameComponents(ofType: RadioBtnView.self, count: 7, inOneRow: 3)!
+        let myBtnsStack = produceStackWithSameComponents(ofType: RadioBtnView.self, count: 6, inOneRow: 3)!
+//        let myBtnsStack = produceStackWithSameComponents(ofType: RadioBtnView.self, count: 8, inOneRow: 3)!
+        //let myBtnsStack = produceStackWithSameComponents(ofType: RadioBtnView.self, count: 7, inOneRow: 3)!
         
         let components = [a,b,c,myBtnsStack]
         
@@ -216,55 +218,125 @@ class ViewController: UIViewController {
         let stackerView = ViewStacker.init(frame: frame , components: components)
         self.view.addSubview(stackerView)
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
+    }
+    
+    // 3-1-2 text fields + 4 btns with option + 7 btns RADIO BTNS
+    
+//    private func buildScenario_6() {
+//
+//        let rowHeight = getOneRowHeightFor(componentType: "textField")
+//
+//        let components_1 = createLabelAndTextView(count: 3)
+//        let a = stackElementsInOneRow(components: components_1, rowHeight: rowHeight)
+//
+//        let components_2 = createLabelAndTextView(count: 1)
+//        let b = stackElementsInOneRow(components: components_2, rowHeight: rowHeight)
+//
+//        let components_3 = createLabelAndTextView(count: 2)
+//        let c = stackElementsInOneRow(components: components_3, rowHeight: rowHeight)
+//
+//        //let myBtnsStack = produceStackWithSameComponents(ofType: RadioBtnView.self, count: 7, inOneRow: 3)!
+//        //let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: RadioBtnView.self, count: 6, inOneRow: 3)!
+//        let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: RadioBtnView.self, count: 9, inOneRow: 3)!
+////        let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: RadioBtnView.self, count: 3, inOneRow: 3)!
+//        //        let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: RadioBtnView.self, count: 8, inOneRow: 3)!
+//        //let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: RadioBtnView.self, count: 7, inOneRow: 3)!
+//
+//        let components = [a,b,c,myBtnsStack]
+//
+//        let frame = getRect(forComponents: components)
+//        let stackerView = ViewStacker.init(frame: frame , components: components)
+//        self.view.addSubview(stackerView)
+//
+//    }
+    
+    //
+    
+    private func buildScenario_6() { // OVE IZGRADI SA CHECKVIEW
+
+        let rowHeight = getOneRowHeightFor(componentType: "textField")
+
+        let components_1 = createLabelAndTextView(count: 3)
+        let a = stackElementsInOneRow(components: components_1, rowHeight: rowHeight)
+
+        let components_2 = createLabelAndTextView(count: 1)
+        let b = stackElementsInOneRow(components: components_2, rowHeight: rowHeight)
+
+        let components_3 = createLabelAndTextView(count: 2)
+        let c = stackElementsInOneRow(components: components_3, rowHeight: rowHeight)
+
+        //let myBtnsStack = produceStackWithSameComponents(ofType: RadioBtnView.self, count: 7, inOneRow: 3)!
+        //let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: RadioBtnView.self, count: 6, inOneRow: 3)!
+        //        let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: RadioBtnView.self, count: 9, inOneRow: 3)!
+        //let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: RadioBtnView.self, count: 3, inOneRow: 3)!
+        //        let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: RadioBtnView.self, count: 8, inOneRow: 3)!
+        //let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: RadioBtnView.self, count: 7, inOneRow: 3)!
+
+        //let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: CheckboxView.self, count: 3, inOneRow: 3)!
+        let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: CheckboxView.self, count: 8, inOneRow: 3)!
+
+        let components = [a,b,c,myBtnsStack]
+
+        let frame = getRect(forComponents: components)
+        let stackerView = ViewStacker.init(frame: frame , components: components)
+        self.view.addSubview(stackerView)
+
     }
     
     
     
-    private func buildScenario_6() {
+    
+    private func buildScenario_7() { // OVE IZGRADI SA CHECKVIEW
         
-        let rowHeight = getOneRowHeightFor(componentType: "radioBtn")
+        let rowHeight = getOneRowHeightFor(componentType: "textField")
         
-        // 3
-        
-        let components_1 = createBtnsView(count: 3)
+        let components_1 = createLabelAndTextView(count: 3)
         let a = stackElementsInOneRow(components: components_1, rowHeight: rowHeight)
         
-        // 6
+        let components_2 = createLabelAndTextView(count: 1)
+        let b = stackElementsInOneRow(components: components_2, rowHeight: rowHeight)
         
-        let myStack = produceStackWithSameComponents(ofType: RadioBtnView.self, count: 11, inOneRow: 3)!
+        let components_3 = createLabelAndTextView(count: 2)
+        let c = stackElementsInOneRow(components: components_3, rowHeight: rowHeight)
         
-        // 3
+        //let myBtnsStack = produceStackWithSameComponents(ofType: RadioBtnView.self, count: 7, inOneRow: 3)!
+        //let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: RadioBtnView.self, count: 6, inOneRow: 3)!
+        //        let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: RadioBtnView.self, count: 9, inOneRow: 3)!
+        //let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: RadioBtnView.self, count: 3, inOneRow: 3)!
+        //        let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: RadioBtnView.self, count: 8, inOneRow: 3)!
+        //let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: RadioBtnView.self, count: 7, inOneRow: 3)!
         
-        let components_3 = createBtnsView(count: 3)
-        let d = stackElementsInOneRow(components: components_3, rowHeight: rowHeight)
+        //let myBtnsStack = produceStackWithSameComponentsAndInputView(ofType: CheckboxView.self, count: 3, inOneRow: 3)!
         
-        // 4
+        let switchHeight = getOneRowHeightFor(componentType: "switch")
+        let rect = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: self.view.bounds.width, height: switchHeight))
         
-        let components_4 = createBtnsView(count: 1)
-        let e = stackElementsInOneRow(components: components_4, rowHeight: rowHeight)
+        let info_1 = SwitchInfo.init(text: "I have read and accept", btnText: "Terms & Conditions", desc: "Ovde ide neki text sa linkovima...", switchIsOn: false)
+        let info_2 = SwitchInfo.init(text: "I want to be contacted by a local representative", btnText: nil, desc: nil, switchIsOn: true)
         
-        // 5
+        let components_4 = LabelBtnSwitchView.init(frame: rect, switchInfo: info_1)
+        let components_5 = LabelBtnSwitchView.init(frame: rect, switchInfo: info_2)
         
-        let components_5 = createBtnsView(count: 2)
-        let f = stackElementsInOneRow(components: components_5, rowHeight: rowHeight)
+        let d = stackElementsInOneRow(components: [components_4], rowHeight: switchHeight)
+        let e = stackElementsInOneRow(components: [components_5], rowHeight: switchHeight)
         
+        let f = stackElementsInOneRow(components: [components_4], rowHeight: switchHeight)
+        let g = stackElementsInOneRow(components: [components_5], rowHeight: switchHeight)
         
-        let components = [a,myStack, d, e, f]
+        let h = stackElementsInOneRow(components: [components_4], rowHeight: switchHeight)
+        let i = stackElementsInOneRow(components: [components_5], rowHeight: switchHeight)
+        
+        let components = [a,b,c,d,e,f,g,h,i]
         
         let frame = getRect(forComponents: components)
         let stackerView = ViewStacker.init(frame: frame , components: components)
         self.view.addSubview(stackerView)
         
     }
+    
+    
+    
+    
     
     
     
@@ -401,6 +473,70 @@ class ViewController: UIViewController {
     
     
     
+    private func produceStackWithSameComponentsAndInputView(ofType type: UIView.Type, count: Int, inOneRow: Int) -> ViewStacker? {
+        
+        guard let stack = produceStackWithSameComponents(ofType: type, count: count, inOneRow: inOneRow) else {return nil}
+        
+        var heightRatio: CGFloat = 1
+        
+        let needsNewRow = (count % inOneRow == 0)
+        
+        if needsNewRow {
+            heightRatio += CGFloat(1) / CGFloat((count / inOneRow))
+        }
+        
+        guard let lastRow = stack.components.last as? OneRowStacker else {return nil}
+        
+        let input = LabelAndTextView.init(frame: lastRow.bounds, headlineText: "Option", inputTxt: "Type option")
+        
+        input.stackView.axis = .horizontal
+        input.stackView.distribution = .fill
+        
+        if needsNewRow {
+            stack.frame.offsetBy(dx: 0, dy: stack.bounds.height * heightRatio)
+            stack.frame = CGRect.init(origin: stack.frame.origin,
+                                      size: CGSize.init(width: stack.bounds.width,
+                                                        height: stack.bounds.height * heightRatio))
+            stack.addAsLast(view: input) // povecava se frame
+        } else {
+            lastRow.insertAsLast(view: input) // ne menja se frame
+        }
+        
+        return stack
+        
+    }
+    
+    
+    
+    
+    
+    
+    private func produceRadioBtnsWithInput(ofType type: UIView.Type, count: Int, inOneRow: Int) -> ViewStacker? {
+        
+        guard inOneRow <= 3 else {return nil}
+        
+        guard let stack = produceStackWithSameComponents(ofType: type, count: count, inOneRow: inOneRow) else {return nil}
+        
+        let component = stack.components.first!
+        
+        let inputView = LabelAndTextView.init(frame: component.bounds, headlineText: "Option", inputTxt: "Type option")
+        
+        stack.addAsLast(view: inputView)
+        
+        return stack
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private func getNumberOfRows(components: [UIView], inOneRow: Int) -> Int {
         
         var numOfRows = components.count / inOneRow
@@ -418,6 +554,9 @@ class ViewController: UIViewController {
         var compType = "textField"
         if type is RadioBtnView.Type {
             compType = "radioBtn"
+        }
+        if type is CheckboxView.Type {
+            compType = "checkboxBtn"
         }
         
         let rowHeight = getOneRowHeightFor(componentType: compType)
@@ -443,6 +582,10 @@ func getOneRowHeightFor(componentType type: String) -> CGFloat {
         return CGFloat.init(80)
     case "radioBtn":
         return CGFloat.init(50)
+    case "checkboxBtn":
+        return CGFloat.init(50)
+    case "switch":
+        return CGFloat.init(60)
     default:
         return 0.0
     }

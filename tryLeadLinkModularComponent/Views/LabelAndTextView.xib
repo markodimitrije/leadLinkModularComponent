@@ -14,6 +14,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LabelAndTextView" customModule="tryLeadLinkModularComponent" customModuleProvider="target">
             <connections>
                 <outlet property="headlineLbl" destination="xiZ-yk-7aa" id="siw-f9-fHd"/>
+                <outlet property="stackView" destination="WUH-jb-8VR" id="wSY-T7-z89"/>
                 <outlet property="textField" destination="Z8D-LA-71i" id="lBV-uT-Rbh"/>
             </connections>
         </placeholder>

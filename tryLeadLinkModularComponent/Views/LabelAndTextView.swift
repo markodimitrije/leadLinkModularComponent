@@ -10,6 +10,8 @@ import UIKit
 
 class LabelAndTextView: UIView {
     
+    @IBOutlet weak var stackView: UIStackView!
+    
     @IBOutlet weak var headlineLbl: UILabel!
     @IBOutlet weak var textField: UITextField!
     

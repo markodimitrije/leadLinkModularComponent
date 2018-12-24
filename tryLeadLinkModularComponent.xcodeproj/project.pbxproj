@@ -20,6 +20,11 @@
 		AD837ABE21C7C0FE00555917 /* OneRowStacker.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD837ABD21C7C0FE00555917 /* OneRowStacker.xib */; };
 		AD837AC521C7C68000555917 /* LabelAndTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837AC321C7C67F00555917 /* LabelAndTextView.swift */; };
 		AD837AC621C7C68000555917 /* LabelAndTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD837AC421C7C67F00555917 /* LabelAndTextView.xib */; };
+		ADAAD6EA21D0ECB600B9D59E /* CheckboxView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADAAD6E921D0ECB600B9D59E /* CheckboxView.xib */; };
+		ADAAD6EC21D0ECC500B9D59E /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAAD6EB21D0ECC500B9D59E /* CheckboxView.swift */; };
+		ADAAD6F321D0F4CB00B9D59E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */; };
+		ADAAD6F521D0F7B700B9D59E /* LabelBtnSwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADAAD6F421D0F7B700B9D59E /* LabelBtnSwitchView.xib */; };
+		ADAAD6F721D0FBAC00B9D59E /* LabelBtnSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +43,11 @@
 		AD837ABD21C7C0FE00555917 /* OneRowStacker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneRowStacker.xib; sourceTree = "<group>"; };
 		AD837AC321C7C67F00555917 /* LabelAndTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAndTextView.swift; sourceTree = "<group>"; };
 		AD837AC421C7C67F00555917 /* LabelAndTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelAndTextView.xib; sourceTree = "<group>"; };
+		ADAAD6E921D0ECB600B9D59E /* CheckboxView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckboxView.xib; sourceTree = "<group>"; };
+		ADAAD6EB21D0ECC500B9D59E /* CheckboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
+		ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		ADAAD6F421D0F7B700B9D59E /* LabelBtnSwitchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelBtnSwitchView.xib; sourceTree = "<group>"; };
+		ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelBtnSwitchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +80,7 @@
 		AD837AA321C7B4E700555917 /* tryLeadLinkModularComponent */ = {
 			isa = PBXGroup;
 			children = (
+				ADAAD6F121D0F4BE00B9D59E /* Protocols */,
 				AD837AA421C7B4E700555917 /* AppDelegate.swift */,
 				AD837ABA21C7BA7100555917 /* Views */,
 				AD837AA621C7B4E700555917 /* ViewController.swift */,
@@ -84,16 +95,28 @@
 		AD837ABA21C7BA7100555917 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AD50390A21CFA7970009EB0C /* RadioBtnView.swift */,
 				AD50390921CFA7960009EB0C /* RadioBtnView.xib */,
+				AD50390A21CFA7970009EB0C /* RadioBtnView.swift */,
+				ADAAD6E921D0ECB600B9D59E /* CheckboxView.xib */,
+				ADAAD6EB21D0ECC500B9D59E /* CheckboxView.swift */,
 				AD837AB621C7B50C00555917 /* ViewStacker.xib */,
 				AD837AB821C7BA6800555917 /* ViewStacker.swift */,
 				AD837ABD21C7C0FE00555917 /* OneRowStacker.xib */,
 				AD837ABB21C7C0F600555917 /* OneRowStacker.swift */,
 				AD837AC321C7C67F00555917 /* LabelAndTextView.swift */,
 				AD837AC421C7C67F00555917 /* LabelAndTextView.xib */,
+				ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */,
+				ADAAD6F421D0F7B700B9D59E /* LabelBtnSwitchView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		ADAAD6F121D0F4BE00B9D59E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,9 +179,11 @@
 			files = (
 				AD837AAF21C7B4E900555917 /* LaunchScreen.storyboard in Resources */,
 				AD837ABE21C7C0FE00555917 /* OneRowStacker.xib in Resources */,
+				ADAAD6EA21D0ECB600B9D59E /* CheckboxView.xib in Resources */,
 				AD837AB721C7B50C00555917 /* ViewStacker.xib in Resources */,
 				AD837AAC21C7B4E900555917 /* Assets.xcassets in Resources */,
 				AD837AC621C7C68000555917 /* LabelAndTextView.xib in Resources */,
+				ADAAD6F521D0F7B700B9D59E /* LabelBtnSwitchView.xib in Resources */,
 				AD50390B21CFA7970009EB0C /* RadioBtnView.xib in Resources */,
 				AD837AAA21C7B4E700555917 /* Main.storyboard in Resources */,
 			);
@@ -175,8 +200,11 @@
 				AD837AA721C7B4E700555917 /* ViewController.swift in Sources */,
 				AD837ABC21C7C0F600555917 /* OneRowStacker.swift in Sources */,
 				AD50390C21CFA7970009EB0C /* RadioBtnView.swift in Sources */,
+				ADAAD6F721D0FBAC00B9D59E /* LabelBtnSwitchView.swift in Sources */,
 				AD837AB921C7BA6800555917 /* ViewStacker.swift in Sources */,
 				AD837AA521C7B4E700555917 /* AppDelegate.swift in Sources */,
+				ADAAD6EC21D0ECC500B9D59E /* CheckboxView.swift in Sources */,
+				ADAAD6F321D0F4CB00B9D59E /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

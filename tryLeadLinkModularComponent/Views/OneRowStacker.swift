@@ -58,6 +58,10 @@ class OneRowStacker: UIView {
         layoutComponents()
     }
     
+    func insertAsLast(view: UIView) {
+        stackView.addArrangedSubview(view)
+    }
+    
     // imas case sa 1,2,3 components.
     private func layoutComponents() {
         

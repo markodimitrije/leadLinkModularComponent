@@ -1,5 +1,5 @@
 //
-//  RadioBtnsView.swift
+//  CheckboxView.swift
 //  LeadLink
 //
 //  Created by Marko Dimitrijevic on 21/12/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RadioBtnView: UIView, RowsStackedEqually { // RowsStackedEqually hocu da su redovi uvek jednakih height..
+class CheckboxView: UIView, RowsStackedEqually {
     
     @IBOutlet weak var headlineLbl: UILabel!
     
@@ -35,7 +35,7 @@ class RadioBtnView: UIView, RowsStackedEqually { // RowsStackedEqually hocu da s
         }
         set {
             _isOn = newValue
-            let img = _isOn ? UIImage.init(named: "radioBtn_ON") : UIImage.init(named: "radioBtn_OFF")
+            let img = _isOn ? UIImage.init(named: "checkbox_ON") : UIImage.init(named: "checkbox_OFF")
             radioBtn.setBackgroundImage(img, for: .normal)
         }
     }
@@ -50,14 +50,14 @@ class RadioBtnView: UIView, RowsStackedEqually { // RowsStackedEqually hocu da s
         loadViewFromNib()
     }
     
-    convenience init(frame: CGRect, option: RadioBtnOption) {
+    convenience init(frame: CGRect, option: CheckboxOption) {
         self.init(frame: frame)
         update(option: option)
     }
     
     func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "RadioBtnView", bundle: bundle)
+        let nib = UINib(nibName: "CheckboxView", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -66,7 +66,7 @@ class RadioBtnView: UIView, RowsStackedEqually { // RowsStackedEqually hocu da s
         
     }
     
-    func update(option: RadioBtnOption) {
+    func update(option: CheckboxOption) {
         self.id = option.id
         self.headlineText = option.text
         self.isOn = option.isOn
@@ -74,8 +74,9 @@ class RadioBtnView: UIView, RowsStackedEqually { // RowsStackedEqually hocu da s
     
 }
 
-struct RadioBtnOption {
+struct CheckboxOption {
     var id = 0
     var isOn = false
     var text = ""
 }
+
