@@ -19,14 +19,23 @@ protocol ViewModelType {
 }
 
 class RadioViewModel: ViewModelType {
+    
+    var question: Question
+    
+    init(question: Question) {
+        self.question = question
+    }
+    
     struct Input {
         var id: Int
+        var ids = [Int]()
     }
     struct Output {
         var id: Int
+        var ids = [Int]()
     }
     func transform(input: RadioViewModel.Input) -> RadioViewModel.Output {
-        let output = Output.init(id: input.id)
+        let output = Output.init(id: input.id, ids: input.ids)
         print("prosledjujem input na output", input.id)
         return output
     }
