@@ -21,6 +21,7 @@
 		AD837ABE21C7C0FE00555917 /* OneRowStacker.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD837ABD21C7C0FE00555917 /* OneRowStacker.xib */; };
 		AD837AC521C7C68000555917 /* LabelAndTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837AC321C7C67F00555917 /* LabelAndTextView.swift */; };
 		AD837AC621C7C68000555917 /* LabelAndTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD837AC421C7C67F00555917 /* LabelAndTextView.xib */; };
+		AD9EDEBF21D1837F0058814C /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9EDEBE21D1837F0058814C /* ViewFactory.swift */; };
 		ADAAD6EA21D0ECB600B9D59E /* CheckboxView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADAAD6E921D0ECB600B9D59E /* CheckboxView.xib */; };
 		ADAAD6EC21D0ECC500B9D59E /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAAD6EB21D0ECC500B9D59E /* CheckboxView.swift */; };
 		ADAAD6F321D0F4CB00B9D59E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */; };
@@ -45,6 +46,7 @@
 		AD837ABD21C7C0FE00555917 /* OneRowStacker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneRowStacker.xib; sourceTree = "<group>"; };
 		AD837AC321C7C67F00555917 /* LabelAndTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAndTextView.swift; sourceTree = "<group>"; };
 		AD837AC421C7C67F00555917 /* LabelAndTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelAndTextView.xib; sourceTree = "<group>"; };
+		AD9EDEBE21D1837F0058814C /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
 		ADAAD6E921D0ECB600B9D59E /* CheckboxView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckboxView.xib; sourceTree = "<group>"; };
 		ADAAD6EB21D0ECC500B9D59E /* CheckboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
 		ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				AD837AA421C7B4E700555917 /* AppDelegate.swift */,
 				AD837ABA21C7BA7100555917 /* Views */,
 				AD837AA621C7B4E700555917 /* ViewController.swift */,
+				AD9EDEBE21D1837F0058814C /* ViewFactory.swift */,
 				AD837AA821C7B4E700555917 /* Main.storyboard */,
 				AD837AAB21C7B4E900555917 /* Assets.xcassets */,
 				AD837AAD21C7B4E900555917 /* LaunchScreen.storyboard */,
@@ -288,6 +291,7 @@
 				ADAAD6F721D0FBAC00B9D59E /* LabelBtnSwitchView.swift in Sources */,
 				AD837AB921C7BA6800555917 /* ViewStacker.swift in Sources */,
 				AD837AA521C7B4E700555917 /* AppDelegate.swift in Sources */,
+				AD9EDEBF21D1837F0058814C /* ViewFactory.swift in Sources */,
 				ADAAD6EC21D0ECC500B9D59E /* CheckboxView.swift in Sources */,
 				ADAAD6F321D0F4CB00B9D59E /* Protocols.swift in Sources */,
 			);

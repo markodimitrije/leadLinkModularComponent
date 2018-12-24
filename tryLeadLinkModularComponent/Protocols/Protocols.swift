@@ -11,3 +11,23 @@ import Foundation
 protocol RowsStackedEqually {
     //
 }
+
+protocol ViewModelType {
+    associatedtype Input
+    associatedtype Output
+    func transform(input: Input) -> Output
+}
+
+class RadioViewModel: ViewModelType {
+    struct Input {
+        var id: Int
+    }
+    struct Output {
+        var id: Int
+    }
+    func transform(input: RadioViewModel.Input) -> RadioViewModel.Output {
+        let output = Output.init(id: input.id)
+        print("prosledjujem input na output", input.id)
+        return output
+    }
+}
