@@ -29,7 +29,14 @@ class ViewController: UIViewController, RadioBtnListener {
     private func leftScenariosTapped(sender: UIButton) {
         
         switch sender.tag {
-            case 0: showRadioBtns()
+            case 0:
+            
+                let stackerView = getRadioBtnsView()
+                let radioViewModel = RadioViewModel.init()
+                
+                hookUp(view: stackerView, viewmodel: radioViewModel)
+            
+            self.view.addSubview(stackerView)
             
         default: break
         }
@@ -46,23 +53,35 @@ class ViewController: UIViewController, RadioBtnListener {
     
     
     
-    private func showRadioBtns() {
+    private func hookUp(view: ViewStacker, viewmodel: RadioViewModel) {
+        print("implement me")
+    }
+    
+    
+    private func getRadioBtnsView() -> ViewStacker {
+        
         let options = ["Paris", "London", "Maroco", "Madrid", "Moscow"]
         let q = Question.init(id: 3, type: "radioBtn", headlineText: "Headline", inputTxt: "whatever", options: options)
         let height = getOneRowHeightFor(componentType: "radioBtn")
         let fr = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: viewFactory.bounds.width, height: height))
         
-        let myBtnsStack = viewFactory.getStackedRadioBtns(question: q, answer: nil, frame: fr)
+        return provideRadioBtnsView(question: q, answer: nil, frame: fr)
+        
+    }
+    
+    private func provideRadioBtnsView(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
+        
+        let myBtnsStack = viewFactory.getStackedRadioBtns(question: question, answer: nil, frame: frame)
         
         //let components = [a,b,c,myBtnsStack]
         let components = [myBtnsStack]
         
         let frame = viewFactory.getRect(forComponents: components)
         let stackerView = ViewStacker.init(frame: frame , components: components)
-        self.view.addSubview(stackerView)
+        
+        return stackerView
+        
     }
-    
-    
     
     
     
