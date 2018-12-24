@@ -21,6 +21,8 @@ class ViewStacker: UIView {
         }
     }
     
+    var answer: Answer?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
@@ -34,6 +36,13 @@ class ViewStacker: UIView {
     convenience init(frame: CGRect,
                      components: [UIView]) {
         self.init(frame: frame)
+        self.components = components
+        layoutComponents()
+    }
+    
+    convenience init(frame: CGRect, components: [UIView], answer: Answer?) {
+        self.init(frame: frame)
+        self.answer = answer
         self.components = components
         layoutComponents()
     }
@@ -53,15 +62,11 @@ class ViewStacker: UIView {
     //hard coded poslate views slozi u onoliko horizontalnih stackviews formula ti je ((n+1)/2 ) + 1
     private func layoutComponents() {
         
-//        print("calling layoutComponents")
-        
         for (index, v) in components.enumerated() {
             if index == 0 {
-//                print("addArrangedSubview....")
                 viewStacker.addArrangedSubview(v)
                 self.layoutSubviews()
             } else {
-//                print("insertArrangedSubview....")
                 viewStacker.insertArrangedSubview(v, at: index)
                 self.layoutSubviews()
             }
@@ -84,4 +89,14 @@ class ViewStacker: UIView {
         viewStacker.addArrangedSubview(view)
     }
     
+}
+
+protocol Answer {
+    var questionId: Int {get set}
+}
+
+struct RadioAnswer: Answer {
+    var questionId: Int // koji je ID pitanja
+    var optionId: Int // koju opciju je izabrao
+    var txt: String // koji je text te opcije
 }

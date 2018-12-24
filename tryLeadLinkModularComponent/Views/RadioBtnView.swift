@@ -15,7 +15,14 @@ class RadioBtnView: UIView, RowsStackedEqually { // RowsStackedEqually hocu da s
     @IBOutlet weak var radioBtn: UIButton!
     
     @IBAction func radioBtnTapped(_ sender: UIButton) {
+        delegate?.radioBtnTapped(index: sender.tag)
     }
+    
+    var counter: Int = 0
+    
+    // ovde moze da se zakaci listener // mnogo je bolje sa observables...
+    
+    weak var delegate: RadioBtnListener?
     
     var headlineText: String? {
         get {
@@ -29,13 +36,16 @@ class RadioBtnView: UIView, RowsStackedEqually { // RowsStackedEqually hocu da s
     private var id = 0
     private var _isOn: Bool = false
     
+    private var radioBtnOnImg = UIImage.init(named: "radioBtn_ON")
+    private var radioBtnOffImg = UIImage.init(named: "radioBtn_OFF")
+    
     var isOn: Bool {
         get {
             return _isOn
         }
         set {
             _isOn = newValue
-            let img = _isOn ? UIImage.init(named: "radioBtn_ON") : UIImage.init(named: "radioBtn_OFF")
+            let img = _isOn ? radioBtnOnImg : radioBtnOffImg
             radioBtn.setBackgroundImage(img, for: .normal)
         }
     }
@@ -72,10 +82,18 @@ class RadioBtnView: UIView, RowsStackedEqually { // RowsStackedEqually hocu da s
         self.isOn = option.isOn
     }
     
+    func set(logic: Bool) {
+        self.isOn = logic
+    }
+    
 }
 
 struct RadioBtnOption {
     var id = 0
     var isOn = false
     var text = ""
+}
+
+protocol RadioBtnListener: class {
+    func radioBtnTapped(index: Int)
 }

@@ -3,16 +3,60 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ViewStacker.layoutComponents():ViewStacker.swift">
+         contextName = "LabelAndTextView.headlineText.setter:LabelAndTextView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "viewStacker.arrangedSubviews.count">
+               value = "headlineLbl">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in ViewController.produceStackWithSameComponentsAndInputView(ofType:count:inOneRow:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "view as? RadioBtnView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RadioBtnView.radioBtnTapped(_:):RadioBtnView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "sender.tag">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "OneRowStacker.layoutComponents():OneRowStacker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "size">
+            </PersistentString>
+            <PersistentString
+               value = "view.bounds.size">
+            </PersistentString>
+            <PersistentString
+               value = "CGSize.init(width: size.width * CGFloat(1)/CGFloat(components.count), height: size.height)">
+            </PersistentString>
+            <PersistentString
+               value = "size.width">
+            </PersistentString>
+            <PersistentString
+               value = "size.width * CGFloat(1)/CGFloat(components.count)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewStacker.layoutComponents():ViewStacker.swift">
+         <PersistentStrings>
             <PersistentString
                value = "viewStacker">
             </PersistentString>
             <PersistentString
                value = "components.first">
+            </PersistentString>
+            <PersistentString
+               value = "viewStacker.arrangedSubviews.count">
             </PersistentString>
             <PersistentString
                value = "(components.first as? OneRowStacker).subviews">
@@ -34,34 +78,6 @@
             </PersistentString>
             <PersistentString
                value = "components.first as? OneRowStacker">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "LabelAndTextView.headlineText.setter:LabelAndTextView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "headlineLbl">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "OneRowStacker.layoutComponents():OneRowStacker.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "size">
-            </PersistentString>
-            <PersistentString
-               value = "view.bounds.size">
-            </PersistentString>
-            <PersistentString
-               value = "CGSize.init(width: size.width * CGFloat(1)/CGFloat(components.count), height: size.height)">
-            </PersistentString>
-            <PersistentString
-               value = "size.width">
-            </PersistentString>
-            <PersistentString
-               value = "size.width * CGFloat(1)/CGFloat(components.count)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
