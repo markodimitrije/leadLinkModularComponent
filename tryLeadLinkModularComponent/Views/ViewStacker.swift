@@ -93,10 +93,11 @@ class ViewStacker: UIView {
 
 protocol Answer {
     var questionId: Int {get set}
+    var content: [String] {get set}
 }
 
 struct RadioAnswer: Answer {
     var questionId: Int // koji je ID pitanja
     var optionId: Int // koju opciju je izabrao
-    var txt: String // koji je text te opcije
+    var content = [String]() // koji je text te opcije
 }
