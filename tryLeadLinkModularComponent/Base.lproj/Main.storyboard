@@ -19,18 +19,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wKY-pk-d8r">
-                                <rect key="frame" x="16" y="557" width="79" height="90"/>
+                                <rect key="frame" x="16" y="557" width="109" height="90"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXk-L8-kuu">
-                                        <rect key="frame" x="0.0" y="0.0" width="79" height="30"/>
-                                        <state key="normal" title="switch btns"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="109" height="30"/>
+                                        <state key="normal" title="show radio btns"/>
                                         <connections>
                                             <action selector="leftBtnsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fYN-R6-8g6"/>
                                             <action selector="scenarioTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QP0-n5-koT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05C-QN-hTc">
-                                        <rect key="frame" x="0.0" y="30" width="79" height="30"/>
+                                        <rect key="frame" x="0.0" y="30" width="109" height="30"/>
                                         <state key="normal" title="non"/>
                                         <connections>
                                             <action selector="leftBtnsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h7O-hb-qHt"/>
@@ -38,7 +38,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14H-Uf-OEw">
-                                        <rect key="frame" x="0.0" y="60" width="79" height="30"/>
+                                        <rect key="frame" x="0.0" y="60" width="109" height="30"/>
                                         <state key="normal" title="non"/>
                                         <connections>
                                             <action selector="leftBtnsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ffy-k4-HTB"/>
@@ -112,7 +112,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="scenarios" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFz-97-zaZ">
-                                <rect key="frame" x="18.5" y="528.5" width="74" height="20.5"/>
+                                <rect key="frame" x="33.5" y="528.5" width="74" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
