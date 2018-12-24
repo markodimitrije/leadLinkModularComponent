@@ -316,15 +316,17 @@ class ViewController: UIViewController {
         
         let components_4 = LabelBtnSwitchView.init(frame: rect, switchInfo: info_1)
         let components_5 = LabelBtnSwitchView.init(frame: rect, switchInfo: info_2)
+        let components_6 = LabelBtnSwitchView.init(frame: rect, switchInfo: info_1)
+        let components_7 = LabelBtnSwitchView.init(frame: rect, switchInfo: info_2)
+        let components_8 = LabelBtnSwitchView.init(frame: rect, switchInfo: info_1)
+        let components_9 = LabelBtnSwitchView.init(frame: rect, switchInfo: info_2)
         
         let d = stackElementsInOneRow(components: [components_4], rowHeight: switchHeight)
         let e = stackElementsInOneRow(components: [components_5], rowHeight: switchHeight)
-        
-        let f = stackElementsInOneRow(components: [components_4], rowHeight: switchHeight)
-        let g = stackElementsInOneRow(components: [components_5], rowHeight: switchHeight)
-        
-        let h = stackElementsInOneRow(components: [components_4], rowHeight: switchHeight)
-        let i = stackElementsInOneRow(components: [components_5], rowHeight: switchHeight)
+        let f = stackElementsInOneRow(components: [components_6], rowHeight: switchHeight)
+        let g = stackElementsInOneRow(components: [components_7], rowHeight: switchHeight)
+        let h = stackElementsInOneRow(components: [components_8], rowHeight: switchHeight)
+        let i = stackElementsInOneRow(components: [components_9], rowHeight: switchHeight)
         
         let components = [a,b,c,d,e,f,g,h,i]
         
