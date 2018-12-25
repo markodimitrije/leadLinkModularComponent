@@ -35,9 +35,11 @@ class ViewController: UIViewController, RadioBtnListener {
                 let q = Question.init(id: 3, type: "radioBtn", headlineText: "Headline", inputTxt: "whatever", options: options)
                 let height = getOneRowHeightFor(componentType: "radioBtn")
                 let fr = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: viewFactory.bounds.width, height: height))
+                
+                let answer = RadioAnswer.init(questionId: q.id, optionId: 3, content: ["Madrid"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
             
                 let stackerView = getRadioBtnsView(question: q, answer: nil, frame: fr)
-                let radioViewModel = RadioViewModel.init(question: q)
+                let radioViewModel = RadioViewModel.init(question: q, answer: answer)
                 
                 hookUp(view: stackerView, viewmodel: radioViewModel)
             
@@ -86,16 +88,16 @@ class ViewController: UIViewController, RadioBtnListener {
             .map { ($0.rx.tap, $0.tag) }
             .map { obs, tag in obs.map { tag } }
         
-        let values = Observable
-                        .merge(tags)
+        let values = Observable.merge(tags)
         
-        let input = RadioViewModel.Input.init(ids: values)
+        let input = RadioViewModel.Input.init(ids: values, answer: viewmodel.answer)
         
         let output = viewmodel.transform(input: input) // vratio sam identican input na output
         
         _ = textDrivers.enumerated().map { (offset, textDriver) in
             textDriver.drive(btnViews[offset].rx.optionText)
         }
+        
         
         // ovo radi... ali nije PRAVI Reactive !
         output.ids.subscribe(onNext: { val in

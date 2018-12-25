@@ -23,36 +23,29 @@ protocol ViewModelType {
 class RadioViewModel: ViewModelType {
     
     var question: Question
+    var answer: RadioAnswer?
     
-    init(question: Question) {
+    init(question: Question, answer: RadioAnswer?) {
         self.question = question
+        self.answer = answer
     }
     
     struct Input {
         var ids: Observable<Int>
+        var answer: RadioAnswer?
     }
     
     struct Output { // treba ti side effects
         var ids: Observable<Int> // tap koji mapiras u id (btn.tag)
-        var active: Int? // tap koji mapiras u id (btn.tag)
-        var act: BehaviorRelay<Int?>
     }
     
-    func transform(input: RadioViewModel.Input) -> RadioViewModel.Output {
+    func transform(input: RadioViewModel.Input) -> RadioViewModel.Output { // ovo je bas bezveze... razumi kako radi...
         
-        let act = BehaviorRelay<Int?>(value: nil)
-        let inact = BehaviorRelay<[Int]>.init(value: [ ])
+        let resulting = Observable.merge(Observable.of(answer!.optionId), input.ids)
         
-        var active: Int?
+        let withAnswer = (answer == nil) ? input.ids : resulting
         
-            input.ids.takeLast(1)
-            .subscribe(onNext: { val in
-                active = val
-                act.accept(val)
-            })
-            .disposed(by: bag)
-
-        let output = Output.init(ids: input.ids, active: active, act: act)
+        let output = Output.init(ids: withAnswer)
         
         return output
     }
