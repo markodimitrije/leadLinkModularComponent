@@ -56,23 +56,61 @@ class ViewController: UIViewController, RadioBtnListener {
         
     }
     
-    
+    // hocu da Tap na embeded radio btn (nalazi se digged in u ViewStacker-u) pogoni ostale btn-e da menjaju sliku + da save actual za MODEL
+    // s druge strane, ANSWER bi trebalo da pogoni sve btns, jer moze da se upari i preko "id" i preko "value"
     
     private func hookUp(view: ViewStacker, viewmodel: RadioViewModel) {
+    
+        // moze li moj radioViewModel kao Input param da dobije niz sa radioBtns - mislim da je to u redu.
         
-        //viewmodel.
+        let btnViews = view.components.flatMap { view -> [RadioBtnView] in
+            return (view as? OneRowStacker)?.components as? [RadioBtnView] ?? [ ]
+        }
+        
+        // text drivers start
+        
+        let textDrivers = viewmodel.question.options.map { (text) -> Driver<String> in
+            return Observable.from([text]).asDriver(onErrorJustReturn: "")
+        }
+        
+        _ = textDrivers.enumerated().map { (offset, textDriver) in
+                textDriver.drive(btnViews[offset].rx.optionText)
+            }
+        
+        // text drivers end
+        
+        let buttons = btnViews.compactMap {$0.radioBtn} // ne moras da pises : btnViews.map {$0.radioBtn!}
+        _ = buttons.enumerated().map { $0.element.tag = $0.offset } // dodeli svakome unique TAG
+        
+        let tags = buttons
+            .map { ($0.rx.tap, $0.tag) }
+            .map { obs, tag in obs.map { tag } }
+        
+        let values = Observable
+                        .merge(tags)
+        
+        let input = RadioViewModel.Input.init(ids: values)
+        
+        let output = viewmodel.transform(input: input) // vratio sam identican input na output
+        
+        output.ids.subscribe(onNext: { val in
+            print("emitovan je val = \(val)")
+            let active = buttons.first(where: { $0.tag == val })
+            var inactive = buttons
+            inactive.remove(at: val) // jer znam da su indexed redom..
+            _ = inactive.map({
+                print("pogasi ove", $0.tag)
+            })
+            _ = active.map({
+                print("ukljuci ovaj", $0.tag)
+            })
+        }).disposed(by: bag)
         
     }
     
-    
     private func getRadioBtnsView(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
         
-        let myBtnsStack = viewFactory.getStackedRadioBtns(question: question, answer: answer, frame: frame)
-        
-        let components = [myBtnsStack]
-        
-        let frame = viewFactory.getRect(forComponents: components)
-        let stackerView = ViewStacker.init(frame: frame , components: components)
+        let stackerView = viewFactory.getStackedRadioBtns(question: question, answer: answer, frame: frame)
         
         return stackerView
         
@@ -85,6 +123,8 @@ class ViewController: UIViewController, RadioBtnListener {
         // ako je radioBtn emitovao, pogasi sve preostale, sacuvaj na sebi vrednost itd...
         
     }
+    
+    private var bag = DisposeBag()
     
 }
 

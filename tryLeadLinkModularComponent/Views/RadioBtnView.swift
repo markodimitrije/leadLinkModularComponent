@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+
 
 class RadioBtnView: UIView, RowsStackedEqually { // RowsStackedEqually hocu da su redovi uvek jednakih height..
     
@@ -36,8 +39,8 @@ class RadioBtnView: UIView, RowsStackedEqually { // RowsStackedEqually hocu da s
     private var id = 0
     private var _isOn: Bool = false
     
-    private var radioBtnOnImg = UIImage.init(named: "radioBtn_ON")
-    private var radioBtnOffImg = UIImage.init(named: "radioBtn_OFF")
+    var radioBtnOnImg = UIImage.init(named: "radioBtn_ON")
+    var radioBtnOffImg = UIImage.init(named: "radioBtn_OFF")
     
     var isOn: Bool {
         get {
@@ -96,4 +99,29 @@ struct RadioBtnOption {
 
 protocol RadioBtnListener: class {
     func radioBtnTapped(index: Int)
+}
+
+extension Reactive where Base: RadioBtnView {
+
+    var radioBtnOnImg: UIImage? {
+        return UIImage.init(named: "radioBtn_ON")
+    }
+    
+    var radioBtnOffImg: UIImage?  {
+        return UIImage.init(named: "radioBtn_OFF")
+    }
+    
+    var isOn: Binder<Bool> {
+        return Binder.init(self.base, binding: { (view, value) in
+            let image = value ? self.radioBtnOnImg : self.radioBtnOffImg
+            view.radioBtn.setBackgroundImage(image, for: .normal)
+        })
+    }
+    
+    var optionText: Binder<String> {
+        return Binder.init(self.base, binding: { (view, value) in
+            view.headlineText = value
+        })
+    }
+
 }

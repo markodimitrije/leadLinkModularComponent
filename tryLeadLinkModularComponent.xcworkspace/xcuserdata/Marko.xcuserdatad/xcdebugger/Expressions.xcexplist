@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ViewController.hookUp(view:viewmodel:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "btnViews">
+            </PersistentString>
+            <PersistentString
+               value = "view.components.compactMap">
+            </PersistentString>
+            <PersistentString
+               value = "view.components">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ViewController.hookUp(view:viewmodel:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "view">
+            </PersistentString>
+            <PersistentString
+               value = "(view as? OneRowStacker)?.components">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
