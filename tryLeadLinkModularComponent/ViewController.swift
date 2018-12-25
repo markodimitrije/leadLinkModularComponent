@@ -59,7 +59,7 @@ class ViewController: UIViewController, RadioBtnListener {
     // hocu da Tap na embeded radio btn (nalazi se digged in u ViewStacker-u) pogoni ostale btn-e da menjaju sliku + da save actual za MODEL
     // s druge strane, ANSWER bi trebalo da pogoni sve btns, jer moze da se upari i preko "id" i preko "value"
     
-    private func hookUp(view: ViewStacker, viewmodel: RadioViewModel) {
+    private func hookUp(view: ViewStacker, viewmodel: RadioViewModel) { // osim Question viewmodel treba da ima i Answer !!!
     
         // moze li moj radioViewModel kao Input param da dobije niz sa radioBtns - mislim da je to u redu.
         
@@ -93,16 +93,20 @@ class ViewController: UIViewController, RadioBtnListener {
         
         let output = viewmodel.transform(input: input) // vratio sam identican input na output
         
+        _ = textDrivers.enumerated().map { (offset, textDriver) in
+            textDriver.drive(btnViews[offset].rx.optionText)
+        }
+        
+        // ovo radi... ali nije PRAVI Reactive !
         output.ids.subscribe(onNext: { val in
-            print("emitovan je val = \(val)")
             let active = buttons.first(where: { $0.tag == val })
             var inactive = buttons
             inactive.remove(at: val) // jer znam da su indexed redom..
             _ = inactive.map({
-                print("pogasi ove", $0.tag)
+                btnViews[$0.tag].isOn = false
             })
             _ = active.map({
-                print("ukljuci ovaj", $0.tag)
+                btnViews[$0.tag].isOn = true
             })
         }).disposed(by: bag)
         

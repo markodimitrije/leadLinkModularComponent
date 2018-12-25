@@ -34,25 +34,28 @@ class RadioViewModel: ViewModelType {
     
     struct Output { // treba ti side effects
         var ids: Observable<Int> // tap koji mapiras u id (btn.tag)
+        var active: Int? // tap koji mapiras u id (btn.tag)
+        var act: BehaviorRelay<Int?>
     }
     
     func transform(input: RadioViewModel.Input) -> RadioViewModel.Output {
         
-//        let activeSignal: Driver<Int>
-//        let inactiveSignal: [Driver<Int>]
+        let act = BehaviorRelay<Int?>(value: nil)
+        let inact = BehaviorRelay<[Int]>.init(value: [ ])
         
-//        func todo() {
-//            input.ids.subscribe(onNext: { (<#Int#>) in
-//                
-//            })
-//        }
-//        
-//        input.ids.asDriver(onErrorJustReturn: 0).do(onNext: { (<#Int#>) in
-//            
-//        })
+        var active: Int?
+        
+            input.ids.takeLast(1)
+            .subscribe(onNext: { val in
+                active = val
+                act.accept(val)
+            })
+            .disposed(by: bag)
 
-        let output = Output.init(ids: input.ids)
-        print("prosledjujem input na output", output.ids)
+        let output = Output.init(ids: input.ids, active: active, act: act)
+        
         return output
     }
+    
+    private var bag = DisposeBag()
 }

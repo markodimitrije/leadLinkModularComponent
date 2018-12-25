@@ -6,6 +6,12 @@
          contextName = "ViewController.hookUp(view:viewmodel:):ViewController.swift">
          <PersistentStrings>
             <PersistentString
+               value = "output.act.value">
+            </PersistentString>
+            <PersistentString
+               value = "btnViews[output.act.value]">
+            </PersistentString>
+            <PersistentString
                value = "btnViews">
             </PersistentString>
             <PersistentString
