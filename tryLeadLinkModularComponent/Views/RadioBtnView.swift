@@ -118,7 +118,7 @@ extension Reactive where Base: RadioBtnView {
         })
     }
     
-    var optionText: Binder<String> {
+    var optionTxt: Binder<String> {
         return Binder.init(self.base, binding: { (view, value) in
             view.headlineText = value
         })

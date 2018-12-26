@@ -72,18 +72,19 @@ class ViewController: UIViewController, RadioBtnListener {
             
         case 2: // radio with input
             
-            let options = ["Paris", "London", "Maroco", "Madrid", "Moscow", "Rome"]
-            //let options = ["Paris", "London", "Maroco", "Madrid", "Moscow"]
-            let q = Question.init(id: 2, type: "radioBtn", headlineText: "Headline", inputTxt: "whatever", options: options)
+//            let options = ["Paris", "London", "Maroco", "Madrid", "Moscow", "Rome"]
+            let options = ["Paris", "London", "Maroco", "Madrid", "Moscow"]
+            let q = Question.init(id: 22, type: "radioBtn", headlineText: "Headline", inputTxt: "whatever", options: options)
             let height = getOneRowHeightFor(componentType: "radioBtn")
             let fr = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: viewFactory.bounds.width, height: height))
             
-            let answer = RadioAnswer.init(questionId: q.id, optionId: 3, content: ["London"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
+            //let answer = RadioAnswer.init(questionId: q.id, optionId: 1, content: ["London"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
+            let answer = RadioAnswer.init(questionId: q.id, optionId: 5, content: ["Palermo"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
             
             let (stackerView, btnViews) = getRadioBtnsWithInputView(question: q, answer: nil, frame: fr)
             
-            //let radioWithInputViewModel = RadioWithInputViewModel.init(question: q, answer: nil)  //all good..
-            let radioWithInputViewModel = RadioWithInputViewModel.init(question: q, answer: answer)  //all good..
+            let radioWithInputViewModel = RadioWithInputViewModel.init(question: q, answer: nil)  //all good..
+            //let radioWithInputViewModel = RadioWithInputViewModel.init(question: q, answer: answer)  //all good..
             
             hookUp(view: stackerView, btnViews: btnViews, radioWithInputViewModel: radioWithInputViewModel)
             
@@ -118,7 +119,7 @@ class ViewController: UIViewController, RadioBtnListener {
         let textDrivers = inputCreator.createTxtDrivers()
         
         _ = textDrivers.enumerated().map { (offset, textDriver) in
-                textDriver.drive(btnViews[offset].rx.optionText)
+                textDriver.drive(btnViews[offset].rx.optionTxt)
             }
         
         let values = inputCreator.createRadioBtnsInput(btnViews: btnViews)
@@ -196,16 +197,29 @@ class ViewController: UIViewController, RadioBtnListener {
     
     private func hookUp(view: ViewStacker, btnViews: [UIView], radioWithInputViewModel viewmodel: RadioWithInputViewModel) { // osim Question viewmodel treba da ima i Answer !!!
         
+        let inputCreator = RadioWithInputViewmodelInputCreator.init(viewmodel: viewmodel)
+        let textDrivers = inputCreator.createTxtDrivers()
         
+        _ = textDrivers.enumerated().map { (offset, textDriver) in
+            print(offset)
+            guard let observer = (btnViews[offset] as? OptionTxtUpdatable)?.optionTxt else { return }
+
+            textDriver
+                .drive(observer)
+                .disposed(by: bag)
+            
+            textDrivers.last?.asObservable()
+                .subscribe(onNext: { (val) in
+                    if val == "" {
+                        (btnViews.last as? UITextField)?.placeholder = "type city"
+                    }
+                })
+                .disposed(by: bag)
+        }
+
+
         
-//        let buttons = btnViews.compactMap {$0.radioBtn}
-//
-//        let textDrivers = inputCreator.createTxtDrivers()
-//
-//        _ = textDrivers.enumerated().map { (offset, textDriver) in
-//            textDriver.drive(btnViews[offset].rx.optionText)
-//        }
-//
+
 //        let values = inputCreator.createRadioBtnsInput(btnViews: btnViews)
 //
 //        let input = RadioViewModel.Input.init(ids: values, answer: viewmodel.answer)
@@ -262,13 +276,10 @@ class ViewController: UIViewController, RadioBtnListener {
         let stackerView = viewFactory.getStackedRadioBtnsWithInput(question: question, answer: answer, frame: frame)
         
         let elements = stackerView.components.flatMap { view -> [UIView] in
-            //return (view as? OneRowStacker)?.components ?? [ ]
-            return (view as? OneRowStacker)?.myComponents ?? [ ] // treba refactor da imas ovo a ne state (linija iznad)
+            return (view as? OneRowStacker)?.components ?? [ ]
         }
         
         _ = elements.enumerated().map { $0.element.tag = $0.offset } // dodeli svakome unique TAG
-        
-        
         
         return (stackerView, elements)
         
@@ -375,3 +386,40 @@ class RadioViewmodelInputCreator {
     }
         
 }
+
+class RadioWithInputViewmodelInputCreator {
+    
+    var viewmodel: RadioWithInputViewModel
+    
+    init(viewmodel: RadioWithInputViewModel) {
+        self.viewmodel = viewmodel
+    }
+    
+    func createTxtDrivers() -> [Driver<String>] {
+        
+        var answerTxt: String? { return viewmodel.answer?.content.last }
+        var options: [String] {return viewmodel.question.options}
+        
+        let anserIsOptionTxt = (answerTxt != nil) ? !options.contains(answerTxt!) : nil
+        let optionTxt = (anserIsOptionTxt == nil) ? "" : (anserIsOptionTxt != nil && anserIsOptionTxt!) ? (answerTxt!) : ""
+        
+        let allOptions = options + [optionTxt]
+        
+        let textDrivers = allOptions.map { (text) -> Driver<String> in
+            return Observable.from([text]).asDriver(onErrorJustReturn: "")
+        }
+        return textDrivers
+    }
+    
+    func createRadioBtnsInput(btnViews: [RadioBtnView] ) -> Observable<Int> {
+        
+        let tags = btnViews
+            .map { ($0.radioBtn.rx.tap, $0.radioBtn.tag) }
+            .map { obs, tag in obs.map { tag } } // ovo zelim da je [Observable<(Int,Bool)>] da znam da li je checked ili nije
+        
+        return Observable.merge(tags)
+        
+    }
+    
+}
+

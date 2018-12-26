@@ -22,6 +22,7 @@
 		AD837AC521C7C68000555917 /* LabelAndTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837AC321C7C67F00555917 /* LabelAndTextView.swift */; };
 		AD837AC621C7C68000555917 /* LabelAndTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD837AC421C7C67F00555917 /* LabelAndTextView.xib */; };
 		AD9EDEBF21D1837F0058814C /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9EDEBE21D1837F0058814C /* ViewFactory.swift */; };
+		AD9F0E7521D3D9BB005BD0A7 /* MyRxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9F0E7421D3D9BB005BD0A7 /* MyRxExtensions.swift */; };
 		ADAAD6EA21D0ECB600B9D59E /* CheckboxView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADAAD6E921D0ECB600B9D59E /* CheckboxView.xib */; };
 		ADAAD6EC21D0ECC500B9D59E /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAAD6EB21D0ECC500B9D59E /* CheckboxView.swift */; };
 		ADAAD6F321D0F4CB00B9D59E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */; };
@@ -47,6 +48,7 @@
 		AD837AC321C7C67F00555917 /* LabelAndTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAndTextView.swift; sourceTree = "<group>"; };
 		AD837AC421C7C67F00555917 /* LabelAndTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelAndTextView.xib; sourceTree = "<group>"; };
 		AD9EDEBE21D1837F0058814C /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
+		AD9F0E7421D3D9BB005BD0A7 /* MyRxExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRxExtensions.swift; sourceTree = "<group>"; };
 		ADAAD6E921D0ECB600B9D59E /* CheckboxView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckboxView.xib; sourceTree = "<group>"; };
 		ADAAD6EB21D0ECC500B9D59E /* CheckboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
 		ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		AD837AA321C7B4E700555917 /* tryLeadLinkModularComponent */ = {
 			isa = PBXGroup;
 			children = (
+				AD9F0E7321D3D9A5005BD0A7 /* MyRxExtensions */,
 				ADAAD6F121D0F4BE00B9D59E /* Protocols */,
 				AD837AA421C7B4E700555917 /* AppDelegate.swift */,
 				AD837ABA21C7BA7100555917 /* Views */,
@@ -128,6 +131,14 @@
 				ADAAD6F421D0F7B700B9D59E /* LabelBtnSwitchView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		AD9F0E7321D3D9A5005BD0A7 /* MyRxExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				AD9F0E7421D3D9BB005BD0A7 /* MyRxExtensions.swift */,
+			);
+			path = MyRxExtensions;
 			sourceTree = "<group>";
 		};
 		ADAAD6F121D0F4BE00B9D59E /* Protocols */ = {
@@ -284,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD9F0E7521D3D9BB005BD0A7 /* MyRxExtensions.swift in Sources */,
 				AD837AC521C7C68000555917 /* LabelAndTextView.swift in Sources */,
 				AD837AA721C7B4E700555917 /* ViewController.swift in Sources */,
 				AD837ABC21C7C0F600555917 /* OneRowStacker.swift in Sources */,

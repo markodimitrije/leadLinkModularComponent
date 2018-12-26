@@ -12,13 +12,7 @@ class OneRowStacker: UIView {
     
     @IBOutlet weak var stackView: UIStackView!
     
-    var components = [UIView]() {
-        didSet {
-            layoutComponents()
-        }
-    }
-    
-    var myComponents: [UIView] {
+    var components: [UIView] {
         return stackView.arrangedSubviews
     }
     
@@ -39,9 +33,7 @@ class OneRowStacker: UIView {
         
         self.init(frame: frame)
         
-        self.components = components
-        
-        layoutComponents()
+        layoutComponents(components: components)
         
     }
     
@@ -57,7 +49,7 @@ class OneRowStacker: UIView {
     }
 
     override func awakeFromNib() {
-        layoutComponents()
+        layoutComponents(components: [])
     }
     
     func insertAsLast(view: UIView) {
@@ -65,7 +57,7 @@ class OneRowStacker: UIView {
     }
     
     // imas case sa 1,2,3 components.
-    private func layoutComponents() {
+    private func layoutComponents(components: [UIView]) {
         
         for (index,view) in components.enumerated() {
         

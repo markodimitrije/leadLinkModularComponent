@@ -50,10 +50,8 @@ class ViewFactory {
         if lastRow.components.count == 3 { // max per row !
             guard let newRow = OneRowStacker.init(frame: lastRow.bounds, components: [txtBox]) else {return stacker}
             stacker.addAsLast(view: newRow)
-            stacker.components.append(newRow) // dodaj ga u svoj state
         } else {
             lastRow.insertAsLast(view: txtBox) // dodaj ga na view
-            stacker.components.append(txtBox) // dodaj ga u svoj state
         }
         
         return stacker
