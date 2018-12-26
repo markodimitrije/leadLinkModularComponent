@@ -62,7 +62,7 @@ class ViewController: UIViewController, RadioBtnListener {
             let stackerView = getCheckboxBtnsView(question: q, answer: nil, frame: fr)
             
             let checkboxViewModel = CheckboxViewModel.init(question: q, answer: answer)
-            // let checkboxViewModel = CheckboxViewModel.init(question: q, answer: nil) // test me...
+//            let checkboxViewModel = CheckboxViewModel.init(question: q, answer: nil) // test me...
 
             hookUp(view: stackerView, checkboxViewmodel: checkboxViewModel)
 

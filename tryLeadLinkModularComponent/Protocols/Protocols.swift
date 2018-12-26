@@ -77,7 +77,7 @@ class CheckboxViewModel: ViewModelType {
     
     func transform(input: Input) -> Output { // ovo je bas bezveze... razumi kako radi...
         
-        let resulting = Observable.merge(Observable.of(answer!.optionId), input.ids)
+        let resulting = Observable.merge(Observable.of(answer?.optionId ?? [ ]), input.ids)
         
         let withAnswer = (answer == nil) ? input.ids : resulting
         
