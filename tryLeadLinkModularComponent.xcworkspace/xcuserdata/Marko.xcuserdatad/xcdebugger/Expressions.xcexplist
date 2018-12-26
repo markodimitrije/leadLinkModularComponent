@@ -9,7 +9,7 @@
                value = "btnViews[output.act.value]">
             </PersistentString>
             <PersistentString
-               value = "output.act.value">
+               value = "view.components.compactMap">
             </PersistentString>
             <PersistentString
                value = "btnViews">
@@ -18,7 +18,7 @@
                value = "view.components">
             </PersistentString>
             <PersistentString
-               value = "view.components.compactMap">
+               value = "output.act.value">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -46,6 +46,17 @@
             </PersistentString>
             <PersistentString
                value = "(view as? OneRowStacker)?.components">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.getCheckboxBtnsView(question:answer:frame:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "stackerView.components as? [CheckboxView]">
+            </PersistentString>
+            <PersistentString
+               value = "stackerView.components">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
