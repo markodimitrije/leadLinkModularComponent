@@ -131,12 +131,9 @@ class ViewFactory {
         
         var componenets = [UIView]()
         for _ in 1...inOneRow {
-            //let v = createLabelAndTextView()
             let v = type.init()
             componenets.append(v)
         }
-        //let frame = getRect(forComponents: componenets, inOneRow: inOneRow)
-        //let row = OneRowStacker.init(frame: frame, components: componenets)
         let row = stackElementsInOneRow(components: componenets, rowHeight: rowHeight)
         return row
         

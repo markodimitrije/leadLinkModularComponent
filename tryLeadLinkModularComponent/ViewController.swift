@@ -156,23 +156,36 @@ class ViewController: UIViewController, RadioBtnListener {
             return Observable.from([text]).asDriver(onErrorJustReturn: "")
         }
         
-        
         _ = textDrivers.enumerated().map { (offset, textDriver) in
             textDriver.drive(btnViews[offset].rx.optionText)
         }
         
         // text drivers end
 
-        let buttons = btnViews.compactMap {$0.radioBtn} // promeni samo na BTN ! RENAME !!
-        _ = buttons.enumerated().map { $0.element.tag = $0.offset } // dodeli svakome unique TAG
+        _ = btnViews.enumerated().map { $0.element.radioBtn.tag = $0.offset } // dodeli svakome unique TAG
 
-        let tags = buttons
-            .map { ($0.rx.tap, $0.tag) }
-            .map { obs, tag in obs.map { tag } }
-
-        let source = Observable.zip(tags)
-    
-        let input = CheckboxViewModel.Input.init(ids: source, answer: viewmodel.answer)
+        let initial = viewmodel.answer?.optionId ?? [ ]
+        
+        let checkedArr = BehaviorRelay<[Int]>.init(value: initial) // mozda treba sa answer !!?
+        
+        let tags = btnViews
+            .map { ($0.radioBtn.rx.tap, $0.radioBtn.tag) }
+            .map { obs, tag in obs.map { tag } } // ovo zelim da je [Observable<(Int,Bool)>] da znam da li je checked ili nije
+        
+        let values = Observable.merge(tags)
+        
+        values.subscribe(onNext: { tag in
+            var arr = checkedArr.value
+            if let i = checkedArr.value.firstIndex(of: tag) { // vec je u nizu...
+                arr.remove(at: i)
+                checkedArr.accept(arr)
+            } else {
+                arr.append(tag)
+                checkedArr.accept(arr)
+            }
+        }).disposed(by: bag)
+        
+        let input = CheckboxViewModel.Input.init(ids: checkedArr.asObservable(), answer: viewmodel.answer)
 
         let output = viewmodel.transform(input: input) // vratio sam identican input na output
 
@@ -183,8 +196,10 @@ class ViewController: UIViewController, RadioBtnListener {
         // ovo radi... ali nije PRAVI Reactive !
         output.ids.subscribe(onNext: { array in
             
-            let active = btnViews.filter { btn -> Bool in
-                array.contains(btn.tag)
+            print("subscribe.array = \(array)")
+            
+            let active = btnViews.filter { view -> Bool in
+                array.contains(view.radioBtn.tag)
             }
             
             _ = btnViews.map({ btn in

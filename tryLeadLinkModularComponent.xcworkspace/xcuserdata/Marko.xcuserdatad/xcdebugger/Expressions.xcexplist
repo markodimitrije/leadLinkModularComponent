@@ -9,16 +9,32 @@
                value = "btnViews[output.act.value]">
             </PersistentString>
             <PersistentString
-               value = "view.components">
+               value = "output.act.value">
             </PersistentString>
             <PersistentString
                value = "btnViews">
             </PersistentString>
             <PersistentString
-               value = "view.components.compactMap">
+               value = "view.components">
             </PersistentString>
             <PersistentString
-               value = "output.act.value">
+               value = "view.components.compactMap">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #9 in ViewController.hookUp(view:checkboxViewmodel:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "btn.tag">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.hookUp(view:checkboxViewmodel:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "view.components">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -30,14 +46,6 @@
             </PersistentString>
             <PersistentString
                value = "(view as? OneRowStacker)?.components">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ViewController.hookUp(view:checkboxViewmodel:):ViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "view.components">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
