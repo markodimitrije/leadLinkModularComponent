@@ -18,7 +18,9 @@ class OneRowStacker: UIView {
         }
     }
     
-    
+    var myComponents: [UIView] {
+        return stackView.arrangedSubviews
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

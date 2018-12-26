@@ -39,7 +39,7 @@
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14H-Uf-OEw">
                                         <rect key="frame" x="0.0" y="60" width="109" height="30"/>
-                                        <state key="normal" title="non"/>
+                                        <state key="normal" title="radio with input"/>
                                         <connections>
                                             <action selector="leftBtnsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ffy-k4-HTB"/>
                                             <action selector="scenarioTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eWC-MB-Ape"/>

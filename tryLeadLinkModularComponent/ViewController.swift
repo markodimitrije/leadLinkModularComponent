@@ -29,7 +29,7 @@ class ViewController: UIViewController, RadioBtnListener {
     private func leftScenariosTapped(sender: UIButton) {
         
         switch sender.tag {
-            case 0:
+            case 0: // radio
                 
                 let options = ["Paris", "London", "Maroco", "Madrid", "Moscow"]
                 let q = Question.init(id: 3, type: "radioBtn", headlineText: "Headline", inputTxt: "whatever", options: options)
@@ -49,7 +49,7 @@ class ViewController: UIViewController, RadioBtnListener {
             self.view.addSubview(stackerView)
             
             
-        case 1:
+        case 1: // checkbox
             
             let options = ["Soccer", "Basketball", "Swimming", "Tennis", "Waterpolo", "Car racing"]
             let q = Question.init(id: 2, type: "checkbox", headlineText: "Sports", inputTxt: "whatever", options: options)
@@ -67,6 +67,26 @@ class ViewController: UIViewController, RadioBtnListener {
 
             hookUp(view: stackerView, btnViews: btnViews, checkboxViewmodel: checkboxViewModel)
 
+            self.view.addSubview(stackerView)
+            
+            
+        case 2: // radio with input
+            
+            let options = ["Paris", "London", "Maroco", "Madrid", "Moscow", "Rome"]
+            //let options = ["Paris", "London", "Maroco", "Madrid", "Moscow"]
+            let q = Question.init(id: 2, type: "radioBtn", headlineText: "Headline", inputTxt: "whatever", options: options)
+            let height = getOneRowHeightFor(componentType: "radioBtn")
+            let fr = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: viewFactory.bounds.width, height: height))
+            
+            let answer = RadioAnswer.init(questionId: q.id, optionId: 3, content: ["London"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
+            
+            let (stackerView, btnViews) = getRadioBtnsWithInputView(question: q, answer: nil, frame: fr)
+            
+            //let radioWithInputViewModel = RadioWithInputViewModel.init(question: q, answer: nil)  //all good..
+            let radioWithInputViewModel = RadioWithInputViewModel.init(question: q, answer: answer)  //all good..
+            
+            hookUp(view: stackerView, btnViews: btnViews, radioWithInputViewModel: radioWithInputViewModel)
+            
             self.view.addSubview(stackerView)
             
             
@@ -174,7 +194,38 @@ class ViewController: UIViewController, RadioBtnListener {
     
     
     
-    
+    private func hookUp(view: ViewStacker, btnViews: [UIView], radioWithInputViewModel viewmodel: RadioWithInputViewModel) { // osim Question viewmodel treba da ima i Answer !!!
+        
+        
+        
+//        let buttons = btnViews.compactMap {$0.radioBtn}
+//
+//        let textDrivers = inputCreator.createTxtDrivers()
+//
+//        _ = textDrivers.enumerated().map { (offset, textDriver) in
+//            textDriver.drive(btnViews[offset].rx.optionText)
+//        }
+//
+//        let values = inputCreator.createRadioBtnsInput(btnViews: btnViews)
+//
+//        let input = RadioViewModel.Input.init(ids: values, answer: viewmodel.answer)
+//
+//        let output = viewmodel.transform(input: input) // vratio sam identican input na output
+//
+//        // ovo radi... ali nije PRAVI Reactive !
+//        output.ids.subscribe(onNext: { val in
+//            let active = buttons.first(where: { $0.tag == val })
+//            var inactive = buttons
+//            inactive.remove(at: val) // jer znam da su indexed redom..
+//            _ = inactive.map({
+//                btnViews[$0.tag].isOn = false
+//            })
+//            _ = active.map({
+//                btnViews[$0.tag].isOn = true
+//            })
+//        }).disposed(by: bag)
+        
+    }
     
     
     
@@ -205,6 +256,32 @@ class ViewController: UIViewController, RadioBtnListener {
         return (stackerView, btnViews)
         
     }
+    
+    private func getRadioBtnsWithInputView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [UIView]) {
+        
+        let stackerView = viewFactory.getStackedRadioBtnsWithInput(question: question, answer: answer, frame: frame)
+        
+        let elements = stackerView.components.flatMap { view -> [UIView] in
+            //return (view as? OneRowStacker)?.components ?? [ ]
+            return (view as? OneRowStacker)?.myComponents ?? [ ] // treba refactor da imas ovo a ne state (linija iznad)
+        }
+        
+        _ = elements.enumerated().map { $0.element.tag = $0.offset } // dodeli svakome unique TAG
+        
+        
+        
+        return (stackerView, elements)
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     // saznao si da je user tap na radio btn sa tag == index

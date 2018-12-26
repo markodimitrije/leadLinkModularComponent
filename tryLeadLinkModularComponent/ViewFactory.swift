@@ -28,12 +28,39 @@ class ViewFactory {
         
     }
     
-    
     func getStackedCheckboxBtns(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
         
         return produceStackWithSameComponents(ofType: CheckboxView.self, count: question.options.count, inOneRow: 3)!
         
     }
+    
+    
+    
+    
+    func getStackedRadioBtnsWithInput(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
+        
+        let stacker = produceStackWithSameComponents(ofType: RadioBtnView.self, count: question.options.count, inOneRow: 3)!
+        
+        guard let lastRow = stacker.components.last as? OneRowStacker,
+            let lastElement = lastRow.components.last else {  return stacker }
+        
+        let txtBox = UITextField.init(frame: lastElement.bounds)
+        txtBox.backgroundColor = .gray
+        
+        if lastRow.components.count == 3 { // max per row !
+            guard let newRow = OneRowStacker.init(frame: lastRow.bounds, components: [txtBox]) else {return stacker}
+            stacker.addAsLast(view: newRow)
+            stacker.components.append(newRow) // dodaj ga u svoj state
+        } else {
+            lastRow.insertAsLast(view: txtBox) // dodaj ga na view
+            stacker.components.append(txtBox) // dodaj ga u svoj state
+        }
+        
+        return stacker
+        
+    }
+    
+    
     
     
     
