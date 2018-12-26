@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class CheckboxView: UIView, RowsStackedEqually {
     
@@ -80,3 +82,28 @@ struct CheckboxOption {
     var text = ""
 }
 
+
+extension Reactive where Base: CheckboxView {
+    
+    var btnOnImg: UIImage? {
+        return UIImage.init(named: "checkbox_ON")
+    }
+    
+    var btnOffImg: UIImage?  {
+        return UIImage.init(named: "checkbox_OFF")
+    }
+    
+    var isOn: Binder<Bool> {
+        return Binder.init(self.base, binding: { (view, value) in
+            let image = value ? self.btnOnImg : self.btnOffImg
+            view.radioBtn.setBackgroundImage(image, for: .normal)
+        })
+    }
+    
+    var optionText: Binder<String> {
+        return Binder.init(self.base, binding: { (view, value) in
+            view.headlineText = value
+        })
+    }
+    
+}

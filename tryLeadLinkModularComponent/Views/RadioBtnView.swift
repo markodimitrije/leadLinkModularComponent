@@ -97,7 +97,7 @@ struct RadioBtnOption {
     var text = ""
 }
 
-protocol RadioBtnListener: class {
+protocol RadioBtnListener: class { // ovo ukloni, koristim RX !
     func radioBtnTapped(index: Int)
 }
 

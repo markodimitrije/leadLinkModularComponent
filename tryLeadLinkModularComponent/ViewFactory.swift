@@ -29,6 +29,13 @@ class ViewFactory {
     }
     
     
+    func getStackedCheckboxBtns(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
+        
+        return produceStackWithSameComponents(ofType: CheckboxView.self, count: question.options.count, inOneRow: 3)!
+        
+    }
+    
+    
     
     
     private func produceStackWithSameComponents(ofType type: UIView.Type, count: Int, inOneRow: Int) -> ViewStacker? {

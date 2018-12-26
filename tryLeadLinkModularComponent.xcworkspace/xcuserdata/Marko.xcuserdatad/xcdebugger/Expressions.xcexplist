@@ -6,10 +6,10 @@
          contextName = "ViewController.hookUp(view:viewmodel:):ViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "output.act.value">
+               value = "btnViews[output.act.value]">
             </PersistentString>
             <PersistentString
-               value = "btnViews[output.act.value]">
+               value = "view.components">
             </PersistentString>
             <PersistentString
                value = "btnViews">
@@ -18,7 +18,7 @@
                value = "view.components.compactMap">
             </PersistentString>
             <PersistentString
-               value = "view.components">
+               value = "output.act.value">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -30,6 +30,14 @@
             </PersistentString>
             <PersistentString
                value = "(view as? OneRowStacker)?.components">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.hookUp(view:checkboxViewmodel:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "view.components">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

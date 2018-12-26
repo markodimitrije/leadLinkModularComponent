@@ -31,7 +31,7 @@
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05C-QN-hTc">
                                         <rect key="frame" x="0.0" y="30" width="109" height="30"/>
-                                        <state key="normal" title="non"/>
+                                        <state key="normal" title="checkbox btns"/>
                                         <connections>
                                             <action selector="leftBtnsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h7O-hb-qHt"/>
                                             <action selector="scenarioTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tkx-Ya-s2i"/>

@@ -101,3 +101,9 @@ struct RadioAnswer: Answer {
     var optionId: Int // koju opciju je izabrao
     var content = [String]() // koji je text te opcije
 }
+
+struct CheckboxAnswer: Answer {
+    var questionId: Int // koji je ID pitanja
+    var optionId: [Int] // koju opciju je izabrao - moze imati vise checkboxIds
+    var content = [String]() // koji je text te opcije
+}

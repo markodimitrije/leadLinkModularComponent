@@ -39,11 +39,38 @@ class ViewController: UIViewController, RadioBtnListener {
                 let answer = RadioAnswer.init(questionId: q.id, optionId: 3, content: ["Madrid"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
             
                 let stackerView = getRadioBtnsView(question: q, answer: nil, frame: fr)
-                let radioViewModel = RadioViewModel.init(question: q, answer: answer)
                 
-                hookUp(view: stackerView, viewmodel: radioViewModel)
+                //let radioViewModel = RadioViewModel.init(question: q, answer: nil)  //all good..
+                let radioViewModel = RadioViewModel.init(question: q, answer: answer)  //all good..
+                
+                hookUp(view: stackerView, radioViewmodel: radioViewModel)
             
             self.view.addSubview(stackerView)
+            
+            
+        case 1:
+            
+            let options = ["Soccer", "Basketball", "Swimming", "Tennis", "Waterpolo", "Car racing"]
+            let q = Question.init(id: 2, type: "checkbox", headlineText: "Sports", inputTxt: "whatever", options: options)
+            
+            let height = getOneRowHeightFor(componentType: "checkbox")
+            let fr = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: viewFactory.bounds.width, height: height))
+            
+            // ovo ces izvuci iz REALM-a! ili dataLayer-a:
+            let answer = CheckboxAnswer.init(questionId: q.id, optionId: [1,2,3,4], content: ["Basketball", "Swimming", "Tennis", "Waterpolo"])
+            
+            let stackerView = getCheckboxBtnsView(question: q, answer: nil, frame: fr)
+            
+            let checkboxViewModel = CheckboxViewModel.init(question: q, answer: answer)
+            // let checkboxViewModel = CheckboxViewModel.init(question: q, answer: nil) // test me...
+
+            hookUp(view: stackerView, checkboxViewmodel: checkboxViewModel)
+
+            self.view.addSubview(stackerView)
+            
+            
+            
+            
             
         default: break
         }
@@ -61,7 +88,7 @@ class ViewController: UIViewController, RadioBtnListener {
     // hocu da Tap na embeded radio btn (nalazi se digged in u ViewStacker-u) pogoni ostale btn-e da menjaju sliku + da save actual za MODEL
     // s druge strane, ANSWER bi trebalo da pogoni sve btns, jer moze da se upari i preko "id" i preko "value"
     
-    private func hookUp(view: ViewStacker, viewmodel: RadioViewModel) { // osim Question viewmodel treba da ima i Answer !!!
+    private func hookUp(view: ViewStacker, radioViewmodel viewmodel: RadioViewModel) { // osim Question viewmodel treba da ima i Answer !!!
     
         // moze li moj radioViewModel kao Input param da dobije niz sa radioBtns - mislim da je to u redu.
         
@@ -114,9 +141,80 @@ class ViewController: UIViewController, RadioBtnListener {
         
     }
     
+    
+    private func hookUp(view: ViewStacker, checkboxViewmodel viewmodel: CheckboxViewModel) { // osim Question viewmodel treba da ima i Answer !!!
+        
+        // moze li moj radioViewModel kao Input param da dobije niz sa radioBtns - mislim da je to u redu.
+        
+        let btnViews = view.components.flatMap { view -> [CheckboxView] in
+            return (view as? OneRowStacker)?.components as? [CheckboxView] ?? [ ]
+        }
+        
+        // text drivers start
+        
+        let textDrivers = viewmodel.question.options.map { (text) -> Driver<String> in
+            return Observable.from([text]).asDriver(onErrorJustReturn: "")
+        }
+        
+        
+        _ = textDrivers.enumerated().map { (offset, textDriver) in
+            textDriver.drive(btnViews[offset].rx.optionText)
+        }
+        
+        // text drivers end
+
+        let buttons = btnViews.compactMap {$0.radioBtn} // promeni samo na BTN ! RENAME !!
+        _ = buttons.enumerated().map { $0.element.tag = $0.offset } // dodeli svakome unique TAG
+
+        let tags = buttons
+            .map { ($0.rx.tap, $0.tag) }
+            .map { obs, tag in obs.map { tag } }
+
+        let source = Observable.zip(tags)
+    
+        let input = CheckboxViewModel.Input.init(ids: source, answer: viewmodel.answer)
+
+        let output = viewmodel.transform(input: input) // vratio sam identican input na output
+
+        _ = textDrivers.enumerated().map { (offset, textDriver) in
+            textDriver.drive(btnViews[offset].rx.optionText)
+        }
+
+        // ovo radi... ali nije PRAVI Reactive !
+        output.ids.subscribe(onNext: { array in
+            
+            let active = btnViews.filter { btn -> Bool in
+                array.contains(btn.tag)
+            }
+            
+            _ = btnViews.map({ btn in
+                let checked = active.contains(btn)
+                btn.isOn = checked
+            })
+            
+        }).disposed(by: bag)
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private func getRadioBtnsView(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
         
         let stackerView = viewFactory.getStackedRadioBtns(question: question, answer: answer, frame: frame)
+        
+        return stackerView
+        
+    }
+    
+    private func getCheckboxBtnsView(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
+        
+        let stackerView = viewFactory.getStackedCheckboxBtns(question: question, answer: answer, frame: frame)
         
         return stackerView
         
