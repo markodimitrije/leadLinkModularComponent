@@ -111,7 +111,7 @@ class RadioWithInputViewModel: ViewModelType {
     
     func transform(input: Input) -> Output { // ovo je bas bezveze... razumi kako radi...
         
-        let resultingBtns = (answer == nil) ? input.ids : Observable.merge(Observable.of(answer!.optionId), input.ids)
+        let resultingBtns = (answer == nil) ? input.ids : input.ids//Observable.merge(Observable.of(answer!.optionId), input.ids)
         
         let output = Output.init(ids: resultingBtns, optionTxt: input.optionTxt)
         

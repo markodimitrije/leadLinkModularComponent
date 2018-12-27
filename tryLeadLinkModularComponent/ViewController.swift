@@ -78,13 +78,13 @@ class ViewController: UIViewController, RadioBtnListener {
             let height = getOneRowHeightFor(componentType: "radioBtn")
             let fr = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: viewFactory.bounds.width, height: height))
             
-            //let answer = RadioAnswer.init(questionId: q.id, optionId: 1, content: ["London"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
-            let answer = RadioAnswer.init(questionId: q.id, optionId: 5, content: ["Palermo"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
+            let answer = RadioAnswer.init(questionId: q.id, optionId: 1, content: ["London"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
+            //let answer = RadioAnswer.init(questionId: q.id, optionId: 5, content: ["Palermo"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
             
             let (stackerView, btnViews) = getRadioBtnsWithInputView(question: q, answer: nil, frame: fr)
             
             let radioWithInputViewModel = RadioWithInputViewModel.init(question: q, answer: nil)  //all good..
-            //let radioWithInputViewModel = RadioWithInputViewModel.init(question: q, answer: answer)  //all good..
+//            let radioWithInputViewModel = RadioWithInputViewModel.init(question: q, answer: answer)  //all good..
             
             hookUp(view: stackerView, btnViews: btnViews, radioWithInputViewModel: radioWithInputViewModel)
             
@@ -273,6 +273,7 @@ class ViewController: UIViewController, RadioBtnListener {
             }
             _ = active.map {
                 radioBtnViews[$0.tag].isOn = true
+                txtField.text = ""
             }
         }).disposed(by: bag)
         
