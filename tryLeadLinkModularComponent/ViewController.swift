@@ -257,7 +257,8 @@ class ViewController: UIViewController, RadioBtnListener {
         
         let values = inputCreator.createRadioBtnsInput(btnViews: radioBtnViews)
         
-        let obOptionTxt = Observable.of(txtField.text ?? "")
+        //let obOptionTxt = Observable.from([txtField.text!]) GRESKA !
+        let obOptionTxt = txtField.rx.text.asObservable() // OK
 
         let input = RadioWithInputViewModel.Input.init(ids: values, optionTxt: obOptionTxt, answer: viewmodel.answer)
 
@@ -272,6 +273,12 @@ class ViewController: UIViewController, RadioBtnListener {
             }
             _ = active.map {
                 radioBtnViews[$0.tag].isOn = true
+            }
+        }).disposed(by: bag)
+        
+        output.optionTxt.subscribe(onNext: { val in
+            if val != "" {
+                _ = radioBtnViews.map {$0.isOn = false}
             }
         }).disposed(by: bag)
         

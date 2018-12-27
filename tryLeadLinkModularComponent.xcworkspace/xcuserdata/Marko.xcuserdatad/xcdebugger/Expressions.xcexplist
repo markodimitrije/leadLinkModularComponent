@@ -3,13 +3,21 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "RadioWithInputViewModel.transform(input:):Protocols.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "input.optionTxt">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ViewController.hookUp(view:viewmodel:):ViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "btnViews[output.act.value]">
             </PersistentString>
             <PersistentString
-               value = "output.act.value">
+               value = "view.components">
             </PersistentString>
             <PersistentString
                value = "btnViews">
@@ -18,7 +26,7 @@
                value = "view.components.compactMap">
             </PersistentString>
             <PersistentString
-               value = "view.components">
+               value = "output.act.value">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -27,6 +35,14 @@
          <PersistentStrings>
             <PersistentString
                value = "stackerView.components">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.hookUp(view:btnViews:radioWithInputViewModel:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "txtField.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

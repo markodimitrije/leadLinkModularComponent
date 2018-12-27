@@ -100,20 +100,20 @@ class RadioWithInputViewModel: ViewModelType {
     
     struct Input {
         var ids: Observable<Int>
-        var optionTxt: Observable<String>
+        var optionTxt: Observable<String?>
         var answer: RadioAnswer?
     }
     
     struct Output { // treba ti side effects
         var ids: Observable<Int> // tap koji mapiras u id (btn.tag)
-        var optionTxt: Observable<String>
+        var optionTxt: Observable<String?>
     }
     
     func transform(input: Input) -> Output { // ovo je bas bezveze... razumi kako radi...
         
-        let resulting = (answer == nil) ? input.ids : Observable.merge(Observable.of(answer!.optionId), input.ids)
+        let resultingBtns = (answer == nil) ? input.ids : Observable.merge(Observable.of(answer!.optionId), input.ids)
         
-        let output = Output.init(ids: resulting, optionTxt: input.optionTxt)
+        let output = Output.init(ids: resultingBtns, optionTxt: input.optionTxt)
         
         return output
     }
