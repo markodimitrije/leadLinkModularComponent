@@ -120,3 +120,38 @@ class RadioWithInputViewModel: ViewModelType {
     
     private var bag = DisposeBag()
 }
+
+
+
+class CheckboxWithInputViewModel: ViewModelType {
+    
+    var question: Question
+    var answer: CheckboxAnswer?
+    
+    init(question: Question, answer: CheckboxAnswer?) {
+        self.question = question
+        self.answer = answer
+    }
+    
+    struct Input {
+        var ids: Observable<[Int]>
+        var optionTxt: Observable<String>
+        var answer: CheckboxAnswer?
+    }
+    
+    struct Output { // treba ti side effects
+        var ids: Observable<[Int]> // tap koji mapiras u id (btn.tag)
+        var optionTxt: Observable<String>
+    }
+    
+    func transform(input: Input) -> Output { // ovo je bas bezveze... razumi kako radi...
+        
+        let resulting = (answer == nil) ? input.ids : Observable.merge(Observable.of(answer!.optionId), input.ids)
+        
+        let output = Output.init(ids: resulting, optionTxt: input.optionTxt)
+        
+        return output
+    }
+    
+    private var bag = DisposeBag()
+}

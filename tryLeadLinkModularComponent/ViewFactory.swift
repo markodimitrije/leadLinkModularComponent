@@ -62,6 +62,31 @@ class ViewFactory {
     
     
     
+    func getStackedCheckboxBtnsWithInput(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
+        
+        let stacker = produceStackWithSameComponents(ofType: CheckboxView.self, count: question.options.count, inOneRow: 3)!
+        
+        guard let lastRow = stacker.components.last as? OneRowStacker,
+            let lastElement = lastRow.components.last else {  return stacker }
+        
+        let txtBox = UITextField.init(frame: lastElement.bounds)
+        txtBox.backgroundColor = .gray
+        
+        if lastRow.components.count == 3 { // max per row !
+            guard let newRow = OneRowStacker.init(frame: lastRow.bounds, components: [txtBox]) else {return stacker}
+            stacker.addAsLast(view: newRow)
+        } else {
+            lastRow.insertAsLast(view: txtBox) // dodaj ga na view
+        }
+        
+        return stacker
+        
+    }
+    
+    
+    
+    
+    
     
     private func produceStackWithSameComponents(ofType type: UIView.Type, count: Int, inOneRow: Int) -> ViewStacker? {
         
