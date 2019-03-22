@@ -14,10 +14,8 @@ class CheckboxView: UIView, RowsStackedEqually {
     
     @IBOutlet weak var headlineLbl: UILabel!
     
+    @IBOutlet weak var checkboxImageBtn: UIButton!
     @IBOutlet weak var radioBtn: UIButton!
-    
-    @IBAction func radioBtnTapped(_ sender: UIButton) {
-    }
     
     var headlineText: String? {
         get {
@@ -38,7 +36,7 @@ class CheckboxView: UIView, RowsStackedEqually {
         set {
             _isOn = newValue
             let img = _isOn ? UIImage.init(named: "checkbox_ON") : UIImage.init(named: "checkbox_OFF")
-            radioBtn.setBackgroundImage(img, for: .normal)
+            checkboxImageBtn.setBackgroundImage(img, for: .normal)
         }
     }
     
@@ -96,7 +94,7 @@ extension Reactive where Base: CheckboxView {
     var isOn: Binder<Bool> {
         return Binder.init(self.base, binding: { (view, value) in
             let image = value ? self.btnOnImg : self.btnOffImg
-            view.radioBtn.setBackgroundImage(image, for: .normal)
+            view.checkboxImageBtn.setBackgroundImage(image, for: .normal)
         })
     }
     

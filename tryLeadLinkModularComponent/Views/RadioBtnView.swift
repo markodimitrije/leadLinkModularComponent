@@ -15,6 +15,7 @@ class RadioBtnView: UIView, RowsStackedEqually { // RowsStackedEqually hocu da s
     
     @IBOutlet weak var headlineLbl: UILabel!
     
+    @IBOutlet weak var radioImageBtn: UIButton!
     @IBOutlet weak var radioBtn: UIButton!
     
     @IBAction func radioBtnTapped(_ sender: UIButton) {
@@ -49,7 +50,7 @@ class RadioBtnView: UIView, RowsStackedEqually { // RowsStackedEqually hocu da s
         set {
             _isOn = newValue
             let img = _isOn ? radioBtnOnImg : radioBtnOffImg
-            radioBtn.setBackgroundImage(img, for: .normal)
+            radioImageBtn.setBackgroundImage(img, for: .normal)
         }
     }
     
@@ -114,7 +115,7 @@ extension Reactive where Base: RadioBtnView {
     var isOn: Binder<Bool> {
         return Binder.init(self.base, binding: { (view, value) in
             let image = value ? self.radioBtnOnImg : self.radioBtnOffImg
-            view.radioBtn.setBackgroundImage(image, for: .normal)
+            view.radioImageBtn.setBackgroundImage(image, for: .normal)
         })
     }
     
