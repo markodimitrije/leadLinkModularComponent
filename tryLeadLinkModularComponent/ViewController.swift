@@ -218,10 +218,6 @@ class ViewController: UIViewController, RadioBtnListener {
         
     }
     
-    
-    
-    
-    
     private func hookUp(view: ViewStacker, btnViews: [UIView], radioWithInputViewModel viewmodel: RadioWithInputViewModel) { // osim Question viewmodel treba da ima i Answer !!!
         
         let inputCreator = RadioWithInputViewmodelInputCreator.init(viewmodel: viewmodel)
@@ -272,14 +268,21 @@ class ViewController: UIViewController, RadioBtnListener {
                 radioBtnViews[$0.tag].isOn = false
             }
             _ = active.map {
+                if $0.tag < radioBtnViews.count-1 {
+                    txtField.text = ""
+                    txtField.resignFirstResponder()
+                    
+                } else {
+                    txtField.becomeFirstResponder()
+                }
                 radioBtnViews[$0.tag].isOn = true
-                txtField.text = ""
             }
         }).disposed(by: bag)
         
         output.optionTxt.subscribe(onNext: { val in
             if val != "" {
                 _ = radioBtnViews.map {$0.isOn = false}
+                radioBtnViews.last?.isOn = true // we want other option to be selected
             }
         }).disposed(by: bag)
         

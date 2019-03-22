@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="f6W-lP-doP">
-                    <rect key="frame" x="0.0" y="10" width="254" height="30"/>
+                    <rect key="frame" x="16" y="10" width="222" height="30"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eI-5E-lJk">
                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -35,7 +35,7 @@
                             <state key="normal" backgroundImage="radioBtn_OFF.png"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Option text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJg-Cg-CYE">
-                            <rect key="frame" x="38" y="0.0" width="216" height="30"/>
+                            <rect key="frame" x="38" y="0.0" width="184" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -53,9 +53,9 @@
             <constraints>
                 <constraint firstItem="D8M-da-PBS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="5XG-Lx-tIw"/>
                 <constraint firstItem="D8M-da-PBS" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="8bM-f7-M8M"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="leading" secondItem="5eI-5E-lJk" secondAttribute="leading" id="DNi-Pj-adl"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="D8M-da-PBS" secondAttribute="bottom" id="DRR-AV-EzZ"/>
-                <constraint firstItem="f6W-lP-doP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Rae-BI-ZAM"/>
+                <constraint firstItem="f6W-lP-doP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="RrV-X0-wBr"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="f6W-lP-doP" secondAttribute="trailing" constant="16" id="bdN-hg-58P"/>
                 <constraint firstItem="f6W-lP-doP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="oml-dC-kHw"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="D8M-da-PBS" secondAttribute="trailing" id="vTT-xB-Qb1"/>
             </constraints>
