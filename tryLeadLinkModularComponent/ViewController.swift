@@ -78,13 +78,14 @@ class ViewController: UIViewController, RadioBtnListener {
             let height = getOneRowHeightFor(componentType: "radioBtn")
             let fr = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: viewFactory.bounds.width, height: height))
             
-            let answer = RadioAnswer.init(questionId: q.id, optionId: 1, content: ["London"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
-            //let answer = RadioAnswer.init(questionId: q.id, optionId: 5, content: ["Palermo"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
+//            let answer = RadioAnswer.init(questionId: q.id, optionId: 1, content: ["London"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
+            let answer = RadioAnswer.init(questionId: q.id, optionId: 5, content: ["Palermo"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
             
-            let (stackerView, btnViews) = getRadioBtnsWithInputView(question: q, answer: nil, frame: fr)
+//            let (stackerView, btnViews) = getRadioBtnsWithInputView(question: q, answer: nil, frame: fr)
+            let (stackerView, btnViews) = getRadioBtnsWithInputView(question: q, answer: answer, frame: fr)
             
-            let radioWithInputViewModel = RadioWithInputViewModel.init(question: q, answer: nil)  //all good..
-//            let radioWithInputViewModel = RadioWithInputViewModel.init(question: q, answer: answer)  //all good..
+//            let radioWithInputViewModel = RadioWithInputViewModel.init(question: q, answer: nil)  //all good..
+            let radioWithInputViewModel = RadioWithInputViewModel.init(question: q, answer: answer)  // nece ??
             
             hookUp(view: stackerView, btnViews: btnViews, radioWithInputViewModel: radioWithInputViewModel)
             
@@ -234,7 +235,7 @@ class ViewController: UIViewController, RadioBtnListener {
             textDrivers.last?.asObservable()
                 .subscribe(onNext: { (val) in
                     if val == "" {
-                        (btnViews.last as? UITextField)?.placeholder = "type city"
+                        (btnViews.last as? UITextField)?.placeholder = "Type your text here"
                     }
                 })
                 .disposed(by: bag)
@@ -243,13 +244,9 @@ class ViewController: UIViewController, RadioBtnListener {
         var allViews = btnViews
         guard let txtField = allViews.popLast() as? UITextField else {return}
         
-        var radioBtnViews: [RadioBtnView] {
-            return allViews as? [RadioBtnView] ?? [ ]
-        }
+        var radioBtnViews: [RadioBtnView] { return allViews as? [RadioBtnView] ?? [ ] }
         
-        var buttons: [UIButton] {
-            return radioBtnViews.compactMap { $0.radioBtn }
-        }
+        var buttons: [UIButton] { return radioBtnViews.compactMap { $0.radioBtn } }
         
         let values = inputCreator.createRadioBtnsInput(btnViews: radioBtnViews)
         
@@ -281,6 +278,9 @@ class ViewController: UIViewController, RadioBtnListener {
         
         output.optionTxt.subscribe(onNext: { val in
             if val != "" {
+                if let answer = viewmodel.answer, answer.optionId == radioBtnViews.last?.radioBtn.tag {
+                    _ = radioBtnViews.map {$0.isOn = false}
+                }
                 _ = radioBtnViews.map {$0.isOn = false}
                 radioBtnViews.last?.isOn = true // we want other option to be selected
             }
