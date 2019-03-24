@@ -14,6 +14,8 @@ class ViewController: UIViewController, RadioBtnListener {
     
     lazy var viewFactory = ViewFactory.init(bounds: self.view.bounds)
     
+    var scrollView = UIScrollView.init()
+    
     var radioBtnsViewModelBinder = StackViewToRadioBtnsViewModelBinder()
     var radioBtnsWithInputViewModelBinder = StackViewToRadioBtnsWithInputViewModelBinder()
     var checkboxBtnsViewModelBinder = StackViewToCheckboxBtnsViewModelBinder()
@@ -30,6 +32,14 @@ class ViewController: UIViewController, RadioBtnListener {
     
     @IBAction func radioScenarioTapped(_ sender: UIButton) {
         radioScenarioIsTapped(sender: sender)
+    }
+    
+    override func viewDidLoad() { super.viewDidLoad()
+        scrollView.backgroundColor = .lightGray
+        scrollView.frame = self.view.frame
+        scrollView.contentSize = self.view.frame.size
+        scrollView.contentSize.height = 3000.0 // hard-coded
+        self.view.insertSubview(scrollView, at: 0)
     }
     
     private func leftScenariosTapped(sender: UIButton) {
@@ -50,7 +60,8 @@ class ViewController: UIViewController, RadioBtnListener {
                 //hookUp(view: stackerView, radioViewmodel: radioViewModel)
                 radioBtnsViewModelBinder.hookUp(view: stackerView, btnViews: btnViews, viewmodel: radioViewModel, bag: bag)
             
-            self.view.addSubview(stackerView)
+//            self.view.addSubview(stackerView)
+            self.scrollView.addSubview(stackerView)
             
         case 1: // checkbox
             
@@ -69,7 +80,10 @@ class ViewController: UIViewController, RadioBtnListener {
                                                viewmodel: checkboxViewModel,
                                                bag: bag)
 
-            self.view.addSubview(stackerView)
+            stackerView.frame.origin.y += 300
+            
+//            self.view.addSubview(stackerView)
+            self.scrollView.addSubview(stackerView)
             
         case 2: // radio with input
             
@@ -89,7 +103,10 @@ class ViewController: UIViewController, RadioBtnListener {
                                                      viewmodel: radioWithInputViewModel,
                                                      bag: bag)
             
-            self.view.addSubview(stackerView)
+            stackerView.frame.origin.y += 700
+            
+            //self.view.addSubview(stackerView)
+            self.scrollView.addSubview(stackerView)
             
         case 3: // checkbox with input
             
