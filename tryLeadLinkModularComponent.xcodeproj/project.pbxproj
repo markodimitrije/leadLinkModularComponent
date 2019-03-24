@@ -28,6 +28,8 @@
 		ADAAD6F321D0F4CB00B9D59E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */; };
 		ADAAD6F521D0F7B700B9D59E /* LabelBtnSwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADAAD6F421D0F7B700B9D59E /* LabelBtnSwitchView.xib */; };
 		ADAAD6F721D0FBAC00B9D59E /* LabelBtnSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */; };
+		ADBF584D22469ED800BDD008 /* InputCreators.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF584C22469ED800BDD008 /* InputCreators.swift */; };
+		ADBF58502246C2B100BDD008 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF584F2246C2B100BDD008 /* DataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		ADAAD6F421D0F7B700B9D59E /* LabelBtnSwitchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelBtnSwitchView.xib; sourceTree = "<group>"; };
 		ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelBtnSwitchView.swift; sourceTree = "<group>"; };
+		ADBF584C22469ED800BDD008 /* InputCreators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCreators.swift; sourceTree = "<group>"; };
+		ADBF584F2246C2B100BDD008 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		B2102075DD73E10FE0BE3C87 /* Pods_tryLeadLinkModularComponent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tryLeadLinkModularComponent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B753BBDE7A61F3AD69DAA1E7 /* Pods-tryLeadLinkModularComponent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tryLeadLinkModularComponent.release.xcconfig"; path = "Pods/Target Support Files/Pods-tryLeadLinkModularComponent/Pods-tryLeadLinkModularComponent.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +104,8 @@
 		AD837AA321C7B4E700555917 /* tryLeadLinkModularComponent */ = {
 			isa = PBXGroup;
 			children = (
+				ADBF584E2246C2A300BDD008 /* DataProvider */,
+				ADBF584B22469EAE00BDD008 /* InputCreators */,
 				AD9F0E7321D3D9A5005BD0A7 /* MyRxExtensions */,
 				ADAAD6F121D0F4BE00B9D59E /* Protocols */,
 				AD837AA421C7B4E700555917 /* AppDelegate.swift */,
@@ -147,6 +153,22 @@
 				ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		ADBF584B22469EAE00BDD008 /* InputCreators */ = {
+			isa = PBXGroup;
+			children = (
+				ADBF584C22469ED800BDD008 /* InputCreators.swift */,
+			);
+			path = InputCreators;
+			sourceTree = "<group>";
+		};
+		ADBF584E2246C2A300BDD008 /* DataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				ADBF584F2246C2B100BDD008 /* DataProvider.swift */,
+			);
+			path = DataProvider;
 			sourceTree = "<group>";
 		};
 		D5F79EF7EB63CF43FC122B81 /* Frameworks */ = {
@@ -304,8 +326,10 @@
 				AD837AB921C7BA6800555917 /* ViewStacker.swift in Sources */,
 				AD837AA521C7B4E700555917 /* AppDelegate.swift in Sources */,
 				AD9EDEBF21D1837F0058814C /* ViewFactory.swift in Sources */,
+				ADBF584D22469ED800BDD008 /* InputCreators.swift in Sources */,
 				ADAAD6EC21D0ECC500B9D59E /* CheckboxView.swift in Sources */,
 				ADAAD6F321D0F4CB00B9D59E /* Protocols.swift in Sources */,
+				ADBF58502246C2B100BDD008 /* DataProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

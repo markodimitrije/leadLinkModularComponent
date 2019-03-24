@@ -14,6 +14,12 @@ class ViewController: UIViewController, RadioBtnListener {
     
     lazy var viewFactory = ViewFactory.init(bounds: self.view.bounds)
     
+    var radioBtnsViewModelBinder = StackViewToRadioBtnsViewModelBinder()
+    var radioBtnsWithInputViewModelBinder = StackViewToRadioBtnsWithInputViewModelBinder()
+    var checkboxBtnsViewModelBinder = StackViewToCheckboxBtnsViewModelBinder()
+    
+    private var bag = DisposeBag()
+    
     @IBAction func leftBtnsTapped(_ sender: UIButton) {
         leftScenariosTapped(sender: sender)
     }
@@ -31,69 +37,59 @@ class ViewController: UIViewController, RadioBtnListener {
         switch sender.tag {
             case 0: // radio
                 
-                let options = ["Paris", "London", "Maroco", "Madrid", "Moscow"]
-                let q = Question.init(id: 3, type: "radioBtn", headlineText: "Headline", inputTxt: "whatever", options: options)
                 let height = getOneRowHeightFor(componentType: "radioBtn")
                 let fr = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: viewFactory.bounds.width, height: height))
                 
-                let answer = RadioAnswer.init(questionId: q.id, optionId: 3, content: ["Madrid"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
+                guard let data = SingleQuestion.init(forQuestion: 0) else {return}
             
-                let (stackerView, btnViews) = getRadioBtnsView(question: q, answer: nil, frame: fr)
+                let (stackerView, btnViews) = getRadioBtnsView(question: data.question, answer: data.answer, frame: fr)
                 
-                //let radioViewModel = RadioViewModel.init(question: q, answer: nil)  //all good..
-                let radioViewModel = RadioViewModel.init(question: q, answer: answer)  //all good..
+//                let radioViewModel = RadioViewModel.init(question: data.question, answer: nil)  //all good..
+                let radioViewModel = RadioViewModel.init(question: data.question, answer: data.answer as? RadioAnswer)  //all good..
                 
                 //hookUp(view: stackerView, radioViewmodel: radioViewModel)
-                hookUp(view: stackerView, btnViews: btnViews, radioViewmodel: radioViewModel)
+                radioBtnsViewModelBinder.hookUp(view: stackerView, btnViews: btnViews, viewmodel: radioViewModel, bag: bag)
             
             self.view.addSubview(stackerView)
             
-            
         case 1: // checkbox
-            
-            let options = ["Soccer", "Basketball", "Swimming", "Tennis", "Waterpolo", "Car racing"]
-            let q = Question.init(id: 2, type: "checkbox", headlineText: "Sports", inputTxt: "whatever", options: options)
             
             let height = getOneRowHeightFor(componentType: "checkboxBtn")
             let fr = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: viewFactory.bounds.width, height: height))
             
-            // ovo ces izvuci iz REALM-a! ili dataLayer-a:
-            let answer = CheckboxAnswer.init(questionId: q.id, optionId: [1,2,3,4], content: ["Basketball", "Swimming", "Tennis", "Waterpolo"])
+            guard let data = SingleQuestion.init(forQuestion: 1) else {return}
+           
+            let (stackerView, btnViews) = getCheckboxBtnsView(question: data.question, answer: data.answer, frame: fr)
             
-            let (stackerView, btnViews) = getCheckboxBtnsView(question: q, answer: nil, frame: fr)
-            
-            let checkboxViewModel = CheckboxViewModel.init(question: q, answer: answer)
-//            let checkboxViewModel = CheckboxViewModel.init(question: q, answer: nil) // test me...
+            let checkboxViewModel = CheckboxViewModel.init(question: data.question, answer: data.answer as? CheckboxAnswer)
+//            let checkboxViewModel = CheckboxViewModel.init(question: data.question, answer: nil) // test me...
 
-            hookUp(view: stackerView, btnViews: btnViews, checkboxViewmodel: checkboxViewModel)
+            checkboxBtnsViewModelBinder.hookUp(view: stackerView,
+                                               btnViews: btnViews,
+                                               viewmodel: checkboxViewModel,
+                                               bag: bag)
 
             self.view.addSubview(stackerView)
-            
             
         case 2: // radio with input
             
-//            let options = ["Paris", "London", "Maroco", "Madrid", "Moscow", "Rome"]
-            let options = ["Paris", "London", "Maroco", "Madrid", "Moscow"]
-            let q = Question.init(id: 22, type: "radioBtn", headlineText: "Headline", inputTxt: "whatever", options: options)
             let height = getOneRowHeightFor(componentType: "radioBtn")
             let fr = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: viewFactory.bounds.width, height: height))
             
-//            let answer = RadioAnswer.init(questionId: q.id, optionId: 1, content: ["London"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
-            let answer = RadioAnswer.init(questionId: q.id, optionId: 5, content: ["Palermo"]) // ovo ces izvuci iz REALM-a! ili dataLayer-a
+            guard let data = SingleQuestion.init(forQuestion: 2) else {return}
             
-//            let (stackerView, btnViews) = getRadioBtnsWithInputView(question: q, answer: nil, frame: fr)
-            let (stackerView, btnViews) = getRadioBtnsWithInputView(question: q, answer: answer, frame: fr)
+//            let (stackerView, btnViews) = getRadioBtnsWithInputView(question: data.question, answer: nil, frame: fr)
+            let (stackerView, btnViews) = getRadioBtnsWithInputView(question: data.question, answer: data.answer, frame: fr)
             
-//            let radioWithInputViewModel = RadioWithInputViewModel.init(question: q, answer: nil)  //all good..
-            let radioWithInputViewModel = RadioWithInputViewModel.init(question: q, answer: answer)  // nece ??
+//            let radioWithInputViewModel = RadioWithInputViewModel.init(question: data.question, answer: nil)  //all good..
+            let radioWithInputViewModel = RadioWithInputViewModel.init(question: data.question, answer: data.answer as? RadioAnswer)  // nece ??
             
-            hookUp(view: stackerView, btnViews: btnViews, radioWithInputViewModel: radioWithInputViewModel)
+            radioBtnsWithInputViewModelBinder.hookUp(view: stackerView,
+                                                     btnViews: btnViews,
+                                                     viewmodel: radioWithInputViewModel,
+                                                     bag: bag)
             
             self.view.addSubview(stackerView)
-            
-            
-            
-            
             
         case 3: // checkbox with input
             
@@ -116,12 +112,6 @@ class ViewController: UIViewController, RadioBtnListener {
             
             self.view.addSubview(stackerView)
             
-            
-            
-            
-            
-            
-            
         default: break
         }
         
@@ -138,39 +128,7 @@ class ViewController: UIViewController, RadioBtnListener {
     // hocu da Tap na embeded radio btn (nalazi se digged in u ViewStacker-u) pogoni ostale btn-e da menjaju sliku + da save actual za MODEL
     // s druge strane, ANSWER bi trebalo da pogoni sve btns, jer moze da se upari i preko "id" i preko "value"
     
-    private func hookUp(view: ViewStacker, btnViews: [RadioBtnView], radioViewmodel viewmodel: RadioViewModel) { // osim Question viewmodel treba da ima i Answer !!!
-        
-        let inputCreator = RadioViewmodelInputCreator(viewmodel: viewmodel)
-        
-        let buttons = btnViews.compactMap {$0.radioBtn}
-        
-        let textDrivers = inputCreator.createTxtDrivers()
-        
-        _ = textDrivers.enumerated().map { (offset, textDriver) in
-                textDriver.drive(btnViews[offset].rx.optionTxt)
-            }
-        
-        let values = inputCreator.createRadioBtnsInput(btnViews: btnViews)
-        
-        let input = RadioViewModel.Input.init(ids: values, answer: viewmodel.answer)
-        
-        let output = viewmodel.transform(input: input) // vratio sam identican input na output
-        
-        // ovo radi... ali nije PRAVI Reactive !
-        output.ids.subscribe(onNext: { val in
-            let active = buttons.first(where: { $0.tag == val })
-            var inactive = buttons
-            inactive.remove(at: val) // jer znam da su indexed redom..
-            _ = inactive.map({
-                btnViews[$0.tag].isOn = false
-            })
-            _ = active.map({
-                btnViews[$0.tag].isOn = true
-            })
-        }).disposed(by: bag)
-        
-    }
-    
+    /*
     
     private func hookUp(view: ViewStacker, btnViews: [CheckboxView], checkboxViewmodel viewmodel: CheckboxViewModel) { // osim Question viewmodel treba da ima i Answer !!!
         
@@ -221,9 +179,17 @@ class ViewController: UIViewController, RadioBtnListener {
     
     private func hookUp(view: ViewStacker, btnViews: [UIView], radioWithInputViewModel viewmodel: RadioWithInputViewModel) { // osim Question viewmodel treba da ima i Answer !!!
         
-        let inputCreator = RadioWithInputViewmodelInputCreator.init(viewmodel: viewmodel)
-        let textDrivers = inputCreator.createTxtDrivers()
-        
+        var allViews = btnViews
+        guard let txtField = allViews.popLast() as? UITextField else {return}
+        var radioBtnViews: [RadioBtnView] { return allViews as? [RadioBtnView] ?? [ ] }
+
+        var buttons: [UIButton] { return radioBtnViews.compactMap { $0.radioBtn } }
+
+        let inputCreator = RadioWithInputViewmodelInputCreator.init(viewmodel: viewmodel, radioBtnViews: radioBtnViews)
+
+        let textDrivers = inputCreator.textDrivers
+        let values = inputCreator.radioBtnsInput
+
         _ = textDrivers.enumerated().map { (offset, textDriver) in
             print(offset)
             guard let observer = (btnViews[offset] as? OptionTxtUpdatable)?.optionTxt else { return }
@@ -231,7 +197,7 @@ class ViewController: UIViewController, RadioBtnListener {
             textDriver
                 .drive(observer)
                 .disposed(by: bag)
-            
+
             textDrivers.last?.asObservable()
                 .subscribe(onNext: { (val) in
                     if val == "" {
@@ -241,15 +207,6 @@ class ViewController: UIViewController, RadioBtnListener {
                 .disposed(by: bag)
         }
 
-        var allViews = btnViews
-        guard let txtField = allViews.popLast() as? UITextField else {return}
-        
-        var radioBtnViews: [RadioBtnView] { return allViews as? [RadioBtnView] ?? [ ] }
-        
-        var buttons: [UIButton] { return radioBtnViews.compactMap { $0.radioBtn } }
-        
-        let values = inputCreator.createRadioBtnsInput(btnViews: radioBtnViews)
-        
         //let obOptionTxt = Observable.from([txtField.text!]) GRESKA !
         let obOptionTxt = txtField.rx.text.asObservable() // OK
 
@@ -268,14 +225,14 @@ class ViewController: UIViewController, RadioBtnListener {
                 if $0.tag < radioBtnViews.count-1 {
                     txtField.text = ""
                     txtField.resignFirstResponder()
-                    
+
                 } else {
                     txtField.becomeFirstResponder()
                 }
                 radioBtnViews[$0.tag].isOn = true
             }
         }).disposed(by: bag)
-        
+
         output.optionTxt.subscribe(onNext: { val in
             if val != "" {
                 if let answer = viewmodel.answer, answer.optionId == radioBtnViews.last?.radioBtn.tag {
@@ -288,6 +245,7 @@ class ViewController: UIViewController, RadioBtnListener {
         
     }
     
+    */
     
     // implement me !!!
     
@@ -428,8 +386,6 @@ class ViewController: UIViewController, RadioBtnListener {
         
     }
     
-    private var bag = DisposeBag()
-    
 }
 
 func getOneRowHeightFor(componentType type: String) -> CGFloat {
@@ -456,133 +412,165 @@ struct Question {
     var options = [String]()
 }
 
+protocol StackViewToViewModelBinder {
+    associatedtype ViewModel: ViewModelType
+    associatedtype View: UIView
+    func hookUp(view: ViewStacker, btnViews: [View], viewmodel: ViewModel, bag: DisposeBag)
+}
 
-
-
-class CheckboxViewmodelInputCreator {
+class StackViewToRadioBtnsViewModelBinder: StackViewToViewModelBinder {
     
-    var viewmodel: CheckboxViewModel
-    
-    init(viewmodel: CheckboxViewModel) {
-        self.viewmodel = viewmodel
-    }
-    
-    func createTxtDrivers() -> [Driver<String>] {
-        let textDrivers = viewmodel.question.options.map { (text) -> Driver<String> in
-            return Observable.from([text]).asDriver(onErrorJustReturn: "")
+    func hookUp(view: ViewStacker, btnViews: [RadioBtnView], viewmodel: RadioViewModel, bag: DisposeBag) {
+        
+        let inputCreator = RadioViewmodelInputCreator(viewmodel: viewmodel)
+        
+        let buttons = btnViews.compactMap {$0.radioBtn}
+        
+        let textDrivers = inputCreator.createTxtDrivers()
+        
+        _ = textDrivers.enumerated().map { (offset, textDriver) in
+            textDriver.drive(btnViews[offset].rx.optionTxt)
         }
-        return textDrivers
+        
+        let values = inputCreator.createRadioBtnsInput(btnViews: btnViews)
+        
+        let input = RadioViewModel.Input.init(ids: values, answer: viewmodel.answer)
+        
+        let output = viewmodel.transform(input: input) // vratio sam identican input na output
+        
+        // ovo radi... ali nije PRAVI Reactive !
+        output.ids.subscribe(onNext: { val in
+            let active = buttons.first(where: { $0.tag == val })
+            var inactive = buttons
+            inactive.remove(at: val) // jer znam da su indexed redom..
+            _ = inactive.map({
+                btnViews[$0.tag].isOn = false
+            })
+            _ = active.map({
+                btnViews[$0.tag].isOn = true
+            })
+        }).disposed(by: bag)
     }
+}
 
-    func createCheckboxBtnsInput(btnViews: [CheckboxView] ) -> Observable<Int> {
+class StackViewToRadioBtnsWithInputViewModelBinder: StackViewToViewModelBinder {
+    
+    func hookUp(view: ViewStacker, btnViews: [UIView], viewmodel: RadioWithInputViewModel, bag: DisposeBag) {
         
-        let tags = btnViews
-            .map { ($0.radioBtn.rx.tap, $0.radioBtn.tag) }
-            .map { obs, tag in obs.map { tag } } // ovo zelim da je [Observable<(Int,Bool)>] da znam da li je checked ili nije
+        var allViews = btnViews
+        guard let txtField = allViews.popLast() as? UITextField else {return}
+        var radioBtnViews: [RadioBtnView] { return allViews as? [RadioBtnView] ?? [ ] }
         
-        return Observable.merge(tags)
+        var buttons: [UIButton] { return radioBtnViews.compactMap { $0.radioBtn } }
         
+        let inputCreator = RadioWithInputViewmodelInputCreator.init(viewmodel: viewmodel, radioBtnViews: radioBtnViews)
+        
+        let textDrivers = inputCreator.textDrivers
+        let values = inputCreator.radioBtnsInput
+        
+        _ = textDrivers.enumerated().map { (offset, textDriver) in
+            print(offset)
+            guard let observer = (btnViews[offset] as? OptionTxtUpdatable)?.optionTxt else { return }
+            
+            textDriver
+                .drive(observer)
+                .disposed(by: bag)
+            
+            textDrivers.last?.asObservable()
+                .subscribe(onNext: { (val) in
+                    if val == "" {
+                        (btnViews.last as? UITextField)?.placeholder = "Type your text here"
+                    }
+                })
+                .disposed(by: bag)
+        }
+        
+        //let obOptionTxt = Observable.from([txtField.text!]) GRESKA !
+        let obOptionTxt = txtField.rx.text.asObservable() // OK
+        
+        let input = RadioWithInputViewModel.Input.init(ids: values, optionTxt: obOptionTxt, answer: viewmodel.answer)
+        
+        let output = viewmodel.transform(input: input) // vratio sam identican input na output
+        
+        output.ids.subscribe(onNext: { val in
+            let active = buttons.first(where: { $0.tag == val })
+            var inactive = buttons
+            inactive.remove(at: val) // jer znam da su indexed redom..
+            _ = inactive.map {
+                radioBtnViews[$0.tag].isOn = false
+            }
+            _ = active.map {
+                if $0.tag < radioBtnViews.count-1 {
+                    txtField.text = ""
+                    txtField.resignFirstResponder()
+                    
+                } else {
+                    txtField.becomeFirstResponder()
+                }
+                radioBtnViews[$0.tag].isOn = true
+            }
+        }).disposed(by: bag)
+        
+        output.optionTxt.subscribe(onNext: { val in
+            if val != "" {
+                if let answer = viewmodel.answer, answer.optionId == radioBtnViews.last?.radioBtn.tag {
+                    _ = radioBtnViews.map {$0.isOn = false}
+                }
+                _ = radioBtnViews.map {$0.isOn = false}
+                radioBtnViews.last?.isOn = true // we want other option to be selected
+            }
+        }).disposed(by: bag)
     }
     
 }
 
-class RadioViewmodelInputCreator {
+class StackViewToCheckboxBtnsViewModelBinder: StackViewToViewModelBinder {
     
-    var viewmodel: RadioViewModel
-    
-    init(viewmodel: RadioViewModel) {
-        self.viewmodel = viewmodel
-    }
-    
-    func createTxtDrivers() -> [Driver<String>] {
-        let textDrivers = viewmodel.question.options.map { (text) -> Driver<String> in
-            return Observable.from([text]).asDriver(onErrorJustReturn: "")
+    func hookUp(view: ViewStacker, btnViews: [CheckboxView], viewmodel: CheckboxViewModel, bag: DisposeBag) {
+     
+        let inputCreator = CheckboxViewmodelInputCreator(viewmodel: viewmodel)
+        
+        _ = inputCreator.createTxtDrivers().enumerated().map { (offset, textDriver) in
+            textDriver.drive(btnViews[offset].rx.optionText)
         }
-        return textDrivers
-    }
-    
-    func createRadioBtnsInput(btnViews: [RadioBtnView] ) -> Observable<Int> {
         
-        let tags = btnViews
-            .map { ($0.radioBtn.rx.tap, $0.radioBtn.tag) }
-            .map { obs, tag in obs.map { tag } } // ovo zelim da je [Observable<(Int,Bool)>] da znam da li je checked ili nije
+        let initial = viewmodel.answer?.optionId ?? [ ]
         
-        return Observable.merge(tags)
+        let checkedArr = BehaviorRelay<[Int]>.init(value: initial) // mozda treba sa answer !!?
         
-    }
+        let values = inputCreator.createCheckboxBtnsInput(btnViews: btnViews)
         
-}
-
-class RadioWithInputViewmodelInputCreator {
-    
-    var viewmodel: RadioWithInputViewModel
-    
-    init(viewmodel: RadioWithInputViewModel) {
-        self.viewmodel = viewmodel
-    }
-    
-    func createTxtDrivers() -> [Driver<String>] {
+        values.subscribe(onNext: { tag in
+            var arr = checkedArr.value
+            if let i = checkedArr.value.firstIndex(of: tag) { // vec je u nizu...
+                arr.remove(at: i)
+                checkedArr.accept(arr)
+            } else {
+                arr.append(tag)
+                checkedArr.accept(arr)
+            }
+        }).disposed(by: bag)
         
-        var answerTxt: String? { return viewmodel.answer?.content.last }
-        var options: [String] {return viewmodel.question.options}
+        let input = CheckboxViewModel.Input.init(ids: checkedArr.asObservable(), answer: viewmodel.answer)
         
-        let anserIsOptionTxt = (answerTxt != nil) ? !options.contains(answerTxt!) : nil
-        let optionTxt = (anserIsOptionTxt == nil) ? "" : (anserIsOptionTxt != nil && anserIsOptionTxt!) ? (answerTxt!) : ""
+        let output = viewmodel.transform(input: input) // vratio sam identican input na output
         
-        let allOptions = options + [optionTxt]
-        
-        let textDrivers = allOptions.map { (text) -> Driver<String> in
-            return Observable.from([text]).asDriver(onErrorJustReturn: "")
-        }
-        return textDrivers
-    }
-    
-    func createRadioBtnsInput(btnViews: [RadioBtnView] ) -> Observable<Int> {
-        
-        let tags = btnViews
-            .map { ($0.radioBtn.rx.tap, $0.radioBtn.tag) }
-            .map { obs, tag in obs.map { tag } } // ovo zelim da je [Observable<(Int,Bool)>] da znam da li je checked ili nije
-        
-        return Observable.merge(tags)
+        // ovo radi... ali nije PRAVI Reactive !
+        output.ids.subscribe(onNext: { array in
+            
+            print("subscribe.array = \(array)")
+            
+            let active = btnViews.filter { view -> Bool in
+                array.contains(view.radioBtn.tag)
+            }
+            
+            _ = btnViews.map({ btn in
+                let checked = active.contains(btn)
+                btn.isOn = checked
+            })
+            
+        }).disposed(by: bag)
         
     }
     
 }
-
-
-class CheckboxWithInputViewmodelInputCreator {
-    
-    var viewmodel: CheckboxWithInputViewModel
-    
-    init(viewmodel: CheckboxWithInputViewModel) {
-        self.viewmodel = viewmodel
-    }
-    
-    func createTxtDrivers() -> [Driver<String>] {
-        
-        var answerTxt: String? { return viewmodel.answer?.content.last }
-        var options: [String] {return viewmodel.question.options}
-        
-        let anserIsOptionTxt = (answerTxt != nil) ? !options.contains(answerTxt!) : nil
-        let optionTxt = (anserIsOptionTxt == nil) ? "" : (anserIsOptionTxt != nil && anserIsOptionTxt!) ? (answerTxt!) : ""
-        
-        let allOptions = options + [optionTxt]
-        
-        let textDrivers = allOptions.map { (text) -> Driver<String> in
-            return Observable.from([text]).asDriver(onErrorJustReturn: "")
-        }
-        return textDrivers
-    }
-    
-    func createChecboxBtnsInput(btnViews: [CheckboxView] ) -> Observable<Int> {
-        
-        let tags = btnViews
-            .map { ($0.radioBtn.rx.tap, $0.radioBtn.tag) }
-            .map { obs, tag in obs.map { tag } } // ovo zelim da je [Observable<(Int,Bool)>] da znam da li je checked ili nije
-        
-        return Observable.merge(tags)
-        
-    }
-    
-}
-
