@@ -14,7 +14,7 @@ class ViewController: UIViewController, RadioBtnListener {
     
     lazy var viewFactory = ViewFactory.init(bounds: self.view.bounds)
     
-    var scrollView = UIScrollView.init()
+    var scrollView: QuestionsScrollView!
     
     var radioBtnsViewModelBinder = StackViewToRadioBtnsViewModelBinder()
     var radioBtnsWithInputViewModelBinder = StackViewToRadioBtnsWithInputViewModelBinder()
@@ -35,11 +35,13 @@ class ViewController: UIViewController, RadioBtnListener {
     }
     
     override func viewDidLoad() { super.viewDidLoad()
-        scrollView.backgroundColor = .lightGray
-        scrollView.frame = self.view.frame
-        scrollView.contentSize = self.view.frame.size
-        scrollView.contentSize.height = 3000.0 // hard-coded
+        //scrollView = QuestionsScrollView.init(frame: self.view.frame)
+        scrollView = QuestionsScrollView.init(frame: self.view.frame,
+                                              confirmBtn: SaveButton.init(frame: CGRect.init(origin: CGPoint.init(x: 200, y: 1100), size: CGSize.init(width: 240, height: 44))))
         self.view.insertSubview(scrollView, at: 0)
+        scrollView.confirmBtn?.rx.controlEvent(UIControlEvents.touchUpInside).subscribe(onNext: { (_) in
+            print("save btn tap catched, hook this to Binder on Parent view model")
+        })
     }
     
     private func leftScenariosTapped(sender: UIButton) {

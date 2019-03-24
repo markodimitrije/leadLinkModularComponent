@@ -30,6 +30,8 @@
 		ADAAD6F721D0FBAC00B9D59E /* LabelBtnSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */; };
 		ADBF584D22469ED800BDD008 /* InputCreators.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF584C22469ED800BDD008 /* InputCreators.swift */; };
 		ADBF58502246C2B100BDD008 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF584F2246C2B100BDD008 /* DataProvider.swift */; };
+		ADBF585322479D4700BDD008 /* QuestionsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF585222479D4700BDD008 /* QuestionsScrollView.swift */; };
+		ADBF58552247A45200BDD008 /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF58542247A45200BDD008 /* SaveButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelBtnSwitchView.swift; sourceTree = "<group>"; };
 		ADBF584C22469ED800BDD008 /* InputCreators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCreators.swift; sourceTree = "<group>"; };
 		ADBF584F2246C2B100BDD008 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		ADBF585222479D4700BDD008 /* QuestionsScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsScrollView.swift; sourceTree = "<group>"; };
+		ADBF58542247A45200BDD008 /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
 		B2102075DD73E10FE0BE3C87 /* Pods_tryLeadLinkModularComponent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tryLeadLinkModularComponent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B753BBDE7A61F3AD69DAA1E7 /* Pods-tryLeadLinkModularComponent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tryLeadLinkModularComponent.release.xcconfig"; path = "Pods/Target Support Files/Pods-tryLeadLinkModularComponent/Pods-tryLeadLinkModularComponent.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,18 +127,9 @@
 		AD837ABA21C7BA7100555917 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AD50390921CFA7960009EB0C /* RadioBtnView.xib */,
-				AD50390A21CFA7970009EB0C /* RadioBtnView.swift */,
-				ADAAD6E921D0ECB600B9D59E /* CheckboxView.xib */,
-				ADAAD6EB21D0ECC500B9D59E /* CheckboxView.swift */,
-				AD837AB621C7B50C00555917 /* ViewStacker.xib */,
-				AD837AB821C7BA6800555917 /* ViewStacker.swift */,
-				AD837ABD21C7C0FE00555917 /* OneRowStacker.xib */,
-				AD837ABB21C7C0F600555917 /* OneRowStacker.swift */,
-				AD837AC321C7C67F00555917 /* LabelAndTextView.swift */,
-				AD837AC421C7C67F00555917 /* LabelAndTextView.xib */,
-				ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */,
-				ADAAD6F421D0F7B700B9D59E /* LabelBtnSwitchView.xib */,
+				ADBF585122479D2900BDD008 /* Components */,
+				ADBF585222479D4700BDD008 /* QuestionsScrollView.swift */,
+				ADBF58542247A45200BDD008 /* SaveButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,6 +164,25 @@
 				ADBF584F2246C2B100BDD008 /* DataProvider.swift */,
 			);
 			path = DataProvider;
+			sourceTree = "<group>";
+		};
+		ADBF585122479D2900BDD008 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AD50390921CFA7960009EB0C /* RadioBtnView.xib */,
+				AD50390A21CFA7970009EB0C /* RadioBtnView.swift */,
+				ADAAD6E921D0ECB600B9D59E /* CheckboxView.xib */,
+				ADAAD6EB21D0ECC500B9D59E /* CheckboxView.swift */,
+				AD837AB621C7B50C00555917 /* ViewStacker.xib */,
+				AD837AB821C7BA6800555917 /* ViewStacker.swift */,
+				AD837ABD21C7C0FE00555917 /* OneRowStacker.xib */,
+				AD837ABB21C7C0F600555917 /* OneRowStacker.swift */,
+				AD837AC321C7C67F00555917 /* LabelAndTextView.swift */,
+				AD837AC421C7C67F00555917 /* LabelAndTextView.xib */,
+				ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */,
+				ADAAD6F421D0F7B700B9D59E /* LabelBtnSwitchView.xib */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		D5F79EF7EB63CF43FC122B81 /* Frameworks */ = {
@@ -325,9 +339,11 @@
 				ADAAD6F721D0FBAC00B9D59E /* LabelBtnSwitchView.swift in Sources */,
 				AD837AB921C7BA6800555917 /* ViewStacker.swift in Sources */,
 				AD837AA521C7B4E700555917 /* AppDelegate.swift in Sources */,
+				ADBF58552247A45200BDD008 /* SaveButton.swift in Sources */,
 				AD9EDEBF21D1837F0058814C /* ViewFactory.swift in Sources */,
 				ADBF584D22469ED800BDD008 /* InputCreators.swift in Sources */,
 				ADAAD6EC21D0ECC500B9D59E /* CheckboxView.swift in Sources */,
+				ADBF585322479D4700BDD008 /* QuestionsScrollView.swift in Sources */,
 				ADAAD6F321D0F4CB00B9D59E /* Protocols.swift in Sources */,
 				ADBF58502246C2B100BDD008 /* DataProvider.swift in Sources */,
 			);
