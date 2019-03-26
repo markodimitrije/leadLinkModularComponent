@@ -28,6 +28,8 @@
 		ADAAD6F321D0F4CB00B9D59E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */; };
 		ADAAD6F521D0F7B700B9D59E /* LabelBtnSwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADAAD6F421D0F7B700B9D59E /* LabelBtnSwitchView.xib */; };
 		ADAAD6F721D0FBAC00B9D59E /* LabelBtnSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */; };
+		ADB3EA5022493A1F00E2C289 /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3EA4F22493A1F00E2C289 /* ViewModels.swift */; };
+		ADB3EA5222493A5D00E2C289 /* ParentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3EA5122493A5D00E2C289 /* ParentViewModel.swift */; };
 		ADBF584D22469ED800BDD008 /* InputCreators.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF584C22469ED800BDD008 /* InputCreators.swift */; };
 		ADBF58502246C2B100BDD008 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF584F2246C2B100BDD008 /* DataProvider.swift */; };
 		ADBF585322479D4700BDD008 /* QuestionsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF585222479D4700BDD008 /* QuestionsScrollView.swift */; };
@@ -58,6 +60,8 @@
 		ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		ADAAD6F421D0F7B700B9D59E /* LabelBtnSwitchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelBtnSwitchView.xib; sourceTree = "<group>"; };
 		ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelBtnSwitchView.swift; sourceTree = "<group>"; };
+		ADB3EA4F22493A1F00E2C289 /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
+		ADB3EA5122493A5D00E2C289 /* ParentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewModel.swift; sourceTree = "<group>"; };
 		ADBF584C22469ED800BDD008 /* InputCreators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCreators.swift; sourceTree = "<group>"; };
 		ADBF584F2246C2B100BDD008 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		ADBF585222479D4700BDD008 /* QuestionsScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsScrollView.swift; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 		AD837AA321C7B4E700555917 /* tryLeadLinkModularComponent */ = {
 			isa = PBXGroup;
 			children = (
+				ADB3EA4E22493A0F00E2C289 /* ViewModels */,
 				ADBF584E2246C2A300BDD008 /* DataProvider */,
 				ADBF584B22469EAE00BDD008 /* InputCreators */,
 				AD9F0E7321D3D9A5005BD0A7 /* MyRxExtensions */,
@@ -145,9 +150,18 @@
 		ADAAD6F121D0F4BE00B9D59E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		ADB3EA4E22493A0F00E2C289 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */,
+				ADB3EA4F22493A1F00E2C289 /* ViewModels.swift */,
+				ADB3EA5122493A5D00E2C289 /* ParentViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		ADBF584B22469EAE00BDD008 /* InputCreators */ = {
@@ -341,6 +355,8 @@
 				AD837AA521C7B4E700555917 /* AppDelegate.swift in Sources */,
 				ADBF58552247A45200BDD008 /* SaveButton.swift in Sources */,
 				AD9EDEBF21D1837F0058814C /* ViewFactory.swift in Sources */,
+				ADB3EA5222493A5D00E2C289 /* ParentViewModel.swift in Sources */,
+				ADB3EA5022493A1F00E2C289 /* ViewModels.swift in Sources */,
 				ADBF584D22469ED800BDD008 /* InputCreators.swift in Sources */,
 				ADAAD6EC21D0ECC500B9D59E /* CheckboxView.swift in Sources */,
 				ADBF585322479D4700BDD008 /* QuestionsScrollView.swift in Sources */,

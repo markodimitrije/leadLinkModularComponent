@@ -1,24 +1,14 @@
 //
-//  Protocols.swift
+//  ViewModels.swift
 //  tryLeadLinkModularComponent
 //
-//  Created by Marko Dimitrijevic on 24/12/2018.
-//  Copyright © 2018 Marko Dimitrijevic. All rights reserved.
+//  Created by Marko Dimitrijevic on 25/03/2019.
+//  Copyright © 2019 Marko Dimitrijevic. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import RxSwift
 import RxCocoa
-
-protocol RowsStackedEqually {
-    //
-}
-
-protocol ViewModelType {
-    associatedtype Input
-    associatedtype Output
-    func transform(input: Input) -> Output
-}
 
 class RadioViewModel: ViewModelType {
     

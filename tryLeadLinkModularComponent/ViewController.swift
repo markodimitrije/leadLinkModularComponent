@@ -42,6 +42,8 @@ class ViewController: UIViewController, RadioBtnListener {
         scrollView.confirmBtn?.rx.controlEvent(UIControlEvents.touchUpInside).subscribe(onNext: { (_) in
             print("save btn tap catched, hook this to Binder on Parent view model")
         })
+        
+        Smth.test()
     }
     
     private func leftScenariosTapped(sender: UIButton) {
