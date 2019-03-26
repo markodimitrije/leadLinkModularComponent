@@ -28,6 +28,8 @@
 		ADAAD6F321D0F4CB00B9D59E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */; };
 		ADAAD6F521D0F7B700B9D59E /* LabelBtnSwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADAAD6F421D0F7B700B9D59E /* LabelBtnSwitchView.xib */; };
 		ADAAD6F721D0FBAC00B9D59E /* LabelBtnSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */; };
+		ADAD117C224AC1F000A87D8D /* StackViewToVMBinders.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAD117B224AC1F000A87D8D /* StackViewToVMBinders.swift */; };
+		ADAD117E224AC3DE00A87D8D /* RxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAD117D224AC3DE00A87D8D /* RxViewModel.swift */; };
 		ADB3EA5022493A1F00E2C289 /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3EA4F22493A1F00E2C289 /* ViewModels.swift */; };
 		ADB3EA5222493A5D00E2C289 /* ParentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3EA5122493A5D00E2C289 /* ParentViewModel.swift */; };
 		ADBF584D22469ED800BDD008 /* InputCreators.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF584C22469ED800BDD008 /* InputCreators.swift */; };
@@ -60,6 +62,8 @@
 		ADAAD6F221D0F4CB00B9D59E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		ADAAD6F421D0F7B700B9D59E /* LabelBtnSwitchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelBtnSwitchView.xib; sourceTree = "<group>"; };
 		ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelBtnSwitchView.swift; sourceTree = "<group>"; };
+		ADAD117B224AC1F000A87D8D /* StackViewToVMBinders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewToVMBinders.swift; sourceTree = "<group>"; };
+		ADAD117D224AC3DE00A87D8D /* RxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewModel.swift; sourceTree = "<group>"; };
 		ADB3EA4F22493A1F00E2C289 /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
 		ADB3EA5122493A5D00E2C289 /* ParentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewModel.swift; sourceTree = "<group>"; };
 		ADBF584C22469ED800BDD008 /* InputCreators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCreators.swift; sourceTree = "<group>"; };
@@ -112,6 +116,7 @@
 		AD837AA321C7B4E700555917 /* tryLeadLinkModularComponent */ = {
 			isa = PBXGroup;
 			children = (
+				ADAD117A224AC1DC00A87D8D /* StackViewToVMBinders */,
 				ADB3EA4E22493A0F00E2C289 /* ViewModels */,
 				ADBF584E2246C2A300BDD008 /* DataProvider */,
 				ADBF584B22469EAE00BDD008 /* InputCreators */,
@@ -143,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				AD9F0E7421D3D9BB005BD0A7 /* MyRxExtensions.swift */,
+				ADAD117D224AC3DE00A87D8D /* RxViewModel.swift */,
 			);
 			path = MyRxExtensions;
 			sourceTree = "<group>";
@@ -152,6 +158,14 @@
 			children = (
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		ADAD117A224AC1DC00A87D8D /* StackViewToVMBinders */ = {
+			isa = PBXGroup;
+			children = (
+				ADAD117B224AC1F000A87D8D /* StackViewToVMBinders.swift */,
+			);
+			path = StackViewToVMBinders;
 			sourceTree = "<group>";
 		};
 		ADB3EA4E22493A0F00E2C289 /* ViewModels */ = {
@@ -354,6 +368,8 @@
 				AD837AB921C7BA6800555917 /* ViewStacker.swift in Sources */,
 				AD837AA521C7B4E700555917 /* AppDelegate.swift in Sources */,
 				ADBF58552247A45200BDD008 /* SaveButton.swift in Sources */,
+				ADAD117E224AC3DE00A87D8D /* RxViewModel.swift in Sources */,
+				ADAD117C224AC1F000A87D8D /* StackViewToVMBinders.swift in Sources */,
 				AD9EDEBF21D1837F0058814C /* ViewFactory.swift in Sources */,
 				ADB3EA5222493A5D00E2C289 /* ParentViewModel.swift in Sources */,
 				ADB3EA5022493A1F00E2C289 /* ViewModels.swift in Sources */,

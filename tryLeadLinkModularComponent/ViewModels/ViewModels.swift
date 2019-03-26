@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class RadioViewModel: ViewModelType {
+class RadioViewModel: NSObject, ViewModelType {
     
     var question: Question
     var answer: RadioAnswer?
@@ -42,7 +42,7 @@ class RadioViewModel: ViewModelType {
 }
 
 
-class CheckboxViewModel: ViewModelType {
+class CheckboxViewModel: NSObject, ViewModelType {
     
     var question: Question
     var answer: CheckboxAnswer?
@@ -78,7 +78,7 @@ class CheckboxViewModel: ViewModelType {
 
 
 
-class RadioWithInputViewModel: ViewModelType {
+class RadioWithInputViewModel: NSObject, ViewModelType {
     
     var question: Question
     var answer: RadioAnswer?
