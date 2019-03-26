@@ -3,12 +3,7 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "RadioWithInputViewModel.transform(input:):Protocols.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "input.optionTxt">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "ViewFactory.getStackedRadioBtnsWithInput(question:answer:frame:):ViewFactory.swift">
       </ContextState>
       <ContextState
          contextName = "ViewController.hookUp(view:viewmodel:):ViewController.swift">
@@ -17,16 +12,16 @@
                value = "btnViews[output.act.value]">
             </PersistentString>
             <PersistentString
-               value = "view.components">
+               value = "output.act.value">
             </PersistentString>
             <PersistentString
                value = "btnViews">
             </PersistentString>
             <PersistentString
-               value = "view.components.compactMap">
+               value = "view.components">
             </PersistentString>
             <PersistentString
-               value = "output.act.value">
+               value = "view.components.compactMap">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -77,15 +72,28 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #3 in StackViewToRadioBtnsViewModelBinder.hookUp(view:btnViews:viewmodel:bag:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewmodel.answer?.content">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RadioWithInputViewModel.transform(input:):Protocols.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "input.optionTxt">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #9 in ViewController.hookUp(view:checkboxViewmodel:):ViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "btn.tag">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ViewFactory.getStackedRadioBtnsWithInput(question:answer:frame:):ViewFactory.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

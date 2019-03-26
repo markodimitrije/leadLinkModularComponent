@@ -20,6 +20,8 @@ class ViewController: UIViewController, RadioBtnListener {
     var radioBtnsWithInputViewModelBinder = StackViewToRadioBtnsWithInputViewModelBinder()
     var checkboxBtnsViewModelBinder = StackViewToCheckboxBtnsViewModelBinder()
     
+    var parentViewmodel: ParentViewModel!
+    
     private var bag = DisposeBag()
     
     @IBAction func leftBtnsTapped(_ sender: UIButton) {
@@ -35,15 +37,51 @@ class ViewController: UIViewController, RadioBtnListener {
     }
     
     override func viewDidLoad() { super.viewDidLoad()
+        
+        loadParentViewModel()
+        
         //scrollView = QuestionsScrollView.init(frame: self.view.frame)
         scrollView = QuestionsScrollView.init(frame: self.view.frame,
                                               confirmBtn: SaveButton.init(frame: CGRect.init(origin: CGPoint.init(x: 200, y: 1100), size: CGSize.init(width: 240, height: 44))))
         self.view.insertSubview(scrollView, at: 0)
-        scrollView.confirmBtn?.rx.controlEvent(UIControlEvents.touchUpInside).subscribe(onNext: { (_) in
-            print("save btn tap catched, hook this to Binder on Parent view model")
-        })
+        scrollView.confirmBtn?.rx.controlEvent(UIControlEvents.touchUpInside)
+            .subscribe(onNext: { [weak self] (_) in
+                
+                _ = self?.parentViewmodel.childViewmodels.compactMap({ viewmodel in
+                    print("viewmodel.question = \(viewmodel.question)")
+                    if let viewmodel = viewmodel as? RadioViewModel {
+                        print("RadioViewModel.answer = \(String(describing: viewmodel.answer))")
+                    } else if let viewmodel = viewmodel as? CheckboxViewModel {
+                        print("CheckboxViewModel.answer = \(String(describing: viewmodel.answer))")
+                    } else if let viewmodel = viewmodel as? RadioWithInputViewModel {
+                        print("RadioWithInputViewModel.answer = \(String(describing: viewmodel.answer))")
+                    }
+                    
+                })
+            })
+            .disposed(by: bag)
+    }
+    
+    private func loadParentViewModel() {
         
-        Smth.test()
+        guard let first = SingleQuestion.init(forQuestion: 0),
+            let second = SingleQuestion.init(forQuestion: 1),
+            let third = SingleQuestion.init(forQuestion: 2) else {return}
+        
+        //let rvm = RadioViewModel.init(question: first.question, answer: nil)
+        let rvm = RadioViewModel.init(question: first.question, answer: first.answer as? RadioAnswer)  //all good..
+        
+        //let chvm = CheckboxViewModel.init(question: second.question, answer: nil)
+        let chvm = CheckboxViewModel.init(question: second.question, answer: second.answer as? CheckboxAnswer)
+        
+        //let rvmInput = RadioWithInputViewModel.init(question: third.question, answer: nil)
+        let rvmInput = RadioWithInputViewModel.init(question: third.question, answer: third.answer as? RadioAnswer)
+        
+        parentViewmodel = ParentViewModel.init(viewmodels: [rvm, chvm, rvmInput])
+//        _ = parentViewmodel.childViewmodels.map { vm -> Void in
+//            print("question = \(vm.question)")
+//        }
+        
     }
     
     private func leftScenariosTapped(sender: UIButton) {
@@ -59,8 +97,8 @@ class ViewController: UIViewController, RadioBtnListener {
                 let (stackerView, btnViews) = getRadioBtnsView(question: data.question, answer: data.answer, frame: fr)
                 
 //                let radioViewModel = RadioViewModel.init(question: data.question, answer: nil)  //all good..
-                let radioViewModel = RadioViewModel.init(question: data.question, answer: data.answer as? RadioAnswer)  //all good..
-                
+                //let radioViewModel = RadioViewModel.init(question: data.question, answer: data.answer as? RadioAnswer)  //all good..
+                guard let radioViewModel = parentViewmodel.childViewmodels.first as? RadioViewModel else {return}
                 //hookUp(view: stackerView, radioViewmodel: radioViewModel)
                 radioBtnsViewModelBinder.hookUp(view: stackerView, btnViews: btnViews, viewmodel: radioViewModel, bag: bag)
             
@@ -100,7 +138,7 @@ class ViewController: UIViewController, RadioBtnListener {
             let (stackerView, btnViews) = getRadioBtnsWithInputView(question: data.question, answer: data.answer, frame: fr)
             
 //            let radioWithInputViewModel = RadioWithInputViewModel.init(question: data.question, answer: nil)  //all good..
-            let radioWithInputViewModel = RadioWithInputViewModel.init(question: data.question, answer: data.answer as? RadioAnswer)  // nece ??
+            let radioWithInputViewModel = RadioWithInputViewModel.init(question: data.question, answer: data.answer as? RadioAnswer)
             
             radioBtnsWithInputViewModelBinder.hookUp(view: stackerView,
                                                      btnViews: btnViews,
@@ -470,6 +508,8 @@ class StackViewToRadioBtnsViewModelBinder: StackViewToViewModelBinder {
             _ = active.map({
                 btnViews[$0.tag].isOn = true
             })
+            //viewmodel.answer?.content = ["Do you wanna funk"]
+            viewmodel.answer?.content = [viewmodel.question.options[val]]
         }).disposed(by: bag)
     }
 }
@@ -594,4 +634,20 @@ class StackViewToCheckboxBtnsViewModelBinder: StackViewToViewModelBinder {
         
     }
     
+}
+
+func getViewModelFrom<T: ViewModelType>(viewModel: Questanable) throws -> T {
+    if let radioViewmodel = viewModel as? RadioViewModel {
+        return radioViewmodel as! T
+    } else if let checkboxViewModel = viewModel as? CheckboxViewModel {
+        return checkboxViewModel as! T
+    } else if let radioWithInputViewmodel = viewModel as? RadioWithInputViewModel {
+        return radioWithInputViewmodel as! T
+    }
+    
+    throw InternalError.viewmodelConversion // fall back (better exception...)
+}
+
+enum InternalError: Error {
+    case viewmodelConversion
 }
