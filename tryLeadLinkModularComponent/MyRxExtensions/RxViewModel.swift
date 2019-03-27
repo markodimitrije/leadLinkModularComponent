@@ -56,3 +56,23 @@ extension Reactive where Base: RadioWithInputViewModel {
         })
     }
 }
+
+// single selection choice
+extension Reactive where Base: CheckboxWithInputViewModel {
+    internal var optionSelected: Binder<Int> {
+        return Binder.init(self.base, binding: { (viewmodel, index) in
+            let optionTxt = viewmodel.question.options[index]
+            let newAnswer = CheckboxAnswer.init(questionId: self.base.question.id, optionId: [index], content: [optionTxt])
+            viewmodel.answer = newAnswer
+        })
+    }
+    internal var txtChanged: Binder<String> {
+        return Binder.init(self.base, binding: { (viewmodel, value) in
+            let options = viewmodel.question.options
+            guard let lastOption = options.last,
+                let lastIndex = options.lastIndex(of: lastOption) else {return}
+            let newAnswer = CheckboxAnswer.init(questionId: self.base.question.id, optionId: [lastIndex], content: [value])
+            viewmodel.answer = newAnswer
+        })
+    }
+}

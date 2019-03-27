@@ -98,10 +98,4 @@ extension Reactive where Base: CheckboxView {
         })
     }
     
-    var optionText: Binder<String> {
-        return Binder.init(self.base, binding: { (view, value) in
-            view.headlineText = value
-        })
-    }
-    
 }

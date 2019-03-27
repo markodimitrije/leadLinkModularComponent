@@ -113,7 +113,7 @@ class RadioWithInputViewModel: NSObject, ViewModelType {
 
 
 
-class CheckboxWithInputViewModel: ViewModelType {
+class CheckboxWithInputViewModel: NSObject, ViewModelType {
     
     var question: Question
     var answer: CheckboxAnswer?
@@ -124,21 +124,21 @@ class CheckboxWithInputViewModel: ViewModelType {
     }
     
     struct Input {
-        var ids: Observable<[Int]>
-        var optionTxt: Observable<String>
+        var ids: Observable<Int>
+        var optionTxt: Observable<String?>
         var answer: CheckboxAnswer?
     }
     
     struct Output { // treba ti side effects
-        var ids: Observable<[Int]> // tap koji mapiras u id (btn.tag)
-        var optionTxt: Observable<String>
+        var ids: Observable<Int> // tap koji mapiras u id (btn.tag)
+        var optionTxt: Observable<String?>
     }
     
-    func transform(input: Input) -> Output { // ovo je bas bezveze... razumi kako radi...
+    func transform(input: Input) -> Output {
         
-        let resulting = (answer == nil) ? input.ids : Observable.merge(Observable.of(answer!.optionId), input.ids)
+        let resultingBtns = (answer == nil) ? input.ids : input.ids
         
-        let output = Output.init(ids: resulting, optionTxt: input.optionTxt)
+        let output = Output.init(ids: resultingBtns, optionTxt: input.optionTxt)
         
         return output
     }

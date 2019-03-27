@@ -9,26 +9,6 @@
 import UIKit
 import RxCocoa
 import RxSwift
-//
-//protocol OptionTxtUpdatable {
-//    var optionText: Binder<String> {get set}
-//}
-//
-////
-////extension UITextField: OptionTxtUpdatable {
-////
-////}
-
-//
-//extension Reactive where Base: UITextField { (******)
-//
-//    var optionText: Binder<String> { (******)
-//        return Binder.init(self.base, binding: { (view, value) in
-//            view.text = value
-//        })
-//    }
-//
-//}
 
 protocol OptionTxtUpdatable {
     // trebalo bi napisati tako da namece uslov: (******)
@@ -41,16 +21,30 @@ extension UITextField: OptionTxtUpdatable {
     }
 }
 
+extension Reactive where Base: UITextField {
+    var optionTxt: Binder<String> {
+        return Binder.init(self.base, binding: { (view, value) in
+            view.text = value
+        })
+    }
+}
+
 extension RadioBtnView: OptionTxtUpdatable {
     var optionTxt: Binder<String> {
         return self.rx.optionTxt
     }
 }
 
-extension Reactive where Base: UITextField {
+extension CheckboxView: OptionTxtUpdatable {
+    var optionTxt: Binder<String> {
+        return self.rx.optionTxt
+    }
+}
+
+extension Reactive where Base: CheckboxView {
     var optionTxt: Binder<String> {
         return Binder.init(self.base, binding: { (view, value) in
-            view.text = value
+            view.headlineText = value
         })
     }
 }

@@ -66,7 +66,10 @@ class StackViewToRadioBtnsWithInputViewModelBinder: StackViewToViewModelBinder {
         
         _ = textDrivers.enumerated().map { (offset, textDriver) in
             print(offset)
-            guard let observer = (btnViews[offset] as? OptionTxtUpdatable)?.optionTxt else { return }
+            guard let observer = (btnViews[offset] as? OptionTxtUpdatable)?.optionTxt else {
+                print("nisam prosao za offset = \(offset)")
+                return
+            }
             
             textDriver
                 .drive(observer)
@@ -138,7 +141,7 @@ class StackViewToCheckboxBtnsViewModelBinder: StackViewToViewModelBinder {
         let inputCreator = CheckboxViewmodelInputCreator(viewmodel: viewmodel)
         
         _ = inputCreator.createTxtDrivers().enumerated().map { (offset, textDriver) in
-            textDriver.drive(btnViews[offset].rx.optionText)
+            textDriver.drive(btnViews[offset].rx.optionTxt)
         }
         
         let initial = viewmodel.answer?.optionId ?? [ ]
@@ -180,6 +183,91 @@ class StackViewToCheckboxBtnsViewModelBinder: StackViewToViewModelBinder {
                 btn.isOn = checked
             })
             
+        }).disposed(by: bag)
+        
+    }
+    
+}
+
+class StackViewToCheckboxBtnsWithInputViewModelBinder: StackViewToViewModelBinder {
+    
+    func hookUp(view: ViewStacker, btnViews: [UIView], viewmodel: CheckboxWithInputViewModel, bag: DisposeBag) {
+        
+        var allViews = btnViews
+        guard let txtField = allViews.popLast() as? UITextField else {return}
+        var radioBtnViews: [CheckboxView] { return allViews as? [CheckboxView] ?? [ ] }
+        
+        var buttons: [UIButton] { return radioBtnViews.compactMap { $0.radioBtn } }
+        
+        let inputCreator = CheckboxWithInputViewmodelCreator.init(viewmodel: viewmodel, checkboxBtnViews: radioBtnViews)
+        
+        let textDrivers = inputCreator.textDrivers
+        let values = inputCreator.checkboxBtnsInput
+        
+        _ = textDrivers.enumerated().map { (offset, textDriver) in
+            print(offset)
+            guard let observer = (btnViews[offset] as? OptionTxtUpdatable)?.optionTxt else {
+                print("CheckboxWithInputViewModel/nisam prosao za offset = \(offset)")
+                return
+            }
+            
+            textDriver
+                .drive(observer)
+                .disposed(by: bag)
+            
+            textDrivers.last?.asObservable()
+                .subscribe(onNext: { (val) in
+                    if val == "" {
+                        (btnViews.last as? UITextField)?.placeholder = "Type your text here"
+                    }
+                })
+                .disposed(by: bag)
+        }
+        
+        let obOptionTxt = txtField.rx.text.asObservable() // OK
+        
+        let input = CheckboxWithInputViewModel.Input.init(ids: values, optionTxt: obOptionTxt, answer: viewmodel.answer)
+        
+        let output = viewmodel.transform(input: input) // vratio sam identican input na output
+        
+        // bind to viewmodel
+        output.ids
+            .bind(to: viewmodel.rx.optionSelected)
+            .disposed(by: bag)
+        
+        output.optionTxt.map {$0 ?? ""}
+            .bind(to: viewmodel.rx.txtChanged)
+            .disposed(by: bag)
+        
+        // drive UI
+        
+        output.ids.subscribe(onNext: { val in
+            let active = buttons.first(where: { $0.tag == val })
+            var inactive = buttons
+            inactive.remove(at: val) // jer znam da su indexed redom..
+            _ = inactive.map {
+                radioBtnViews[$0.tag].isOn = false
+            }
+            _ = active.map {
+                if $0.tag < radioBtnViews.count-1 {
+                    txtField.text = ""
+                    txtField.resignFirstResponder()
+                    
+                } else {
+                    txtField.becomeFirstResponder()
+                }
+                radioBtnViews[$0.tag].isOn = true
+            }
+        }).disposed(by: bag)
+        
+        output.optionTxt.subscribe(onNext: { val in // hard-coded off
+            if val != "" {
+                if let answer = viewmodel.answer, answer.optionId.last == radioBtnViews.last?.radioBtn.tag {
+                    _ = radioBtnViews.map {$0.isOn = false}
+                }
+                _ = radioBtnViews.map {$0.isOn = false}
+                radioBtnViews.last?.isOn = true // we want other option to be selected
+            }
         }).disposed(by: bag)
         
     }

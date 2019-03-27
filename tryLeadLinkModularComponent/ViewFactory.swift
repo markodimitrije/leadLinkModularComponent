@@ -36,9 +36,6 @@ class ViewFactory {
         
     }
     
-    
-    
-    
     func getStackedRadioBtnsWithInput(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
         
         //let stacker = produceStackWithSameComponents(ofType: RadioBtnView.self, count: question.options.count, inOneRow: 3)!
@@ -61,13 +58,10 @@ class ViewFactory {
         
     }
     
-    
-    
-    
-    
     func getStackedCheckboxBtnsWithInput(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
         
-        let stacker = produceStackWithSameComponents(ofType: CheckboxView.self, count: question.options.count, inOneRow: 3)!
+        //let stacker = produceStackWithSameComponents(ofType: RadioBtnView.self, count: question.options.count, inOneRow: 3)!
+        let stacker = produceStackWithSameComponents(ofType: CheckboxView.self, count: question.options.count, inOneRow: 1)!
         
         guard let lastRow = stacker.components.last as? OneRowStacker,
             let lastElement = lastRow.components.last else {  return stacker }
@@ -85,11 +79,6 @@ class ViewFactory {
         return stacker
         
     }
-    
-    
-    
-    
-    
     
     private func produceStackWithSameComponents(ofType type: UIView.Type, count: Int, inOneRow: Int) -> ViewStacker? {
         
