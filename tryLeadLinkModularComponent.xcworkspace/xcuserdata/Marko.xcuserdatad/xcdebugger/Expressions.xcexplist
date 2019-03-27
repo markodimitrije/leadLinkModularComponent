@@ -132,7 +132,18 @@
          contextName = "ViewFactory.getStackedRadioBtnsWithInput(question:answer:frame:):ViewFactory.swift">
       </ContextState>
       <ContextState
+         contextName = "ViewmodelFactory.makeViewmodel(singleQuestion:):ViewmodelFactory.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "singleQuestion.question.type">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "StackViewToCheckboxBtnsWithInputViewModelBinder.hookUp(view:btnViews:viewmodel:bag:):StackViewToVMBinders.swift">
+      </ContextState>
+      <ContextState
+         contextName = "RadioWithInputViewmodelInputCreator.init(viewmodel:radioBtnViews:):InputCreators.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

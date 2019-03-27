@@ -14,7 +14,7 @@ protocol RowsStackedEqually {
     //
 }
 
-protocol ViewModelType {
+protocol ViewModelType: Hashable {
     associatedtype Input
     associatedtype Output
     func transform(input: Input) -> Output

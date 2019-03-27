@@ -13,6 +13,7 @@ import RxCocoa
 class ViewController: UIViewController, RadioBtnListener {
     
     lazy var viewFactory = ViewFactory.init(bounds: self.view.bounds)
+    let viewmodelFactory = ViewmodelFactory.init()
     
     var scrollView: QuestionsScrollView!
     
@@ -39,7 +40,7 @@ class ViewController: UIViewController, RadioBtnListener {
     
     override func viewDidLoad() { super.viewDidLoad()
         
-        loadParentViewModel()
+        loadParentViewModel(questions: QuestionsDataProvider.init(campaignId: 1).questions) // hard-coded campaignId...
         
         scrollView = QuestionsScrollView.init(frame: self.view.frame,
                                               confirmBtn: SaveButton.init(frame: CGRect.init(origin: CGPoint.init(x: 200, y: 1500), size: CGSize.init(width: 240, height: 44))))
@@ -63,28 +64,12 @@ class ViewController: UIViewController, RadioBtnListener {
             .disposed(by: bag)
     }
     
-    private func loadParentViewModel() {
+    private func loadParentViewModel(questions: [SingleQuestion]) {
         
-        guard let first = SingleQuestion.init(forQuestion: 0),
-            let second = SingleQuestion.init(forQuestion: 1),
-            let third = SingleQuestion.init(forQuestion: 2),
-            let fourth = SingleQuestion.init(forQuestion: 3) else {return}
-        
-//        let rvm = RadioViewModel.init(question: first.question, answer: nil) // test
-        let rvm = RadioViewModel.init(question: first.question, answer: first.answer as? RadioAnswer)  //all good..
-        
-        //let chvm = CheckboxViewModel.init(question: second.question, answer: nil) // test
-        let chvm = CheckboxViewModel.init(question: second.question, answer: second.answer as? CheckboxAnswer)
-        
-        //let rvmInput = RadioWithInputViewModel.init(question: third.question, answer: nil) // test
-        let rvmInput = RadioWithInputViewModel.init(question: third.question, answer: third.answer as? RadioAnswer)
-        
-        let cvm = CheckboxWithInputViewModel.init(question: fourth.question, answer: fourth.answer as? CheckboxAnswer)
-        
-        //fourth
-        
-        parentViewmodel = ParentViewModel.init(viewmodels: [rvm, chvm, rvmInput, cvm])
-        
+        let childViewmodels = questions.compactMap { singleQuestion -> Questanable? in
+            return viewmodelFactory.makeViewmodel(singleQuestion: singleQuestion) as? Questanable
+        }
+        parentViewmodel = ParentViewModel.init(viewmodels: childViewmodels)
     }
     
     private func leftScenariosTapped(sender: UIButton) {

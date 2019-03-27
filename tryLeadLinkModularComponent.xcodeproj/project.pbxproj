@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2DC791D9DDBE9D1CC9D96EEF /* Pods_tryLeadLinkModularComponent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2102075DD73E10FE0BE3C87 /* Pods_tryLeadLinkModularComponent.framework */; };
+		AD194030224BBB90002A3AE2 /* ViewmodelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD19402F224BBB90002A3AE2 /* ViewmodelFactory.swift */; };
 		AD50390B21CFA7970009EB0C /* RadioBtnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD50390921CFA7960009EB0C /* RadioBtnView.xib */; };
 		AD50390C21CFA7970009EB0C /* RadioBtnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD50390A21CFA7970009EB0C /* RadioBtnView.swift */; };
 		AD837AA521C7B4E700555917 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837AA421C7B4E700555917 /* AppDelegate.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		41D79BCD0AC25180BDDC736E /* Pods-tryLeadLinkModularComponent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tryLeadLinkModularComponent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tryLeadLinkModularComponent/Pods-tryLeadLinkModularComponent.debug.xcconfig"; sourceTree = "<group>"; };
+		AD19402F224BBB90002A3AE2 /* ViewmodelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewmodelFactory.swift; sourceTree = "<group>"; };
 		AD50390921CFA7960009EB0C /* RadioBtnView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadioBtnView.xib; sourceTree = "<group>"; };
 		AD50390A21CFA7970009EB0C /* RadioBtnView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioBtnView.swift; sourceTree = "<group>"; };
 		AD837AA121C7B4E700555917 /* tryLeadLinkModularComponent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tryLeadLinkModularComponent.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +97,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AD19402E224BBB70002A3AE2 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				AD9EDEBE21D1837F0058814C /* ViewFactory.swift */,
+				AD19402F224BBB90002A3AE2 /* ViewmodelFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
 		AD837A9821C7B4E700555917 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +127,7 @@
 		AD837AA321C7B4E700555917 /* tryLeadLinkModularComponent */ = {
 			isa = PBXGroup;
 			children = (
+				AD19402E224BBB70002A3AE2 /* Factory */,
 				ADAD117A224AC1DC00A87D8D /* StackViewToVMBinders */,
 				ADB3EA4E22493A0F00E2C289 /* ViewModels */,
 				ADBF584E2246C2A300BDD008 /* DataProvider */,
@@ -125,7 +137,6 @@
 				AD837AA421C7B4E700555917 /* AppDelegate.swift */,
 				AD837ABA21C7BA7100555917 /* Views */,
 				AD837AA621C7B4E700555917 /* ViewController.swift */,
-				AD9EDEBE21D1837F0058814C /* ViewFactory.swift */,
 				AD837AA821C7B4E700555917 /* Main.storyboard */,
 				AD837AAB21C7B4E900555917 /* Assets.xcassets */,
 				AD837AAD21C7B4E900555917 /* LaunchScreen.storyboard */,
@@ -360,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD9F0E7521D3D9BB005BD0A7 /* MyRxExtensions.swift in Sources */,
+				AD194030224BBB90002A3AE2 /* ViewmodelFactory.swift in Sources */,
 				AD837AC521C7C68000555917 /* LabelAndTextView.swift in Sources */,
 				AD837AA721C7B4E700555917 /* ViewController.swift in Sources */,
 				AD837ABC21C7C0F600555917 /* OneRowStacker.swift in Sources */,
