@@ -3,10 +3,65 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ViewController.hookUp(view:btnViews:radioWithInputViewModel:):ViewController.swift">
+         contextName = "closure #1 in ViewController.hookUp(view:viewmodel:):ViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "txtField.text">
+               value = "view">
+            </PersistentString>
+            <PersistentString
+               value = "(view as? OneRowStacker)?.components">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.hookUp(view:checkboxViewmodel:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "view.components">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in ViewController.getCheckboxBtnsWithInputView(question:answer:frame:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "btnView.radioBtn.tag">
+            </PersistentString>
+            <PersistentString
+               value = "$0.offset">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in StackViewToRadioBtnsViewModelBinder.hookUp(view:btnViews:viewmodel:bag:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewmodel.answer?.content">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SingleQuestion.init(forQuestion:):DataProvider.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.leftScenariosTapped(sender:):ViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.getRadioBtnsWithInputView(question:answer:frame:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "stackerView.components">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewFactory.getStackedRadioBtnsWithInput(question:answer:frame:):ViewFactory.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ViewController.viewDidLoad():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self?.parentViewmodel.childViewmodels">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -22,20 +77,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "CheckboxWithInputViewmodelInputCreator.init(viewmodel:checkboxBtnViews:):InputCreators.swift">
+         contextName = "ViewController.drawStackView(singleQuestion:):ViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.textDrivers">
+               value = "stackerView.frame">
+            </PersistentString>
+            <PersistentString
+               value = "scrollView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ViewController.hookUp(view:checkboxViewmodel:):ViewController.swift">
+         contextName = "ViewmodelFactory.makeViewmodel(singleQuestion:):ViewmodelFactory.swift">
          <PersistentStrings>
             <PersistentString
-               value = "view.components">
+               value = "singleQuestion.question.type">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RadioWithInputViewmodelInputCreator.init(viewmodel:radioBtnViews:):InputCreators.swift">
       </ContextState>
       <ContextState
          contextName = "RadioWithInputViewModel.transform(input:):Protocols.swift">
@@ -46,41 +107,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ViewController.getCheckboxBtnsView(question:answer:frame:):ViewController.swift">
+         contextName = "closure #1 in closure #9 in ViewController.hookUp(view:checkboxViewmodel:):ViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "stackerView.components as? [CheckboxView]">
-            </PersistentString>
-            <PersistentString
-               value = "stackerView.components">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SingleQuestion.init(forQuestion:):DataProvider.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in ViewController.hookUp(view:viewmodel:):ViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "view">
-            </PersistentString>
-            <PersistentString
-               value = "(view as? OneRowStacker)?.components">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ViewController.leftScenariosTapped(sender:):ViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #2 in ViewController.getCheckboxBtnsWithInputView(question:answer:frame:):ViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "btnView.radioBtn.tag">
-            </PersistentString>
-            <PersistentString
-               value = "$0.offset">
+               value = "btn.tag">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -105,37 +135,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #9 in ViewController.hookUp(view:checkboxViewmodel:):ViewController.swift">
+         contextName = "CheckboxWithInputViewmodelInputCreator.init(viewmodel:checkboxBtnViews:):InputCreators.swift">
          <PersistentStrings>
             <PersistentString
-               value = "btn.tag">
+               value = "self.textDrivers">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ViewController.getRadioBtnsWithInputView(question:answer:frame:):ViewController.swift">
+         contextName = "ViewController.getCheckboxBtnsView(question:answer:frame:):ViewController.swift">
          <PersistentStrings>
+            <PersistentString
+               value = "stackerView.components as? [CheckboxView]">
+            </PersistentString>
             <PersistentString
                value = "stackerView.components">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #3 in StackViewToRadioBtnsViewModelBinder.hookUp(view:btnViews:viewmodel:bag:):ViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "viewmodel.answer?.content">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ViewFactory.getStackedRadioBtnsWithInput(question:answer:frame:):ViewFactory.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ViewmodelFactory.makeViewmodel(singleQuestion:):ViewmodelFactory.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "singleQuestion.question.type">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -143,7 +157,12 @@
          contextName = "StackViewToCheckboxBtnsWithInputViewModelBinder.hookUp(view:btnViews:viewmodel:bag:):StackViewToVMBinders.swift">
       </ContextState>
       <ContextState
-         contextName = "RadioWithInputViewmodelInputCreator.init(viewmodel:radioBtnViews:):InputCreators.swift">
+         contextName = "ViewController.hookUp(view:btnViews:radioWithInputViewModel:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "txtField.text">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

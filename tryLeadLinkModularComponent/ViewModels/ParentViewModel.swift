@@ -9,9 +9,16 @@
 import Foundation
 
 class ParentViewModel {
-    var childViewmodels = [Questanable]()
+//    var childViewmodelsDict = [Int: Questanable]()
+    //var childViewmodels = [Questanable]()
+    var childViewmodels = [Int: Questanable]()
+//    init(viewmodels: [Questanable]) {
+//        self.childViewmodels = viewmodels
+//    }
     init(viewmodels: [Questanable]) {
-        self.childViewmodels = viewmodels
+        _ = viewmodels.map { viewmodel -> Void in
+            childViewmodels[viewmodel.question.id] = viewmodel
+        }
     }
 }
 

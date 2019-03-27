@@ -48,7 +48,7 @@ class SingleQuestion {
         
         case 3:
             let options = ["Apple", "Pear", "Other"]
-            let q = Question.init(id: 2, type: "checkboxWithOption", headlineText: "Fruits", inputTxt: "Choose your favourite", options: options)
+            let q = Question.init(id: 77, type: "checkboxWithInput", headlineText: "Fruits", inputTxt: "Choose your favourite", options: options)
             // ovo ces izvuci iz REALM-a! ili dataLayer-a:
             let answer = CheckboxAnswer.init(questionId: q.id, optionId: [3], content: ["Coconut"])
             (self.question, self.answer) = (q, answer)

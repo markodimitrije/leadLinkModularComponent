@@ -40,22 +40,28 @@ class ViewController: UIViewController, RadioBtnListener {
     
     override func viewDidLoad() { super.viewDidLoad()
         
-        loadParentViewModel(questions: QuestionsDataProvider.init(campaignId: 1).questions) // hard-coded campaignId...
-        
         scrollView = QuestionsScrollView.init(frame: self.view.frame,
                                               confirmBtn: SaveButton.init(frame: CGRect.init(origin: CGPoint.init(x: 200, y: 1500), size: CGSize.init(width: 240, height: 44))))
+        
+        let questions = QuestionsDataProvider.init(campaignId: 1).questions
+        
+        loadParentViewModel(questions: questions) // hard-coded campaignId...
+        
+        renderOnScreen(questions: questions)
+        
         self.view.insertSubview(scrollView, at: 0)
         scrollView.confirmBtn?.rx.controlEvent(.touchUpInside)
             .subscribe(onNext: { [weak self] (_) in
                 
-                _ = self?.parentViewmodel.childViewmodels.compactMap({ viewmodel in
-                    //print("viewmodel.question = \(viewmodel.question)")
+                _ = self?.parentViewmodel.childViewmodels.compactMap({ viewmodelDict in
+                    print("imam viewmodel = \(viewmodelDict.value)")
+                    let viewmodel = viewmodelDict.value
                     if let viewmodel = viewmodel as? RadioViewModel {
-//                        print("RadioViewModel.answer = \(String(describing: viewmodel.answer))")
+                        print("RadioViewModel.answer = \(String(describing: viewmodel.answer))")
                     } else if let viewmodel = viewmodel as? CheckboxViewModel {
-//                        print("CheckboxViewModel.answer = \(String(describing: viewmodel.answer))")
+                        print("CheckboxViewModel.answer = \(String(describing: viewmodel.answer))")
                     } else if let viewmodel = viewmodel as? RadioWithInputViewModel {
-//                        print("RadioWithInputViewModel.answer = \(String(describing: viewmodel.answer))")
+                        print("RadioWithInputViewModel.answer = \(String(describing: viewmodel.answer))")
                     } else if let viewmodel = viewmodel as? CheckboxWithInputViewModel {
                         print("CheckboxWithInputViewModel.answer = \(String(describing: viewmodel.answer))")
                     }
@@ -70,6 +76,82 @@ class ViewController: UIViewController, RadioBtnListener {
             return viewmodelFactory.makeViewmodel(singleQuestion: singleQuestion) as? Questanable
         }
         parentViewmodel = ParentViewModel.init(viewmodels: childViewmodels)
+    }
+
+    private func renderOnScreen(questions: [SingleQuestion]) {
+        _ = questions.map(drawStackView)
+    }
+    
+    private func drawStackView(singleQuestion: SingleQuestion) {
+        
+        let question = singleQuestion.question
+        let viewmodel = parentViewmodel.childViewmodels[question.id]
+        
+        let lastVertPos = (scrollView.subviews.last?.frame)?.maxY ?? CGFloat(0)
+        
+        let height = getOneRowHeightFor(componentType: singleQuestion.question.type)
+        let origin = CGPoint.init(x: 0, y: lastVertPos)
+        let fr = CGRect.init(origin: origin, size: CGSize.init(width: viewFactory.bounds.width, height: height))
+        
+        var stackerView: ViewStacker!
+        var btnViews: [UIView]
+        switch question.type {
+        case "radioBtn":
+            print("nacrtaj radioBtn")
+            let res = getRadioBtnsView(question: singleQuestion.question,
+                                       answer: singleQuestion.answer,
+                                       frame: fr)
+            stackerView = res.0; btnViews = res.1
+            stackerView.frame.origin.y = lastVertPos
+            
+            radioBtnsViewModelBinder.hookUp(view: stackerView,
+                                            btnViews: btnViews as! [RadioBtnView],
+                                            viewmodel: viewmodel as! RadioViewModel,
+                                            bag: bag)
+        case "checkbox":
+            print("nacrtaj checkbox")
+            let res = getCheckboxBtnsView(question: singleQuestion.question,
+                                          answer: singleQuestion.answer,
+                                          frame: fr)
+            stackerView = res.0; btnViews = res.1
+            stackerView.frame.origin.y = lastVertPos
+            
+            checkboxBtnsViewModelBinder.hookUp(view: stackerView,
+                                               btnViews: btnViews as! [CheckboxView],
+                                               viewmodel: viewmodel as! CheckboxViewModel,
+                                               bag: bag)
+
+        case "radioBtnWithInput":
+            print("nacrtaj radioBtnWithInput")
+            let res = getRadioBtnsWithInputView(question: singleQuestion.question,
+                                                answer: singleQuestion.answer,
+                                                frame: fr)
+            stackerView = res.0; btnViews = res.1
+            stackerView.frame.origin.y = lastVertPos
+            
+            radioBtnsWithInputViewModelBinder.hookUp(view: stackerView,
+                                                     btnViews: btnViews as! [RadioBtnView],
+                                                     viewmodel: viewmodel as! RadioWithInputViewModel,
+                                                     bag: bag)
+
+        case "checkboxWithInput":
+            print("nacrtaj checkboxWithInput")
+            let res = getCheckboxBtnsWithInputView(question: singleQuestion.question,
+                                                   answer: singleQuestion.answer,
+                                                   frame: fr)
+            stackerView = res.0; btnViews = res.1
+            stackerView.frame.origin.y = lastVertPos
+            
+            checkboxBtnsWithInputViewModelBinder.hookUp(view: stackerView,
+                                                        btnViews: btnViews as! [CheckboxView],
+                                                        viewmodel: viewmodel as! CheckboxWithInputViewModel,
+                                                        bag: bag)
+        default: break
+        }
+        if let stackerView = stackerView {
+            print("stackerView.bounds.height = \(stackerView.bounds.height)")
+            self.scrollView.addSubview(stackerView)
+        }
     }
     
     private func leftScenariosTapped(sender: UIButton) {
@@ -92,7 +174,7 @@ class ViewController: UIViewController, RadioBtnListener {
             
         case 1: // checkbox
             
-            let height = getOneRowHeightFor(componentType: "checkboxBtn")
+            let height = getOneRowHeightFor(componentType: "checkbox")
             let fr = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: viewFactory.bounds.width, height: height))
             
             guard let data = SingleQuestion.init(forQuestion: 1) else {return}
@@ -134,7 +216,7 @@ class ViewController: UIViewController, RadioBtnListener {
             
         case 3: // checkbox with input
             
-            let height = getOneRowHeightFor(componentType: "checkboxBtn")
+            let height = getOneRowHeightFor(componentType: "checkbox")
             let fr = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: viewFactory.bounds.width, height: height))
             
             guard let data = SingleQuestion.init(forQuestion: 3) else {
@@ -314,7 +396,11 @@ func getOneRowHeightFor(componentType type: String) -> CGFloat {
         return CGFloat.init(80)
     case "radioBtn":
         return CGFloat.init(50)
-    case "checkboxBtn":
+    case "checkbox":
+        return CGFloat.init(50)
+    case "radioBtnWithInput":
+        return CGFloat.init(50)
+    case "checkboxWithInput":
         return CGFloat.init(50)
     case "switch":
         return CGFloat.init(60)

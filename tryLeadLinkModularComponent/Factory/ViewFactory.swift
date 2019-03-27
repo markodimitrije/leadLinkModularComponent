@@ -106,7 +106,7 @@ class ViewFactory {
         
         let frame = getRect(forComponents: components)
         let stack = ViewStacker.init(frame: frame, components: components)
-        
+        print("stack.bounds = \(stack.bounds)")
         return stack
         
     }
@@ -166,7 +166,7 @@ class ViewFactory {
             compType = "radioBtn"
         }
         if type is CheckboxView.Type {
-            compType = "checkboxBtn"
+            compType = "checkbox"
         }
         
         let rowHeight = getOneRowHeightFor(componentType: compType)

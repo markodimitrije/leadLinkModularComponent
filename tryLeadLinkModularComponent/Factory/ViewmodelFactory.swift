@@ -22,7 +22,7 @@ class ViewmodelFactory {
             return CheckboxViewModel.init(question: question, answer: answer as? CheckboxAnswer)
         case "radioBtnWithInput":
             return RadioWithInputViewModel.init(question: question, answer: answer as? RadioAnswer)
-        case "checkboxWithOption":
+        case "checkboxWithInput":
             return CheckboxWithInputViewModel.init(question: question, answer: answer as? CheckboxAnswer)
         default:
             fatalError("ViewmodelFactory/makeViewmodel/no supported type")
