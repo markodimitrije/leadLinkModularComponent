@@ -17,11 +17,9 @@ class QuestionsScrollView: UIScrollView {
         self.backgroundColor = .lightGray
         self.frame = frame
         self.contentSize = frame.size
-        self.contentSize.height = 3000.0 // hard-coded
     }
     
-    convenience init(frame: CGRect, confirmBtn: UIButton) {
-        self.init(frame: frame)
+    func add(confirmBtn: UIButton) {
         self.confirmBtn = confirmBtn
         self.addSubview(confirmBtn)
     }

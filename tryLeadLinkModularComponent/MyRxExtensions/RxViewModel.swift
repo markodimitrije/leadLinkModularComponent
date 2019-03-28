@@ -76,3 +76,21 @@ extension Reactive where Base: CheckboxWithInputViewModel {
         })
     }
 }
+
+extension Reactive where Base: SwitchBtnsViewModel {
+    internal var optionSelected: Binder<[Int]> {
+        return Binder.init(self.base, binding: { (viewmodel, indexes) in
+            
+            let newContent = viewmodel.question.options.enumerated().filter({ (index, element) -> Bool in
+                return indexes.contains(index)
+            }).map({ (_, element) -> String in
+                return element
+            })
+            
+            let newAnswer = SwitchAnswer.init(questionId: viewmodel.question.id,
+                                              optionId: indexes,
+                                              content: newContent)
+            viewmodel.answer = newAnswer
+        })
+    }
+}

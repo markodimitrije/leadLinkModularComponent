@@ -11,6 +11,7 @@ import UIKit
 class LabelBtnSwitchView: UIView {
 
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var btn: UIButton!
     @IBOutlet weak var switcher: UISwitch!
     
     var labelText: String? {
@@ -21,7 +22,17 @@ class LabelBtnSwitchView: UIView {
             label?.text = newValue
         }
     }
-
+    
+    var btnTxt: String? {
+        get {
+            return btn?.title(for: .normal)
+        }
+        set {
+            btn?.setTitle(newValue, for: .normal)
+            btn?.isHidden = (newValue == nil)
+        }
+    }
+    
     var switchIsOn: Bool {
         get {
             return switcher.isOn
@@ -61,6 +72,7 @@ class LabelBtnSwitchView: UIView {
     
     func update(switchInfo: SwitchInfo) {
         self.labelText = switchInfo.text
+        self.btnTxt = switchInfo.btnText
         self.switchIsOn = switchInfo.switchIsOn
         self.desc = switchInfo.desc
     }
@@ -69,6 +81,7 @@ class LabelBtnSwitchView: UIView {
 
 struct SwitchInfo {
     var text: String
+    var btnText: String?
     var desc: String?
     var switchIsOn = false
 }

@@ -25,7 +25,7 @@ class ViewmodelFactory {
         case .checkboxWithInput:
             return CheckboxWithInputViewModel.init(question: question, answer: answer as? CheckboxAnswer)
         case .switchBtn:
-            return SwitchBtnsWithInputViewModel.init(question: question, answer: answer as? SwitchAnswer)
+            return SwitchBtnsViewModel.init(question: question, answer: answer as? SwitchAnswer)
         default:
             fatalError("ViewmodelFactory/makeViewmodel/no supported type")
         }

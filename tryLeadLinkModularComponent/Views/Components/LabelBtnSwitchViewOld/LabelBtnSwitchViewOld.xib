@@ -11,8 +11,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LabelBtnSwitchView" customModule="tryLeadLinkModularComponent" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LabelBtnSwitchViewOld" customModule="tryLeadLinkModularComponent" customModuleProvider="target">
             <connections>
+                <outlet property="btn" destination="m0J-qk-zeE" id="1TR-mN-ovT"/>
                 <outlet property="label" destination="pMT-AM-trd" id="IBn-Wq-U0r"/>
                 <outlet property="switcher" destination="ATm-yX-Fdz" id="Mao-8J-nnL"/>
             </connections>
@@ -26,11 +27,24 @@
                     <rect key="frame" x="8" y="0.0" width="359" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="I have read and accept the" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="pMT-AM-trd">
-                            <rect key="frame" x="0.0" y="0.0" width="292.5" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m0J-qk-zeE">
+                            <rect key="frame" x="158" y="0.0" width="134.5" height="44"/>
+                            <state key="normal">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Terms &amp; Conditions">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="14"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </state>
+                        </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PP0-JE-myS">
                             <rect key="frame" x="300.5" y="0.0" width="58.5" height="44"/>
                             <subviews>

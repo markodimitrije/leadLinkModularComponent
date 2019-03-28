@@ -30,3 +30,4 @@ extension RadioViewModel: Questanable {}
 extension CheckboxViewModel: Questanable {}
 extension RadioWithInputViewModel: Questanable {}
 extension CheckboxWithInputViewModel: Questanable {}
+extension SwitchBtnsViewModel: Questanable {}

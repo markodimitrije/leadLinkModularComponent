@@ -146,7 +146,7 @@ class CheckboxWithInputViewModel: NSObject, ViewModelType {
     private var bag = DisposeBag()
 }
 
-class SwitchBtnsWithInputViewModel: NSObject, ViewModelType {
+class SwitchBtnsViewModel: NSObject, ViewModelType {
     
     var question: Question
     var answer: SwitchAnswer?

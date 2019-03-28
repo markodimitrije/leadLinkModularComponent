@@ -21,6 +21,7 @@ class ViewController: UIViewController, RadioBtnListener {
     var radioBtnsWithInputViewModelBinder = StackViewToRadioBtnsWithInputViewModelBinder()
     var checkboxBtnsViewModelBinder = StackViewToCheckboxBtnsViewModelBinder()
     var checkboxBtnsWithInputViewModelBinder = StackViewToCheckboxBtnsWithInputViewModelBinder()
+    var switchBtnsViewModelBinder = StackViewToSwitchBtnsViewModelBinder()
     
     var parentViewmodel: ParentViewModel!
     
@@ -37,6 +38,32 @@ class ViewController: UIViewController, RadioBtnListener {
         renderOnScreen(questions: questions)
         
         self.view.insertSubview(scrollView, at: 0)
+        
+    }
+    
+    private func loadParentViewModel(questions: [SingleQuestion]) {
+        
+        let childViewmodels = questions.compactMap { singleQuestion -> Questanable? in
+            return viewmodelFactory.makeViewmodel(singleQuestion: singleQuestion) as? Questanable
+        }
+        parentViewmodel = ParentViewModel.init(viewmodels: childViewmodels)
+    }
+
+    private func renderOnScreen(questions: [SingleQuestion]) {
+        _ = questions.map(drawStackView)
+        
+        let saveBtn = SaveButton.init(frame: CGRect.init(origin: CGPoint.init(x: 200, y: scrollView.subviews.last!.frame.maxY),
+                                                         size: CGSize.init(width: 240, height: 44)))
+        
+        scrollView.add(confirmBtn: saveBtn)
+        
+        scrollView.contentSize.height = scrollView.subviews.last!.frame.maxY
+        
+        listenToSaveEvent()
+        
+    }
+    
+    private func listenToSaveEvent() {
         scrollView.confirmBtn?.rx.controlEvent(.touchUpInside)
             .subscribe(onNext: { [weak self] (_) in
                 
@@ -51,27 +78,12 @@ class ViewController: UIViewController, RadioBtnListener {
                         print("RadioWithInputViewModel.answer = \(String(describing: viewmodel.answer))")
                     } else if let viewmodel = viewmodel as? CheckboxWithInputViewModel {
                         print("CheckboxWithInputViewModel.answer = \(String(describing: viewmodel.answer))")
-                    } else if let viewmodel = viewmodel as? CheckboxWithInputViewModel {
-                        print("CheckboxWithInputViewModel.answer = \(String(describing: viewmodel.answer))")
+                    } else if let viewmodel = viewmodel as? SwitchBtnsViewModel {
+                        print("SwitchBtnsViewModel.answer = \(String(describing: viewmodel.answer))")
                     }
                 })
             })
             .disposed(by: bag)
-    }
-    
-    private func loadParentViewModel(questions: [SingleQuestion]) {
-        
-        let childViewmodels = questions.compactMap { singleQuestion -> Questanable? in
-            return viewmodelFactory.makeViewmodel(singleQuestion: singleQuestion) as? Questanable
-        }
-        parentViewmodel = ParentViewModel.init(viewmodels: childViewmodels)
-    }
-
-    private func renderOnScreen(questions: [SingleQuestion]) {
-        _ = questions.map(drawStackView)
-        scrollView.addSubview(SaveButton.init(frame: CGRect.init(origin: CGPoint.init(x: 200, y: scrollView.subviews.last!.frame.maxY),
-                                                                 size: CGSize.init(width: 240, height: 44))))
-        scrollView.contentSize.height = scrollView.subviews.last!.frame.maxY
     }
     
     private func drawStackView(singleQuestion: SingleQuestion) {
@@ -146,11 +158,11 @@ class ViewController: UIViewController, RadioBtnListener {
                                     frame: fr)
             stackerView = res.0; btnViews = res.1
             stackerView.frame.origin.y = lastVertPos
-//            hard-codedd
-//            checkboxBtnsWithInputViewModelBinder.hookUp(view: stackerView,
-//                                                        btnViews: btnViews as! [CheckboxView],
-//                                                        viewmodel: viewmodel as! CheckboxWithInputViewModel,
-//                                                        bag: bag)
+
+            switchBtnsViewModelBinder.hookUp(view: stackerView,
+                                             btnViews: btnViews as! [LabelBtnSwitchView],
+                                             viewmodel: viewmodel as! SwitchBtnsViewModel,
+                                             bag: bag)
             
         default: break
         }
@@ -237,7 +249,7 @@ class ViewController: UIViewController, RadioBtnListener {
             return (view as? OneRowStacker)?.components as? [LabelBtnSwitchView] ?? [ ]
         }
         
-        _ = btnViews.enumerated().map { $0.element.btn.tag = $0.offset } // dodeli svakome unique TAG
+        _ = btnViews.enumerated().map { $0.element.switcher.tag = $0.offset } // dodeli svakome unique TAG
         
         return (stackerView, btnViews)
     }
@@ -265,7 +277,7 @@ func getOneRowHeightFor(componentType type: QuestionType) -> CGFloat {
     case .checkboxWithInput:
         return CGFloat.init(50)
     case .switchBtn:
-        return CGFloat.init(60)
+        return CGFloat.init(50)
     default:
         return 0.0
     }
@@ -296,6 +308,8 @@ func getViewModelFrom<T: ViewModelType>(viewModel: Questanable) throws -> T {
         return radioWithInputViewmodel as! T
     } else if let checkboxWithInputViewModel = viewModel as? CheckboxWithInputViewModel {
         return checkboxWithInputViewModel as! T
+    } else if let switchBtnsViewModel = viewModel as? SwitchBtnsViewModel {
+        return switchBtnsViewModel as! T
     }
     
     throw InternalError.viewmodelConversion // fall back (better exception...)

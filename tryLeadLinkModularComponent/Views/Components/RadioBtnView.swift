@@ -126,3 +126,13 @@ extension Reactive where Base: RadioBtnView {
     }
 
 }
+
+extension Reactive where Base: LabelBtnSwitchView {
+    
+    var optionTxt: Binder<String> {
+        return Binder.init(self.base, binding: { (view, value) in
+            view.labelText = value
+        })
+    }
+    
+}
