@@ -80,6 +80,12 @@ class ViewFactory {
         
     }
     
+    func getStackedSwitchBtns(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
+        
+        return produceStackWithSameComponents(ofType: LabelBtnSwitchView.self, count: question.options.count, inOneRow: 1)!
+        
+    }
+    
     private func produceStackWithSameComponents(ofType type: UIView.Type, count: Int, inOneRow: Int) -> ViewStacker? {
         
         guard inOneRow <= 3 else {return nil}
@@ -110,10 +116,6 @@ class ViewFactory {
         return stack
         
     }
-    
-    
-    
-    
     
     // calculate... sigurno nije na VC-u ....
     
@@ -161,12 +163,13 @@ class ViewFactory {
     
     private func produceOneRowInVerticalStack(ofType type: UIView.Type, inOneRow: Int) -> OneRowStacker {
         
-        var compType = "textField"
+        var compType = QuestionType.textField
         if type is RadioBtnView.Type {
-            compType = "radioBtn"
-        }
-        if type is CheckboxView.Type {
-            compType = "checkbox"
+            compType = .radioBtn
+        } else if type is CheckboxView.Type {
+            compType = .checkbox
+        } else if type is LabelBtnSwitchView.Type {
+            compType = .switchBtn
         }
         
         let rowHeight = getOneRowHeightFor(componentType: compType)

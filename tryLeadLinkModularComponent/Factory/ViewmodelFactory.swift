@@ -16,14 +16,16 @@ class ViewmodelFactory {
         let answer = singleQuestion.answer
         
         switch singleQuestion.question.type {
-        case "radioBtn":
+        case .radioBtn:
             return RadioViewModel.init(question: question, answer: answer as? RadioAnswer)
-        case "checkbox":
+        case .checkbox:
             return CheckboxViewModel.init(question: question, answer: answer as? CheckboxAnswer)
-        case "radioBtnWithInput":
+        case .radioBtnWithInput:
             return RadioWithInputViewModel.init(question: question, answer: answer as? RadioAnswer)
-        case "checkboxWithInput":
+        case .checkboxWithInput:
             return CheckboxWithInputViewModel.init(question: question, answer: answer as? CheckboxAnswer)
+        case .switchBtn:
+            return SwitchBtnsWithInputViewModel.init(question: question, answer: answer as? SwitchAnswer)
         default:
             fatalError("ViewmodelFactory/makeViewmodel/no supported type")
         }

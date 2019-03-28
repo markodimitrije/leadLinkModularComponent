@@ -107,3 +107,8 @@ struct CheckboxAnswer: Answer {
     var optionId: [Int] // koju opciju je izabrao - moze imati vise checkboxIds
     var content = [String]() // koji je text te opcije
 }
+struct SwitchAnswer: Answer {
+    var questionId: Int // koji je ID pitanja
+    var optionId: [Int] // koju opciju je izabrao - moze imati vise switchIds
+    var content = [String]() // koji je text te opcije
+}

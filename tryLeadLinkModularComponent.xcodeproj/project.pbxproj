@@ -33,6 +33,7 @@
 		ADAD117E224AC3DE00A87D8D /* RxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAD117D224AC3DE00A87D8D /* RxViewModel.swift */; };
 		ADB3EA5022493A1F00E2C289 /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3EA4F22493A1F00E2C289 /* ViewModels.swift */; };
 		ADB3EA5222493A5D00E2C289 /* ParentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3EA5122493A5D00E2C289 /* ParentViewModel.swift */; };
+		ADB78CAD224CC51A00D29FA6 /* RawModelTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB78CAC224CC51A00D29FA6 /* RawModelTypes.swift */; };
 		ADBF584D22469ED800BDD008 /* InputCreators.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF584C22469ED800BDD008 /* InputCreators.swift */; };
 		ADBF58502246C2B100BDD008 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF584F2246C2B100BDD008 /* DataProvider.swift */; };
 		ADBF585322479D4700BDD008 /* QuestionsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF585222479D4700BDD008 /* QuestionsScrollView.swift */; };
@@ -68,6 +69,7 @@
 		ADAD117D224AC3DE00A87D8D /* RxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewModel.swift; sourceTree = "<group>"; };
 		ADB3EA4F22493A1F00E2C289 /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
 		ADB3EA5122493A5D00E2C289 /* ParentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewModel.swift; sourceTree = "<group>"; };
+		ADB78CAC224CC51A00D29FA6 /* RawModelTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawModelTypes.swift; sourceTree = "<group>"; };
 		ADBF584C22469ED800BDD008 /* InputCreators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCreators.swift; sourceTree = "<group>"; };
 		ADBF584F2246C2B100BDD008 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		ADBF585222479D4700BDD008 /* QuestionsScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsScrollView.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 		AD837AA321C7B4E700555917 /* tryLeadLinkModularComponent */ = {
 			isa = PBXGroup;
 			children = (
+				ADB78CAB224CC50900D29FA6 /* RawModelTypes */,
 				AD19402E224BBB70002A3AE2 /* Factory */,
 				ADAD117A224AC1DC00A87D8D /* StackViewToVMBinders */,
 				ADB3EA4E22493A0F00E2C289 /* ViewModels */,
@@ -189,6 +192,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		ADB78CAB224CC50900D29FA6 /* RawModelTypes */ = {
+			isa = PBXGroup;
+			children = (
+				ADB78CAC224CC51A00D29FA6 /* RawModelTypes.swift */,
+			);
+			path = RawModelTypes;
+			sourceTree = "<group>";
+		};
 		ADBF584B22469EAE00BDD008 /* InputCreators */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,10 +227,10 @@
 				AD837AB821C7BA6800555917 /* ViewStacker.swift */,
 				AD837ABD21C7C0FE00555917 /* OneRowStacker.xib */,
 				AD837ABB21C7C0F600555917 /* OneRowStacker.swift */,
-				AD837AC321C7C67F00555917 /* LabelAndTextView.swift */,
 				AD837AC421C7C67F00555917 /* LabelAndTextView.xib */,
-				ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */,
+				AD837AC321C7C67F00555917 /* LabelAndTextView.swift */,
 				ADAAD6F421D0F7B700B9D59E /* LabelBtnSwitchView.xib */,
+				ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -371,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD9F0E7521D3D9BB005BD0A7 /* MyRxExtensions.swift in Sources */,
+				ADB78CAD224CC51A00D29FA6 /* RawModelTypes.swift in Sources */,
 				AD194030224BBB90002A3AE2 /* ViewmodelFactory.swift in Sources */,
 				AD837AC521C7C68000555917 /* LabelAndTextView.swift in Sources */,
 				AD837AA721C7B4E700555917 /* ViewController.swift in Sources */,
