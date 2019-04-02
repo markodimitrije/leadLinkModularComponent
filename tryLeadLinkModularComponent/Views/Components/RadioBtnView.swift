@@ -19,14 +19,14 @@ class RadioBtnView: UIView, RowsStackedEqually { // RowsStackedEqually hocu da s
     @IBOutlet weak var radioBtn: UIButton!
     
     @IBAction func radioBtnTapped(_ sender: UIButton) {
-        delegate?.radioBtnTapped(index: sender.tag)
+        //delegate?.radioBtnTapped(index: sender.tag)
     }
     
     var counter: Int = 0
     
     // ovde moze da se zakaci listener // mnogo je bolje sa observables...
     
-    weak var delegate: RadioBtnListener?
+    //weak var delegate: RadioBtnListener?
     
     var headlineText: String? {
         get {
@@ -98,9 +98,9 @@ struct RadioBtnOption {
     var text = ""
 }
 
-protocol RadioBtnListener: class { // ovo ukloni, koristim RX !
-    func radioBtnTapped(index: Int)
-}
+//protocol RadioBtnListener: class { // ovo ukloni, koristim RX !
+//    func radioBtnTapped(index: Int)
+//}
 
 extension Reactive where Base: RadioBtnView {
 

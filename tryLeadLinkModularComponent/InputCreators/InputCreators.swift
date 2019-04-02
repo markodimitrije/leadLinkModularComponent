@@ -173,3 +173,28 @@ class SwitchBtnsViewmodelInputCreator {
     }
     
 }
+
+class TextFieldViewmodelInputCreator {
+    
+    var viewmodel: TextFieldViewModel
+    
+    init(viewmodel: TextFieldViewModel) {
+        self.viewmodel = viewmodel
+    }
+    
+    func createTxtDrivers() -> [Driver<String>] {
+        let textDrivers = viewmodel.question.options.map { (text) -> Driver<String> in
+            return Observable.from([text]).asDriver(onErrorJustReturn: "")
+        }
+        return textDrivers
+    }
+    
+    func createTextFieldsInput(textFields: [UITextField] ) -> Observable<String?> {
+        
+        let allEvents = textFields.map {($0.rx.text).asObservable()}
+        
+        return Observable.merge(allEvents)
+        
+    }
+    
+}

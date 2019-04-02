@@ -179,3 +179,33 @@ class SwitchBtnsViewModel: NSObject, ViewModelType {
     private var bag = DisposeBag()
     
 }
+
+class TextFieldViewModel: NSObject, ViewModelType {
+    
+    var question: Question
+    var answer: TextAnswer?
+    
+    init(question: Question, answer: TextAnswer?) {
+        self.question = question
+        self.answer = answer
+    }
+    
+    struct Input {
+        var content: Observable<[String]> // ovo su izabrane opcije, npr ["ita", "bra", "usa"...]
+        var answer: TextAnswer?
+    }
+    
+    struct Output { // treba ti side effects
+        var content: Observable<[String]> // txt koji mapiras
+    }
+    
+    func transform(input: Input) -> Output {
+        
+        let withAnswer = Observable.merge(Observable.of(answer?.content ?? [ ]), input.content)
+        
+        return Output.init(content: withAnswer)
+    }
+    
+    private var bag = DisposeBag()
+    
+}

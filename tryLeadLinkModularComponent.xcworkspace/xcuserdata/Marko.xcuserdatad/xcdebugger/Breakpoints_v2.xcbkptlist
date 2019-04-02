@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tryLeadLinkModularComponent/Factory/ViewFactory.swift"
-            timestampString = "575499769.751892"
+            timestampString = "575901946.570959"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "getNumberOfRows(components:inOneRow:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tryLeadLinkModularComponent/Factory/ViewFactory.swift"
-            timestampString = "575499769.7523561"
+            timestampString = "575901946.571592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "ViewFactory"
             landmarkType = "3">
          </BreakpointContent>
@@ -42,29 +42,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tryLeadLinkModularComponent/Factory/ViewFactory.swift"
-            timestampString = "575499769.752754"
+            timestampString = "575901946.571698"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "ViewFactory"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "tryLeadLinkModularComponent/ViewController.swift"
-            timestampString = "575895280.844709"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
-            landmarkName = "getViewModelFrom(viewModel:)"
-            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ViewController: UIViewController, RadioBtnListener {
+class ViewController: UIViewController {//}, RadioBtnListener {
     
     lazy var viewFactory = ViewFactory.init(bounds: self.view.bounds)
     let viewmodelFactory = ViewmodelFactory.init()
@@ -22,6 +22,7 @@ class ViewController: UIViewController, RadioBtnListener {
     var checkboxBtnsViewModelBinder = StackViewToCheckboxBtnsViewModelBinder()
     var checkboxBtnsWithInputViewModelBinder = StackViewToCheckboxBtnsWithInputViewModelBinder()
     var switchBtnsViewModelBinder = StackViewToSwitchBtnsViewModelBinder()
+    //var txtFieldsViewModelBinder = TextFieldViewModelBinder()
     
     var parentViewmodel: ParentViewModel!
     
@@ -80,6 +81,8 @@ class ViewController: UIViewController, RadioBtnListener {
                         print("CheckboxWithInputViewModel.answer = \(String(describing: viewmodel.answer))")
                     } else if let viewmodel = viewmodel as? SwitchBtnsViewModel {
                         print("SwitchBtnsViewModel.answer = \(String(describing: viewmodel.answer))")
+                    } else if let viewmodel = viewmodel as? SwitchBtnsViewModel {
+                        print("TxtFieldViewModel.answer = \(String(describing: viewmodel.answer))")
                     }
                 })
             })
@@ -101,7 +104,6 @@ class ViewController: UIViewController, RadioBtnListener {
         var btnViews: [UIView]
         switch question.type {
         case .radioBtn:
-            print("nacrtaj radioBtn")
             let res = getRadioBtnsView(question: singleQuestion.question,
                                        answer: singleQuestion.answer,
                                        frame: fr)
@@ -113,7 +115,6 @@ class ViewController: UIViewController, RadioBtnListener {
                                             viewmodel: viewmodel as! RadioViewModel,
                                             bag: bag)
         case .checkbox:
-            print("nacrtaj checkbox")
             let res = getCheckboxBtnsView(question: singleQuestion.question,
                                           answer: singleQuestion.answer,
                                           frame: fr)
@@ -126,7 +127,6 @@ class ViewController: UIViewController, RadioBtnListener {
                                                bag: bag)
 
         case .radioBtnWithInput:
-            print("nacrtaj radioBtnWithInput")
             let res = getRadioBtnsWithInputView(question: singleQuestion.question,
                                                 answer: singleQuestion.answer,
                                                 frame: fr)
@@ -139,7 +139,6 @@ class ViewController: UIViewController, RadioBtnListener {
                                                      bag: bag)
 
         case .checkboxWithInput:
-            print("nacrtaj checkboxWithInput")
             let res = getCheckboxBtnsWithInputView(question: singleQuestion.question,
                                                    answer: singleQuestion.answer,
                                                    frame: fr)
@@ -152,7 +151,6 @@ class ViewController: UIViewController, RadioBtnListener {
                                                         bag: bag)
             
         case .switchBtn:
-            print("nacrtaj switchBtn")
             let res = getSwitchBtns(question: singleQuestion.question,
                                     answer: singleQuestion.answer,
                                     frame: fr)
@@ -163,6 +161,12 @@ class ViewController: UIViewController, RadioBtnListener {
                                              btnViews: btnViews as! [LabelBtnSwitchView],
                                              viewmodel: viewmodel as! SwitchBtnsViewModel,
                                              bag: bag)
+        case .textField:
+            let res = getRadioBtnsView(question: singleQuestion.question,
+                                       answer: singleQuestion.answer,
+                                       frame: fr)
+            stackerView = res.0; btnViews = res.1
+            stackerView.frame.origin.y = lastVertPos
             
         default: break
         }
@@ -254,12 +258,26 @@ class ViewController: UIViewController, RadioBtnListener {
         return (stackerView, btnViews)
     }
     
-    // saznao si da je user tap na radio btn sa tag == index
-    func radioBtnTapped(index: Int) {
-        print("radioBtnTapped za index = \(index)")
-        // ako je radioBtn emitovao, pogasi sve preostale, sacuvaj na sebi vrednost itd...
+    private func getTextFieldView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [LabelAndTextView]) {
+        
+        let stackerView = viewFactory.getStackedLblAndTextView(question: question, answer: answer, frame: frame)
+        
+        let btnViews = stackerView.components.flatMap { view -> [LabelAndTextView] in
+            return (view as? OneRowStacker)?.components as? [LabelAndTextView] ?? [ ]
+        }
+        
+        _ = btnViews.enumerated().map { $0.element.textField.tag = $0.offset } // dodeli svakome unique TAG
+        
+        return (stackerView, btnViews)
         
     }
+    
+//     saznao si da je user tap na radio btn sa tag == index
+//    func radioBtnTapped(index: Int) {
+//        print("radioBtnTapped za index = \(index)")
+//        // ako je radioBtn emitovao, pogasi sve preostale, sacuvaj na sebi vrednost itd...
+//
+//    }
     
 }
 
@@ -297,22 +315,6 @@ protocol StackViewToViewModelBinder {
     associatedtype ViewModel: ViewModelType
     associatedtype View: UIView
     func hookUp(view: ViewStacker, btnViews: [View], viewmodel: ViewModel, bag: DisposeBag)
-}
-
-func getViewModelFrom<T: ViewModelType>(viewModel: Questanable) throws -> T {
-    if let radioViewmodel = viewModel as? RadioViewModel {
-        return radioViewmodel as! T
-    } else if let checkboxViewModel = viewModel as? CheckboxViewModel {
-        return checkboxViewModel as! T
-    } else if let radioWithInputViewmodel = viewModel as? RadioWithInputViewModel {
-        return radioWithInputViewmodel as! T
-    } else if let checkboxWithInputViewModel = viewModel as? CheckboxWithInputViewModel {
-        return checkboxWithInputViewModel as! T
-    } else if let switchBtnsViewModel = viewModel as? SwitchBtnsViewModel {
-        return switchBtnsViewModel as! T
-    }
-    
-    throw InternalError.viewmodelConversion // fall back (better exception...)
 }
 
 enum InternalError: Error {

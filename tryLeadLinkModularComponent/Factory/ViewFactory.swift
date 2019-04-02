@@ -86,6 +86,13 @@ class ViewFactory {
         
     }
     
+    func getStackedLblAndTextView(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
+        
+        //return produceStackWithSameComponents(ofType: RadioBtnView.self, count: question.options.count, inOneRow: 3)!
+        return produceStackWithSameComponents(ofType: UITextField.self, count: question.options.count, inOneRow: 1)!
+        
+    }
+    
     private func produceStackWithSameComponents(ofType type: UIView.Type, count: Int, inOneRow: Int) -> ViewStacker? {
         
         guard inOneRow <= 3 else {return nil}
