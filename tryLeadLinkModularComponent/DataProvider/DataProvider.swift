@@ -54,21 +54,22 @@ class SingleQuestion {
             let answer = CheckboxAnswer.init(questionId: q.id, optionId: [3], content: ["Coconut"])
             (self.question, self.answer) = (q, answer)
         case 4:
-//            let options = ["Red","Green","Blue","Terms and conditions"]
-//            let q = Question.init(id: 177, type: QuestionType.switchBtn, headlineText: "Preferences", inputTxt: "Choose your preferences", options: options)
-//            // ovo ces izvuci iz REALM-a! ili dataLayer-a:
-//            let answer = SwitchAnswer.init(questionId: q.id, optionId: [2], content: ["Blue"])
-//            (self.question, self.answer) = (q, answer)
-
-            let options = ["Red", "Green", "Terms and conditions", "Red", "Green", "Terms and conditions"]
-//            let options = ["Terms and conditions"]
+            let options = ["Red","Green","Blue","Terms and conditions"]
             let q = Question.init(id: 177, type: QuestionType.switchBtn, headlineText: "Preferences", inputTxt: "Choose your preferences", options: options)
             // ovo ces izvuci iz REALM-a! ili dataLayer-a:
-            //let answer = SwitchAnswer.init(questionId: q.id, optionId: [0, 1], content: ["Red", "Green"])
-            let answer = SwitchAnswer.init(questionId: q.id, optionId: [], content: [])
-            //let answer = SwitchAnswer.init(questionId: q.id, optionId: [1], content: ["Terms and conditions"])
-            //let answer = SwitchAnswer.init(questionId: q.id, optionId: [0], content: ["Terms and conditions"])
+            let answer = SwitchAnswer.init(questionId: q.id, optionId: [2], content: ["Blue"])
             (self.question, self.answer) = (q, answer)
+            //(self.question, self.answer) = (q, nil) // test....
+
+//            let options = ["Red", "Green", "Terms and conditions", "Red", "Green", "Terms and conditions"]
+////            let options = ["Terms and conditions"]
+//            let q = Question.init(id: 177, type: QuestionType.switchBtn, headlineText: "Preferences", inputTxt: "Choose your preferences", options: options)
+//            // ovo ces izvuci iz REALM-a! ili dataLayer-a:
+//            //let answer = SwitchAnswer.init(questionId: q.id, optionId: [0, 1], content: ["Red", "Green"])
+//            let answer = SwitchAnswer.init(questionId: q.id, optionId: [], content: [])
+//            //let answer = SwitchAnswer.init(questionId: q.id, optionId: [1], content: ["Terms and conditions"])
+//            //let answer = SwitchAnswer.init(questionId: q.id, optionId: [0], content: ["Terms and conditions"])
+            //(self.question, self.answer) = (q, answer)
             
         default: return nil
             
