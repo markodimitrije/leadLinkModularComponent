@@ -162,20 +162,14 @@ class SwitchBtnsViewmodelInputCreator {
         return textDrivers
     }
     
+    // sa svakim tap na switch, posalji snapshot svih switcheva - uradio sam da emituje samo onaj koji je fire (single data)
+    //func createSwitchBtnsInput(btnViews: [LabelBtnSwitchView] ) -> Observable<Bool> {
     func createSwitchBtnsInput(btnViews: [LabelBtnSwitchView] ) -> Observable<Int> {
         
-//        let tags = btnViews
-//            .map { ($0.switcher.rx.value, $0.switcher.tag) }
-//            //.map { obs, tag in obs.map { tag } } // ovo zelim da je [Observable<(Int,Bool)>] da znam da li je checked ili nije
-//
-//        return Observable.merge(tags)
-
-        return Observable.just(2) // hard-coded
+        let allEvents = btnViews.map {($0.switcher.rx.switchTag.asObservable())}
+        
+        return Observable.merge(allEvents)
         
     }
-    
-}
-
-extension Reactive where Base: UISwitch {
     
 }

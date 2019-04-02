@@ -47,6 +47,25 @@
          contextName = "ViewController.leftScenariosTapped(sender:):ViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "StackViewToSwitchBtnsViewModelBinder.hookUp(view:btnViews:viewmodel:bag:):StackViewToVMBinders.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "output.ids">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in Reactive&lt;A&gt;.optionSelected.getter:RxViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "newContent">
+            </PersistentString>
+            <PersistentString
+               value = "viewmodel.question.options">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ViewController.getRadioBtnsWithInputView(question:answer:frame:):ViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -121,16 +140,16 @@
                value = "btnViews[output.act.value]">
             </PersistentString>
             <PersistentString
-               value = "view.components.compactMap">
+               value = "output.act.value">
             </PersistentString>
             <PersistentString
                value = "btnViews">
             </PersistentString>
             <PersistentString
-               value = "view.components">
+               value = "view.components.compactMap">
             </PersistentString>
             <PersistentString
-               value = "output.act.value">
+               value = "view.components">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -15,6 +15,8 @@ protocol OptionTxtUpdatable {
     var optionTxt: Binder<String> {get}
 }
 
+// MARK:- RECEIVERS
+
 extension UITextField: OptionTxtUpdatable {
     var optionTxt: Binder<String> {
         return self.rx.optionTxt
@@ -45,6 +47,18 @@ extension Reactive where Base: CheckboxView {
     var optionTxt: Binder<String> {
         return Binder.init(self.base, binding: { (view, value) in
             view.headlineText = value
+        })
+    }
+}
+
+// MARK:- EMITERS:
+
+extension Reactive where Base: UISwitch {
+    public var switchTag: ControlProperty<Int> {
+        return base.rx.controlProperty(editingEvents: UIControlEvents.valueChanged, getter: { (uiSwitch) -> Int in
+            uiSwitch.tag
+        }, setter: { (uiSwitch, value) in
+            uiSwitch.tag = value
         })
     }
 }

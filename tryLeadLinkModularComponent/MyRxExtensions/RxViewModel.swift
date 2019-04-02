@@ -90,6 +90,7 @@ extension Reactive where Base: SwitchBtnsViewModel {
             let newAnswer = SwitchAnswer.init(questionId: viewmodel.question.id,
                                               optionId: indexes,
                                               content: newContent)
+            print("viewmodel dobija answer = \(newAnswer)")
             viewmodel.answer = newAnswer
         })
     }

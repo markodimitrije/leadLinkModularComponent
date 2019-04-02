@@ -165,14 +165,12 @@ class StackViewToCheckboxBtnsViewModelBinder: StackViewToViewModelBinder {
         
         let output = viewmodel.transform(input: input) // vratio sam identican input na output
         
-        output.ids
-            .bind(to: viewmodel.rx.optionSelected)
-            .disposed(by: bag)
-        
         // ovo radi... ali nije PRAVI Reactive !
-        output.ids.subscribe(onNext: { array in
+        output.ids
+            .debug()
+            .subscribe(onNext: { array in
             
-            print("subscribe.array = \(array)")
+            print("checkbox.subscribe.array = \(array)")
             
             let active = btnViews.filter { view -> Bool in
                 array.contains(view.radioBtn.tag)
@@ -184,6 +182,10 @@ class StackViewToCheckboxBtnsViewModelBinder: StackViewToViewModelBinder {
             })
             
         }).disposed(by: bag)
+        
+        output.ids
+            .bind(to: viewmodel.rx.optionSelected)
+            .disposed(by: bag)
         
     }
     
@@ -289,7 +291,9 @@ class StackViewToSwitchBtnsViewModelBinder: StackViewToViewModelBinder {
         
         let values = inputCreator.createSwitchBtnsInput(btnViews: btnViews)
         
-        values.subscribe(onNext: { tag in
+        values
+            .skip(btnViews.count) // what a hack....
+            .subscribe(onNext: { tag in
             var arr = checkedArr.value
             if let i = checkedArr.value.firstIndex(of: tag) { // vec je u nizu...
                 arr.remove(at: i)
@@ -311,7 +315,7 @@ class StackViewToSwitchBtnsViewModelBinder: StackViewToViewModelBinder {
         // ovo radi... ali nije PRAVI Reactive !
         output.ids.subscribe(onNext: { array in
             
-            print("subscribe.array = \(array)")
+            print("StackViewToSwitchBtnsViewModelBinder.subscribe.array = \(array)")
             
             let active = btnViews.filter { view -> Bool in
                 array.contains(view.switcher.tag)
@@ -322,5 +326,7 @@ class StackViewToSwitchBtnsViewModelBinder: StackViewToViewModelBinder {
                 btn.switcher.isOn = checked
             })
             
-        }).disposed(by: bag)    }
+        }).disposed(by: bag)
+        
+    }
 }
