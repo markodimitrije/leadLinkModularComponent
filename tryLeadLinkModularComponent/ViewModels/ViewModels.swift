@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class RadioViewModel: NSObject, ViewModelType {
+class RadioViewModel: NSObject, ViewModelType, Questanable {
     
     var question: Question
     var answer: RadioAnswer?
@@ -41,8 +41,7 @@ class RadioViewModel: NSObject, ViewModelType {
     private var bag = DisposeBag()
 }
 
-
-class CheckboxViewModel: NSObject, ViewModelType {
+class CheckboxViewModel: NSObject, ViewModelType, Questanable {
     
     var question: Question
     var answer: CheckboxAnswer?
@@ -75,10 +74,7 @@ class CheckboxViewModel: NSObject, ViewModelType {
     private var bag = DisposeBag()
 }
 
-
-
-
-class RadioWithInputViewModel: NSObject, ViewModelType {
+class RadioWithInputViewModel: NSObject, ViewModelType, Questanable {
     
     var question: Question
     var answer: RadioAnswer?
@@ -111,9 +107,7 @@ class RadioWithInputViewModel: NSObject, ViewModelType {
     private var bag = DisposeBag()
 }
 
-
-
-class CheckboxWithInputViewModel: NSObject, ViewModelType {
+class CheckboxWithInputViewModel: NSObject, ViewModelType, Questanable {
     
     var question: Question
     var answer: CheckboxAnswer?
@@ -146,7 +140,7 @@ class CheckboxWithInputViewModel: NSObject, ViewModelType {
     private var bag = DisposeBag()
 }
 
-class SwitchBtnsViewModel: NSObject, ViewModelType {
+class SwitchBtnsViewModel: NSObject, ViewModelType, Questanable {
     
     var question: Question
     var answer: SwitchAnswer?
@@ -180,7 +174,7 @@ class SwitchBtnsViewModel: NSObject, ViewModelType {
     
 }
 
-class TextFieldViewModel: NSObject, ViewModelType {
+class LabelWithTextFieldViewModel: NSObject, ViewModelType, Questanable {
     
     var question: Question
     var answer: TextAnswer?
@@ -193,6 +187,36 @@ class TextFieldViewModel: NSObject, ViewModelType {
     struct Input {
         var content: Observable<[String]> // ovo su izabrane opcije, npr ["ita", "bra", "usa"...]
         var answer: TextAnswer?
+    }
+    
+    struct Output { // treba ti side effects
+        var content: Observable<[String]> // txt koji mapiras
+    }
+    
+    func transform(input: Input) -> Output {
+        
+        let withAnswer = Observable.merge(Observable.of(answer?.content ?? [ ]), input.content)
+        
+        return Output.init(content: withAnswer)
+    }
+    
+    private var bag = DisposeBag()
+    
+}
+
+class SelectOptionTextFieldViewModel: NSObject, ViewModelType, Questanable {
+    
+    var question: Question
+    var answer: OptionTextAnswer?
+    
+    init(question: Question, answer: OptionTextAnswer?) {
+        self.question = question
+        self.answer = answer
+    }
+    
+    struct Input {
+        var content: Observable<[String]> // ovo su izabrane opcije, npr ["ita", "bra", "usa"...]
+        var answer: OptionTextAnswer?
     }
     
     struct Output { // treba ti side effects

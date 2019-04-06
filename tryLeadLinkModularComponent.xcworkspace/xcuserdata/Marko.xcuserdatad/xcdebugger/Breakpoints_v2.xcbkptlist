@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tryLeadLinkModularComponent/Factory/ViewFactory.swift"
-            timestampString = "575901946.570959"
+            timestampString = "576255006.403983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "getNumberOfRows(components:inOneRow:)"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "getHeight(forComponents:inOneRow:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tryLeadLinkModularComponent/Factory/ViewFactory.swift"
-            timestampString = "575901946.571592"
+            timestampString = "576255006.404072"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "ViewFactory"
-            landmarkType = "3">
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "getHeight(forComponents:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -41,14 +41,30 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "tryLeadLinkModularComponent/Factory/ViewFactory.swift"
-            timestampString = "575901946.571698"
+            filePath = "tryLeadLinkModularComponent/Factory/ViewmodelFactory.swift"
+            timestampString = "576255006.405136"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "ViewFactory"
-            landmarkType = "3">
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "makeViewmodel(singleQuestion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "tryLeadLinkModularComponent/ViewModels/ViewModels.swift"
+            timestampString = "576255006.4052269"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "init(question:answer:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

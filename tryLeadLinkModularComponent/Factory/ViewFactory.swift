@@ -18,10 +18,6 @@ class ViewFactory {
         self.bounds = bounds
     }
     
-    func getSingleLblWithTxtField(question: Question, answer: Answer?, frame: CGRect) -> LabelAndTextView {
-        return LabelAndTextView.init(frame: frame, headlineText: question.headlineText, inputTxt: answer?.content.first ?? question.inputTxt)
-    }
-    
     func getStackedRadioBtns(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
         
         //return produceStackWithSameComponents(ofType: RadioBtnView.self, count: question.options.count, inOneRow: 3)!
@@ -86,10 +82,17 @@ class ViewFactory {
         
     }
     
-    func getStackedLblAndTextView(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
+    func getStackedLblAndTextFieldView(questionWithAnswers: [(Question, Answer?)], frame: CGRect) -> ViewStacker {
         
         //return produceStackWithSameComponents(ofType: RadioBtnView.self, count: question.options.count, inOneRow: 3)!
-        return produceStackWithSameComponents(ofType: UITextField.self, count: question.options.count, inOneRow: 1)!
+        return produceStackWithSameComponents(ofType: LabelAndTextField.self, count: questionWithAnswers.count, inOneRow: 1)!
+        
+    }
+    
+    func getStackedLblAndTextView(questionWithAnswers: [(Question, Answer?)], frame: CGRect) -> ViewStacker {
+        
+        //return produceStackWithSameComponents(ofType: LabelAndTextView.self, count: question.options.count, inOneRow: 3)!
+        return produceStackWithSameComponents(ofType: LabelAndTextView.self, count: questionWithAnswers.count, inOneRow: 1)!
         
     }
     
@@ -167,7 +170,6 @@ class ViewFactory {
         return numOfRows
     }
     
-    
     private func produceOneRowInVerticalStack(ofType type: UIView.Type, inOneRow: Int) -> OneRowStacker {
         
         var compType = QuestionType.textField
@@ -177,20 +179,21 @@ class ViewFactory {
             compType = .checkbox
         } else if type is LabelBtnSwitchView.Type {
             compType = .switchBtn
+        } else if type is LabelAndTextField.Type {
+            compType = .textField
         }
         
         let rowHeight = getOneRowHeightFor(componentType: compType)
         
-        var componenets = [UIView]()
+        var components = [UIView]()
         for _ in 1...inOneRow {
             let v = type.init()
-            componenets.append(v)
+            components.append(v)
         }
-        let row = stackElementsInOneRow(components: componenets, rowHeight: rowHeight)
+        let row = stackElementsInOneRow(components: components, rowHeight: rowHeight)
         return row
         
     }
-    
     
     func getRect(forComponents components: [UIView], inOneRow: Int) -> CGRect {
         
@@ -199,43 +202,11 @@ class ViewFactory {
         return CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: bounds.width, height: height))
     }
     
-    
-    
-    
-    
-    
-    
     func stackElementsInOneRow(components: [UIView], rowHeight: CGFloat) -> OneRowStacker {
         
         let rect = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: bounds.width, height: rowHeight))
         return OneRowStacker.init(frame: rect, components: components)!
         
-    }
-    
-    private func createLabelAndTextView() -> UIView {
-        
-        let or = CGPoint.zero
-        let size = CGSize.init(width: bounds.width, height: CGFloat.init(100))
-        let rect = CGRect.init(origin: or, size: size)
-        let v = LabelAndTextView.init(frame: rect, headlineText: "initial field", inputTxt: "just chacking...")
-        return v
-    }
-    
-    private func createBtnView(option: RadioBtnOption) -> UIView {
-        
-        let or = CGPoint.zero
-        let size = CGSize.init(width: bounds.width, height: CGFloat.init(40))
-        let rect = CGRect.init(origin: or, size: size)
-        let v = RadioBtnView.init(frame: rect, option: option)
-        return v
-    }
-    
-    func createLabelAndTextView(count: Int) -> [UIView] {
-        var result = [UIView]()
-        for _ in 0...count-1 {
-            result.append(createLabelAndTextView())
-        }
-        return result
     }
     
 }

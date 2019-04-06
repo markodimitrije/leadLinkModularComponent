@@ -78,7 +78,7 @@ extension Reactive where Base: CheckboxWithInputViewModel {
 }
 
 extension Reactive where Base: SwitchBtnsViewModel {
-    internal var optionSelected: Binder<[Int]> {
+    internal var optionSelected: Binder<[Int]> { // javlja ti koji tag (redni br switch-a je tapped)
         return Binder.init(self.base, binding: { (viewmodel, indexes) in
             
             let newContent = viewmodel.question.options.enumerated().filter({ (index, element) -> Bool in
@@ -91,6 +91,36 @@ extension Reactive where Base: SwitchBtnsViewModel {
                                               optionId: indexes,
                                               content: newContent)
             print("viewmodel dobija answer = \(newAnswer)")
+            viewmodel.answer = newAnswer
+        })
+    }
+}
+
+extension Reactive where Base: LabelWithTextFieldViewModel {
+    internal var answer: Binder<String?> {
+        return Binder.init(self.base, binding: { (viewmodel, text) in
+            let newAnswer = TextAnswer.init(questionId: viewmodel.question.id,
+                                            content: [text ?? ""])
+            print("TextFieldViewModel dobija answer = \(newAnswer)")
+            viewmodel.answer = newAnswer
+        })
+    }
+}
+
+extension Reactive where Base: LabelWithTextFieldViewModel {
+    internal var optionSelected: Binder<String> {
+        return Binder.init(self.base, binding: { (viewmodel, text) in
+            let newAnswer = TextAnswer.init(questionId: viewmodel.question.id,
+                                            content: [text])
+            print("TextFieldViewModel. single option dobija answer = \(newAnswer)")
+            viewmodel.answer = newAnswer
+        })
+    }
+    internal var optionsSelected: Binder<[String]> {
+        return Binder.init(self.base, binding: { (viewmodel, options) in
+            let newAnswer = TextAnswer.init(questionId: viewmodel.question.id,
+                                            content: options)
+            print("TextFieldViewModel multiple option dobija answer = \(newAnswer)")
             viewmodel.answer = newAnswer
         })
     }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2DC791D9DDBE9D1CC9D96EEF /* Pods_tryLeadLinkModularComponent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2102075DD73E10FE0BE3C87 /* Pods_tryLeadLinkModularComponent.framework */; };
+		AD0F15C82258E7EB00C06555 /* LabelAndTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F15C72258E7EB00C06555 /* LabelAndTextView.swift */; };
+		AD0F15CA2258E81100C06555 /* LabelAndTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD0F15C92258E81100C06555 /* LabelAndTextView.xib */; };
 		AD194030224BBB90002A3AE2 /* ViewmodelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD19402F224BBB90002A3AE2 /* ViewmodelFactory.swift */; };
 		AD50390B21CFA7970009EB0C /* RadioBtnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD50390921CFA7960009EB0C /* RadioBtnView.xib */; };
 		AD50390C21CFA7970009EB0C /* RadioBtnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD50390A21CFA7970009EB0C /* RadioBtnView.swift */; };
@@ -20,8 +22,8 @@
 		AD837AB921C7BA6800555917 /* ViewStacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837AB821C7BA6800555917 /* ViewStacker.swift */; };
 		AD837ABC21C7C0F600555917 /* OneRowStacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837ABB21C7C0F600555917 /* OneRowStacker.swift */; };
 		AD837ABE21C7C0FE00555917 /* OneRowStacker.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD837ABD21C7C0FE00555917 /* OneRowStacker.xib */; };
-		AD837AC521C7C68000555917 /* LabelAndTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837AC321C7C67F00555917 /* LabelAndTextView.swift */; };
-		AD837AC621C7C68000555917 /* LabelAndTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD837AC421C7C67F00555917 /* LabelAndTextView.xib */; };
+		AD837AC521C7C68000555917 /* LabelAndTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837AC321C7C67F00555917 /* LabelAndTextField.swift */; };
+		AD837AC621C7C68000555917 /* LabelAndTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD837AC421C7C67F00555917 /* LabelAndTextField.xib */; };
 		AD9EDEBF21D1837F0058814C /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9EDEBE21D1837F0058814C /* ViewFactory.swift */; };
 		AD9F0E7521D3D9BB005BD0A7 /* MyRxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9F0E7421D3D9BB005BD0A7 /* MyRxExtensions.swift */; };
 		ADAAD6EA21D0ECB600B9D59E /* CheckboxView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADAAD6E921D0ECB600B9D59E /* CheckboxView.xib */; };
@@ -42,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		41D79BCD0AC25180BDDC736E /* Pods-tryLeadLinkModularComponent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tryLeadLinkModularComponent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tryLeadLinkModularComponent/Pods-tryLeadLinkModularComponent.debug.xcconfig"; sourceTree = "<group>"; };
+		AD0F15C72258E7EB00C06555 /* LabelAndTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAndTextView.swift; sourceTree = "<group>"; };
+		AD0F15C92258E81100C06555 /* LabelAndTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelAndTextView.xib; sourceTree = "<group>"; };
 		AD19402F224BBB90002A3AE2 /* ViewmodelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewmodelFactory.swift; sourceTree = "<group>"; };
 		AD50390921CFA7960009EB0C /* RadioBtnView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadioBtnView.xib; sourceTree = "<group>"; };
 		AD50390A21CFA7970009EB0C /* RadioBtnView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioBtnView.swift; sourceTree = "<group>"; };
@@ -56,8 +60,8 @@
 		AD837AB821C7BA6800555917 /* ViewStacker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStacker.swift; sourceTree = "<group>"; };
 		AD837ABB21C7C0F600555917 /* OneRowStacker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneRowStacker.swift; sourceTree = "<group>"; };
 		AD837ABD21C7C0FE00555917 /* OneRowStacker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneRowStacker.xib; sourceTree = "<group>"; };
-		AD837AC321C7C67F00555917 /* LabelAndTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAndTextView.swift; sourceTree = "<group>"; };
-		AD837AC421C7C67F00555917 /* LabelAndTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelAndTextView.xib; sourceTree = "<group>"; };
+		AD837AC321C7C67F00555917 /* LabelAndTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAndTextField.swift; sourceTree = "<group>"; };
+		AD837AC421C7C67F00555917 /* LabelAndTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelAndTextField.xib; sourceTree = "<group>"; };
 		AD9EDEBE21D1837F0058814C /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
 		AD9F0E7421D3D9BB005BD0A7 /* MyRxExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRxExtensions.swift; sourceTree = "<group>"; };
 		ADAAD6E921D0ECB600B9D59E /* CheckboxView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckboxView.xib; sourceTree = "<group>"; };
@@ -227,8 +231,10 @@
 				AD837AB821C7BA6800555917 /* ViewStacker.swift */,
 				AD837ABD21C7C0FE00555917 /* OneRowStacker.xib */,
 				AD837ABB21C7C0F600555917 /* OneRowStacker.swift */,
-				AD837AC421C7C67F00555917 /* LabelAndTextView.xib */,
-				AD837AC321C7C67F00555917 /* LabelAndTextView.swift */,
+				AD837AC421C7C67F00555917 /* LabelAndTextField.xib */,
+				AD837AC321C7C67F00555917 /* LabelAndTextField.swift */,
+				AD0F15C92258E81100C06555 /* LabelAndTextView.xib */,
+				AD0F15C72258E7EB00C06555 /* LabelAndTextView.swift */,
 				ADAAD6F421D0F7B700B9D59E /* LabelBtnSwitchView.xib */,
 				ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */,
 			);
@@ -305,10 +311,11 @@
 			files = (
 				AD837AAF21C7B4E900555917 /* LaunchScreen.storyboard in Resources */,
 				AD837ABE21C7C0FE00555917 /* OneRowStacker.xib in Resources */,
+				AD0F15CA2258E81100C06555 /* LabelAndTextView.xib in Resources */,
 				ADAAD6EA21D0ECB600B9D59E /* CheckboxView.xib in Resources */,
 				AD837AB721C7B50C00555917 /* ViewStacker.xib in Resources */,
 				AD837AAC21C7B4E900555917 /* Assets.xcassets in Resources */,
-				AD837AC621C7C68000555917 /* LabelAndTextView.xib in Resources */,
+				AD837AC621C7C68000555917 /* LabelAndTextField.xib in Resources */,
 				ADAAD6F521D0F7B700B9D59E /* LabelBtnSwitchView.xib in Resources */,
 				AD50390B21CFA7970009EB0C /* RadioBtnView.xib in Resources */,
 				AD837AAA21C7B4E700555917 /* Main.storyboard in Resources */,
@@ -384,9 +391,10 @@
 				AD9F0E7521D3D9BB005BD0A7 /* MyRxExtensions.swift in Sources */,
 				ADB78CAD224CC51A00D29FA6 /* RawModelTypes.swift in Sources */,
 				AD194030224BBB90002A3AE2 /* ViewmodelFactory.swift in Sources */,
-				AD837AC521C7C68000555917 /* LabelAndTextView.swift in Sources */,
+				AD837AC521C7C68000555917 /* LabelAndTextField.swift in Sources */,
 				AD837AA721C7B4E700555917 /* ViewController.swift in Sources */,
 				AD837ABC21C7C0F600555917 /* OneRowStacker.swift in Sources */,
+				AD0F15C82258E7EB00C06555 /* LabelAndTextView.swift in Sources */,
 				AD50390C21CFA7970009EB0C /* RadioBtnView.swift in Sources */,
 				ADAAD6F721D0FBAC00B9D59E /* LabelBtnSwitchView.swift in Sources */,
 				AD837AB921C7BA6800555917 /* ViewStacker.swift in Sources */,

@@ -136,3 +136,25 @@ extension Reactive where Base: LabelBtnSwitchView {
     }
     
 }
+
+extension Reactive where Base: LabelAndTextField {
+    
+    var headlineTxt: Binder<String> {
+        return Binder.init(self.base, binding: { (view, value) in
+            view.headlineTxt = value
+        })
+    }
+
+    var inputTxt: Binder<String> {
+        return Binder.init(self.base, binding: { (view, value) in
+            view.inputTxt = value
+        })
+    }
+    
+    var update: Binder<(headline: String, text: String)> {
+        return Binder.init(self.base, binding: { (view, value) in
+            view.update(headlineText: value.headline, inputTxt: value.text)
+        })
+    }
+    
+}

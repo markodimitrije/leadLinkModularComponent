@@ -12,14 +12,17 @@ class QuestionsDataProvider {
     var questions = [SingleQuestion]()
     init(campaignId: Int) {
         // fetch iz realm by this: campaignId
-        guard let radio = SingleQuestion.init(forQuestion: 0),
-            let checkbox = SingleQuestion.init(forQuestion: 1),
-            let radioWithInput = SingleQuestion.init(forQuestion: 2),
-            let checkboxWithInput = SingleQuestion.init(forQuestion: 3),
-            let switchBtns = SingleQuestion.init(forQuestion: 4) else {
+        guard //let radio = SingleQuestion.init(forQuestion: 0),
+//            let checkbox = SingleQuestion.init(forQuestion: 1),
+//            let radioWithInput = SingleQuestion.init(forQuestion: 2),
+//            let checkboxWithInput = SingleQuestion.init(forQuestion: 3),
+//            let checkbox = SingleQuestion.init(forQuestion: 4),
+//            let txtField = SingleQuestion.init(forQuestion: 5) else {
+            let txtWithOptionsView = SingleQuestion.init(forQuestion: 7) else {
                 return
         }
-        questions = [radio, checkbox, radioWithInput, checkboxWithInput, switchBtns]
+        //questions = [radio, checkbox, radioWithInput, checkboxWithInput, switchBtns, txtField]
+        questions = [txtWithOptionsView]
     }
 }
 
@@ -29,17 +32,9 @@ class SingleQuestion {
     
     init?(forQuestion id: Int) {
         switch id {
-//        case 0:
-//            let options = [String]()
-//            let q = Question.init(id: 22222, type: QuestionType.textField, headlineText: "Headline", inputTxt: "whatever", options: options)
-//            (self.question, self.answer) = (q, nil)
-//        case 1:
-//            let options = ["abcde"]
-//            let q = Question.init(id: 33333, type: QuestionType.textField, headlineText: "Headline", inputTxt: "whatever", options: options)
-//            (self.question, self.answer) = (q, nil)
         case 0:
             let options = ["Paris", "London", "Maroco", "Madrid", "Moscow"]
-            let q = Question.init(id: 22, type: QuestionType.radioBtnWithInput, headlineText: "Headline", inputTxt: "whatever", options: options)
+            let q = Question.init(id: 12, type: QuestionType.radioBtnWithInput, headlineText: "Headline", inputTxt: "whatever", options: options)
             let answer = RadioAnswer.init(questionId: q.id, optionId: 5, content: ["Palermo"]) // ovo ces izvuci iz REALM-a!...
             (self.question, self.answer) = (q, answer)
         
@@ -67,7 +62,19 @@ class SingleQuestion {
             // ovo ces izvuci iz REALM-a! ili dataLayer-a:
             let answer = CheckboxAnswer.init(questionId: q.id, optionId: [1,2,3,4], content: ["Basketball", "Swimming", "Tennis", "Waterpolo"])
             (self.question, self.answer) = (q, answer)
-            
+        case 5:
+            let q = Question.init(id: 10, type: QuestionType.textField, headlineText: "First name", inputTxt: "type your name", options: [ ])
+            let answer = TextAnswer.init(questionId: 10, content: ["Jollene"])
+            (self.question, self.answer) = (q, answer)
+//        case 6:
+//            let options = [String]()
+//            let q = Question.init(id: 33, type: QuestionType.textField, headlineText: "Last name", inputTxt: "type your name", options: options)
+//        (self.question, self.answer) = (q, nil)
+        case 7:
+            let options = ["Lion", "Snake", "Bird", "Orca", "Dog", "Cat", "Wolf", "Whale" , "Dolphin", "Monkey", "Bee", "Eagle"]
+            let q = Question.init(id: 44, type: QuestionType.textWithOptions, headlineText: "Your pets", inputTxt: "Select your pets", options: options)
+            let answer = TextAnswer.init(questionId: 44, content: ["Bird", "Dog"])
+            (self.question, self.answer) = (q, answer)
         default: return nil
             
         }

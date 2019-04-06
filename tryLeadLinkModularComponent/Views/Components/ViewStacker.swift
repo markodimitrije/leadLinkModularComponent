@@ -112,10 +112,12 @@ struct SwitchAnswer: Answer {
     var optionId: [Int] // koju opciju je izabrao - moze imati vise switchIds
     var content = [String]() // koji je text te opcije
 }
-struct TextAnswer: Answer { // every TextAnswer is only it's on (stackView just shows them in one place)
-    var searchAvailable = false
-    var questionId: Int // koji je ID pitanja
-    var options: [String] // koje sve opcije postoje - moze imati komponentu sa drzavama ili materijalima...
+struct OptionTextAnswer: Answer { // every TextAnswer is only it's on (stackView just shows them in one place)
     var multipleSelection: Bool
+    var questionId: Int // koji je ID pitanja
     var content = [String]() // koji je od opcija izabrao (;1 ili vise njih; ako je izabrao sa searchVC)
+}
+struct TextAnswer: Answer {
+    var questionId: Int // koji je ID pitanja
+    var content = [String]()
 }

@@ -25,9 +25,3 @@ class ParentViewModel {
 protocol Questanable {
     var question: Question {get set}
 }
-
-extension RadioViewModel: Questanable {}
-extension CheckboxViewModel: Questanable {}
-extension RadioWithInputViewModel: Questanable {}
-extension CheckboxWithInputViewModel: Questanable {}
-extension SwitchBtnsViewModel: Questanable {}

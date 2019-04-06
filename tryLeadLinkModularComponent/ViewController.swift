@@ -22,7 +22,8 @@ class ViewController: UIViewController {//}, RadioBtnListener {
     var checkboxBtnsViewModelBinder = StackViewToCheckboxBtnsViewModelBinder()
     var checkboxBtnsWithInputViewModelBinder = StackViewToCheckboxBtnsWithInputViewModelBinder()
     var switchBtnsViewModelBinder = StackViewToSwitchBtnsViewModelBinder()
-    //var txtFieldsViewModelBinder = TextFieldViewModelBinder()
+    var txtFieldViewModelBinder = TextFieldViewModelBinder()
+    let txtViewModelBinder = TextFieldWithOptionsViewModelBinder()
     
     var parentViewmodel: ParentViewModel!
     
@@ -81,8 +82,8 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                         print("CheckboxWithInputViewModel.answer = \(String(describing: viewmodel.answer))")
                     } else if let viewmodel = viewmodel as? SwitchBtnsViewModel {
                         print("SwitchBtnsViewModel.answer = \(String(describing: viewmodel.answer))")
-                    } else if let viewmodel = viewmodel as? SwitchBtnsViewModel {
-                        print("TxtFieldViewModel.answer = \(String(describing: viewmodel.answer))")
+                    } else if let viewmodel = viewmodel as? LabelWithTextFieldViewModel {
+                        print("LabelWithTextFieldViewModel.answer = \(String(describing: viewmodel.answer))")
                     }
                 })
             })
@@ -133,6 +134,10 @@ class ViewController: UIViewController {//}, RadioBtnListener {
             stackerView = res.0; btnViews = res.1
             stackerView.frame.origin.y = lastVertPos
             
+            
+            
+            
+            
             radioBtnsWithInputViewModelBinder.hookUp(view: stackerView,
                                                      btnViews: btnViews as! [RadioBtnView],
                                                      viewmodel: viewmodel as! RadioWithInputViewModel,
@@ -162,11 +167,27 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                              viewmodel: viewmodel as! SwitchBtnsViewModel,
                                              bag: bag)
         case .textField:
-            let res = getRadioBtnsView(question: singleQuestion.question,
+            let res = getTextFieldView(question: singleQuestion.question,
                                        answer: singleQuestion.answer,
                                        frame: fr)
             stackerView = res.0; btnViews = res.1
             stackerView.frame.origin.y = lastVertPos
+            
+            txtFieldViewModelBinder.hookUp(view: stackerView,
+                                           labelAndTextView: btnViews.first as! LabelAndTextField,
+                                           viewmodel: viewmodel as! LabelWithTextFieldViewModel,
+                                           bag: bag)
+        case .textWithOptions:
+            let res = getLabelAndTextView(question: singleQuestion.question,
+                                           answer: singleQuestion.answer,
+                                           frame: fr)
+            stackerView = res.0; btnViews = res.1
+            stackerView.frame.origin.y = lastVertPos
+            
+            txtViewModelBinder.hookUp(view: stackerView,
+                                      labelAndTextView: btnViews.first as! LabelAndTextView,
+                                      viewmodel: viewmodel as! LabelWithTextFieldViewModel,
+                                      bag: bag)
             
         default: break
         }
@@ -258,26 +279,35 @@ class ViewController: UIViewController {//}, RadioBtnListener {
         return (stackerView, btnViews)
     }
     
-    private func getTextFieldView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [LabelAndTextView]) {
+    private func getTextFieldView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [LabelAndTextField]) {
         
-        let stackerView = viewFactory.getStackedLblAndTextView(question: question, answer: answer, frame: frame)
+        //let stackerView = viewFactory.getStackedLblAndTextView(question: question, answer: answer, frame: frame)
+        let stackerView = viewFactory.getStackedLblAndTextView(questionWithAnswers: [(question, answer)], frame: frame)
         
-        let btnViews = stackerView.components.flatMap { view -> [LabelAndTextView] in
-            return (view as? OneRowStacker)?.components as? [LabelAndTextView] ?? [ ]
+        let views = stackerView.components.flatMap { view -> [LabelAndTextField] in
+            return (view as? OneRowStacker)?.components as? [LabelAndTextField] ?? [ ]
         }
         
-        _ = btnViews.enumerated().map { $0.element.textField.tag = $0.offset } // dodeli svakome unique TAG
+        _ = views.enumerated().map { $0.element.textField.tag = $0.offset } // dodeli svakome unique TAG
         
-        return (stackerView, btnViews)
+        return (stackerView, views)
         
     }
     
-//     saznao si da je user tap na radio btn sa tag == index
-//    func radioBtnTapped(index: Int) {
-//        print("radioBtnTapped za index = \(index)")
-//        // ako je radioBtn emitovao, pogasi sve preostale, sacuvaj na sebi vrednost itd...
-//
-//    }
+    private func getLabelAndTextView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [LabelAndTextView]) {
+        
+        //let stackerView = viewFactory.getStackedLblAndTextView(question: question, answer: answer, frame: frame)
+        let stackerView = viewFactory.getStackedLblAndTextView(questionWithAnswers: [(question, answer)], frame: frame)
+        
+        let views = stackerView.components.flatMap { view -> [LabelAndTextView] in
+            return (view as? OneRowStacker)?.components as? [LabelAndTextView] ?? [ ]
+        }
+        
+        _ = views.enumerated().map { $0.element.textView.tag = $0.offset } // dodeli svakome unique TAG
+        
+        return (stackerView, views)
+        
+    }
     
 }
 
@@ -285,7 +315,7 @@ func getOneRowHeightFor(componentType type: QuestionType) -> CGFloat {
     switch type {
         // sta sa textArea ?
     case .textField:
-        return CGFloat.init(80)
+        return CGFloat.init(100)
     case .radioBtn:
         return CGFloat.init(50)
     case .checkbox:

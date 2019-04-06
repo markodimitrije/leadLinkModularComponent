@@ -44,15 +44,15 @@
          contextName = "SingleQuestion.init(forQuestion:):DataProvider.swift">
       </ContextState>
       <ContextState
-         contextName = "ViewController.leftScenariosTapped(sender:):ViewController.swift">
-      </ContextState>
-      <ContextState
          contextName = "StackViewToSwitchBtnsViewModelBinder.hookUp(view:btnViews:viewmodel:bag:):StackViewToVMBinders.swift">
          <PersistentStrings>
             <PersistentString
                value = "output.ids">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.leftScenariosTapped(sender:):ViewController.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in Reactive&lt;A&gt;.optionSelected.getter:RxViewModel.swift">
@@ -81,6 +81,14 @@
          <PersistentStrings>
             <PersistentString
                value = "self?.parentViewmodel.childViewmodels">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.loadParentViewModel(questions:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "parentViewmodel">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -140,7 +148,7 @@
                value = "btnViews[output.act.value]">
             </PersistentString>
             <PersistentString
-               value = "output.act.value">
+               value = "view.components">
             </PersistentString>
             <PersistentString
                value = "btnViews">
@@ -149,7 +157,7 @@
                value = "view.components.compactMap">
             </PersistentString>
             <PersistentString
-               value = "view.components">
+               value = "output.act.value">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -169,6 +177,17 @@
             </PersistentString>
             <PersistentString
                value = "stackerView.components">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ViewController.listenToSaveEvent():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self?.parentViewmodel.childViewmodels.count">
+            </PersistentString>
+            <PersistentString
+               value = "parentViewmodel.childViewmodels">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

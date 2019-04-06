@@ -1,19 +1,19 @@
 //
-//  LabelAndTextView.swift
-//  tryLeadLinkModularComponent
+//  QuestionTextView.swift
+//  LeadLink
 //
-//  Created by Marko Dimitrijevic on 06/04/2019.
-//  Copyright © 2019 Marko Dimitrijevic. All rights reserved.
+//  Created by Marko Dimitrijevic on 11/12/2018.
+//  Copyright © 2018 Marko Dimitrijevic. All rights reserved.
 //
 
 import UIKit
 
-class LabelAndTextView: UIView {
+class LabelAndTextField: UIView {
     
     @IBOutlet weak var stackView: UIStackView!
     
     @IBOutlet weak var headlineLbl: UILabel!
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textField: UITextField!
     
     var headlineTxt: String? {
         get {
@@ -26,10 +26,10 @@ class LabelAndTextView: UIView {
     
     var inputTxt: String? {
         get {
-            return textView?.text
+            return textField?.text
         }
         set {
-            textView?.text = newValue ?? ""
+            textField?.text = newValue ?? ""
         }
     }
     
@@ -51,7 +51,7 @@ class LabelAndTextView: UIView {
     
     func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "LabelAndTextView", bundle: bundle)
+        let nib = UINib(nibName: "LabelAndTextField", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]

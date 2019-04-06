@@ -331,59 +331,38 @@ class StackViewToSwitchBtnsViewModelBinder: StackViewToViewModelBinder {
     }
 }
 
-/*
-class StackViewWithTextFieldsViewModelBinder {
-    func hookUp(txtField: UITextField, viewmodel: TextFieldViewModel, bag: DisposeBag) {
+// regular textField...
+class TextFieldViewModelBinder {
+    
+    func hookUp(view: ViewStacker, labelAndTextView: LabelAndTextField, viewmodel: LabelWithTextFieldViewModel, bag: DisposeBag) {
         
-        let inputCreator = TextFieldViewmodelInputCreator(viewmodel: viewmodel)
+        let inputCreator = LabelAndTextFieldFromModelInputCreator(viewmodel: viewmodel)
+        let driver = inputCreator.createTxtDriver()
         
-        _ = inputCreator.createTxtDrivers().enumerated().map { (offset, textDriver) in
-            textDriver.drive(btnViews[offset].rx.optionTxt)
-        }
-        
-        let initial = viewmodel.answer?.optionId ?? [ ]
-        
-        let checkedArr = BehaviorRelay<[String]>.init(value: initial) // mozda treba sa answer !!?
-        
-        let values = inputCreator.createTextFieldsInput(textFields: btnViews)
-        
-        values
-            .skip(btnViews.count) // what a hack....
-            .subscribe(onNext: { tag in
-                var arr = checkedArr.value
-                if let i = checkedArr.value.firstIndex(of: tag) { // vec je u nizu...
-                    arr.remove(at: i)
-                    checkedArr.accept(arr)
-                } else {
-                    arr.append(tag)
-                    checkedArr.accept(arr)
-                }
-            }).disposed(by: bag)
-        
-        let input = SwitchBtnsViewModel.Input.init(ids: checkedArr.asObservable(), answer: viewmodel.answer)
-        
-        let output = viewmodel.transform(input: input) // vratio sam identican input na output
-        
-        output.ids
-            .bind(to: viewmodel.rx.optionSelected)
+        driver
+            .bind(to: labelAndTextView.rx.titles)
             .disposed(by: bag)
         
-        // ovo radi... ali nije PRAVI Reactive !
-        output.ids.subscribe(onNext: { array in
-            
-            print("StackViewToSwitchBtnsViewModelBinder.subscribe.array = \(array)")
-            
-            let active = btnViews.filter { view -> Bool in
-                array.contains(view.switcher.tag)
-            }
-            
-            _ = btnViews.map({ btn in
-                let checked = active.contains(btn)
-                btn.switcher.isOn = checked
-            })
-            
-        }).disposed(by: bag)
-        
+        labelAndTextView.textField.rx.text.asObservable()
+            .bind(to: viewmodel.rx.answer)
+            .disposed(by: bag)
     }
 }
-*/
+
+// your inputs are "options" and txtField content: [String]
+class TextFieldWithOptionsViewModelBinder { // rename -LabelWithTextFieldViewModel- u -LabelWithTextViewModel-
+    
+    func hookUp(view: ViewStacker, labelAndTextView: LabelAndTextView, viewmodel: LabelWithTextFieldViewModel, bag: DisposeBag) {
+        
+        let inputCreator = LabelAndTextFieldFromModelInputCreator(viewmodel: viewmodel)
+        let driver = inputCreator.createTxtDriver()
+        
+        driver
+            .bind(to: labelAndTextView.rx.texts)
+            .disposed(by: bag)
+        
+        labelAndTextView.textView.rx.text.asObservable()
+            .bind(to: viewmodel.rx.answer)
+            .disposed(by: bag)
+    }
+}
