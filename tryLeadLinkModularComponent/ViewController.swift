@@ -188,6 +188,7 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                       labelAndTextView: btnViews.first as! LabelAndTextView,
                                       viewmodel: viewmodel as! LabelWithTextFieldViewModel,
                                       bag: bag)
+            (btnViews.first as! LabelAndTextView).textView.delegate = self
             
         default: break
         }
@@ -310,6 +311,15 @@ class ViewController: UIViewController {//}, RadioBtnListener {
     }
     
 }
+
+extension ViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        print("digni vc da izabere options...")
+    }
+    
+}
+
+
 
 func getOneRowHeightFor(componentType type: QuestionType) -> CGFloat {
     switch type {
