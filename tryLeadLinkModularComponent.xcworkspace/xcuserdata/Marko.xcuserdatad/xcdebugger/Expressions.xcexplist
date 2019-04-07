@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "QuestionOptionsTableViewDataSourceAndDelegate.toggleCheckmark(_:didSelectRowAt:):ChooseOptionsVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cell.isSelected">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in ViewController.hookUp(view:viewmodel:):ViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -53,6 +61,14 @@
       </ContextState>
       <ContextState
          contextName = "ViewController.leftScenariosTapped(sender:):ViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.textViewDidBeginEditing(_:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dataSourceAndDelegate">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #1 in Reactive&lt;A&gt;.optionSelected.getter:RxViewModel.swift">
@@ -162,10 +178,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "QuestionOptionsTableViewDataSourceAndDelegate.tableView(_:cellForRowAt:):ChooseOptionsVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "answer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "CheckboxWithInputViewmodelInputCreator.init(viewmodel:checkboxBtnViews:):InputCreators.swift">
          <PersistentStrings>
             <PersistentString
                value = "self.textDrivers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ChooseOptionsVC.numberOfSections(in:):ChooseOptionsVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dataSourceAndDelegate">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

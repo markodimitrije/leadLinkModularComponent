@@ -84,6 +84,8 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                         print("SwitchBtnsViewModel.answer = \(String(describing: viewmodel.answer))")
                     } else if let viewmodel = viewmodel as? LabelWithTextFieldViewModel {
                         print("LabelWithTextFieldViewModel.answer = \(String(describing: viewmodel.answer))")
+                    } else if let viewmodel = viewmodel as? SelectOptionTextFieldViewModel {
+                        print("LabelWithTextFieldViewModel.answer = \(String(describing: viewmodel.answer))")
                     }
                 })
             })
@@ -186,7 +188,7 @@ class ViewController: UIViewController {//}, RadioBtnListener {
             
             txtViewModelBinder.hookUp(view: stackerView,
                                       labelAndTextView: btnViews.first as! LabelAndTextView,
-                                      viewmodel: viewmodel as! LabelWithTextFieldViewModel,
+                                      viewmodel: viewmodel as! SelectOptionTextFieldViewModel,
                                       bag: bag)
             (btnViews.first as! LabelAndTextView).textView.delegate = self
             
@@ -295,6 +297,7 @@ class ViewController: UIViewController {//}, RadioBtnListener {
         
     }
     
+    // refactor ovo, mora biti samo 1 !!!
     private func getLabelAndTextView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [LabelAndTextView]) {
         
         //let stackerView = viewFactory.getStackedLblAndTextView(question: question, answer: answer, frame: frame)
@@ -304,7 +307,8 @@ class ViewController: UIViewController {//}, RadioBtnListener {
             return (view as? OneRowStacker)?.components as? [LabelAndTextView] ?? [ ]
         }
         
-        _ = views.enumerated().map { $0.element.textView.tag = $0.offset } // dodeli svakome unique TAG
+        //_ = views.enumerated().map { $0.element.textView.tag = $0.offset } // dodeli svakome unique TAG
+        _ = views.enumerated().map { $0.element.textView.tag = question.id } // dodeli mu unique TAG kakav je questionId !!
         
         return (stackerView, views)
         
@@ -314,7 +318,16 @@ class ViewController: UIViewController {//}, RadioBtnListener {
 
 extension ViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        print("digni vc da izabere options...")
+        textView.resignFirstResponder()
+        guard let chooseOptionsVC = UIStoryboard.main.instantiateViewController(withIdentifier: "ChooseOptionsVC") as? ChooseOptionsVC else {
+            return
+        }
+        guard let childViewmodel = parentViewmodel.childViewmodels[textView.tag] as? SelectOptionTextFieldViewModel else {return}
+        
+        let dataSourceAndDelegate = QuestionOptionsTableViewDataSourceAndDelegate.init(question: childViewmodel.question,
+                                                                                       answer: childViewmodel.answer as! OptionTextAnswer)
+        chooseOptionsVC.dataSourceAndDelegate = dataSourceAndDelegate
+        self.navigationController?.pushViewController(chooseOptionsVC, animated: true)
     }
     
 }
@@ -360,3 +373,4 @@ protocol StackViewToViewModelBinder {
 enum InternalError: Error {
     case viewmodelConversion
 }
+

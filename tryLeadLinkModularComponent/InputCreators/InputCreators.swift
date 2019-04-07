@@ -192,12 +192,23 @@ class LabelAndTextFieldFromModelInputCreator {
 
     }
     
-//    func createTextFieldsInput(textFields: [LabelAndTextField] ) -> Observable<(headline: String, text: String)> {
-//
-//        let allEvents = textFields.map {($0.rx.update)}
-//
-//        return Observable.merge(allEvents)
-//
-//    }
+}
+
+class SelectOptionTextViewModelInputCreator { // duplicated....
+    
+    var viewmodel: SelectOptionTextFieldViewModel
+    
+    init(viewmodel: SelectOptionTextFieldViewModel) {
+        self.viewmodel = viewmodel
+    }
+    
+    //func createTxtDriver() -> Driver<(String, String)> {
+    func createTxtDriver() -> Observable<(String, String)> {
+        
+        let headline = viewmodel.question.headlineText
+        let text = (viewmodel.answer?.content ?? [ ]).reduce("", {$0 + "\n" + $1})
+        return Observable.from([(headline, text)])//.asDriver(onErrorJustReturn: ("",""))
+        
+    }
     
 }

@@ -10,6 +10,8 @@
 		2DC791D9DDBE9D1CC9D96EEF /* Pods_tryLeadLinkModularComponent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2102075DD73E10FE0BE3C87 /* Pods_tryLeadLinkModularComponent.framework */; };
 		AD0F15C82258E7EB00C06555 /* LabelAndTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F15C72258E7EB00C06555 /* LabelAndTextView.swift */; };
 		AD0F15CA2258E81100C06555 /* LabelAndTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD0F15C92258E81100C06555 /* LabelAndTextView.xib */; };
+		AD0F15CC22590BCF00C06555 /* ChooseOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F15CB22590BCF00C06555 /* ChooseOptionsVC.swift */; };
+		AD0F15D0225917BD00C06555 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F15CF225917BD00C06555 /* Utilities.swift */; };
 		AD194030224BBB90002A3AE2 /* ViewmodelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD19402F224BBB90002A3AE2 /* ViewmodelFactory.swift */; };
 		AD50390B21CFA7970009EB0C /* RadioBtnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD50390921CFA7960009EB0C /* RadioBtnView.xib */; };
 		AD50390C21CFA7970009EB0C /* RadioBtnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD50390A21CFA7970009EB0C /* RadioBtnView.swift */; };
@@ -46,6 +48,8 @@
 		41D79BCD0AC25180BDDC736E /* Pods-tryLeadLinkModularComponent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tryLeadLinkModularComponent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tryLeadLinkModularComponent/Pods-tryLeadLinkModularComponent.debug.xcconfig"; sourceTree = "<group>"; };
 		AD0F15C72258E7EB00C06555 /* LabelAndTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAndTextView.swift; sourceTree = "<group>"; };
 		AD0F15C92258E81100C06555 /* LabelAndTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelAndTextView.xib; sourceTree = "<group>"; };
+		AD0F15CB22590BCF00C06555 /* ChooseOptionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseOptionsVC.swift; sourceTree = "<group>"; };
+		AD0F15CF225917BD00C06555 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		AD19402F224BBB90002A3AE2 /* ViewmodelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewmodelFactory.swift; sourceTree = "<group>"; };
 		AD50390921CFA7960009EB0C /* RadioBtnView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadioBtnView.xib; sourceTree = "<group>"; };
 		AD50390A21CFA7970009EB0C /* RadioBtnView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioBtnView.swift; sourceTree = "<group>"; };
@@ -103,6 +107,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AD0F15CD22590C4200C06555 /* VCs */ = {
+			isa = PBXGroup;
+			children = (
+				AD837AA621C7B4E700555917 /* ViewController.swift */,
+				AD0F15CB22590BCF00C06555 /* ChooseOptionsVC.swift */,
+			);
+			path = VCs;
+			sourceTree = "<group>";
+		};
+		AD0F15CE225917AC00C06555 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AD0F15CF225917BD00C06555 /* Utilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		AD19402E224BBB70002A3AE2 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +154,7 @@
 		AD837AA321C7B4E700555917 /* tryLeadLinkModularComponent */ = {
 			isa = PBXGroup;
 			children = (
+				AD0F15CE225917AC00C06555 /* Utilities */,
 				ADB78CAB224CC50900D29FA6 /* RawModelTypes */,
 				AD19402E224BBB70002A3AE2 /* Factory */,
 				ADAD117A224AC1DC00A87D8D /* StackViewToVMBinders */,
@@ -143,7 +165,7 @@
 				ADAAD6F121D0F4BE00B9D59E /* Protocols */,
 				AD837AA421C7B4E700555917 /* AppDelegate.swift */,
 				AD837ABA21C7BA7100555917 /* Views */,
-				AD837AA621C7B4E700555917 /* ViewController.swift */,
+				AD0F15CD22590C4200C06555 /* VCs */,
 				AD837AA821C7B4E700555917 /* Main.storyboard */,
 				AD837AAB21C7B4E900555917 /* Assets.xcassets */,
 				AD837AAD21C7B4E900555917 /* LaunchScreen.storyboard */,
@@ -394,6 +416,7 @@
 				AD837AC521C7C68000555917 /* LabelAndTextField.swift in Sources */,
 				AD837AA721C7B4E700555917 /* ViewController.swift in Sources */,
 				AD837ABC21C7C0F600555917 /* OneRowStacker.swift in Sources */,
+				AD0F15D0225917BD00C06555 /* Utilities.swift in Sources */,
 				AD0F15C82258E7EB00C06555 /* LabelAndTextView.swift in Sources */,
 				AD50390C21CFA7970009EB0C /* RadioBtnView.swift in Sources */,
 				ADAAD6F721D0FBAC00B9D59E /* LabelBtnSwitchView.swift in Sources */,
@@ -401,6 +424,7 @@
 				AD837AA521C7B4E700555917 /* AppDelegate.swift in Sources */,
 				ADBF58552247A45200BDD008 /* SaveButton.swift in Sources */,
 				ADAD117E224AC3DE00A87D8D /* RxViewModel.swift in Sources */,
+				AD0F15CC22590BCF00C06555 /* ChooseOptionsVC.swift in Sources */,
 				ADAD117C224AC1F000A87D8D /* StackViewToVMBinders.swift in Sources */,
 				AD9EDEBF21D1837F0058814C /* ViewFactory.swift in Sources */,
 				ADB3EA5222493A5D00E2C289 /* ParentViewModel.swift in Sources */,

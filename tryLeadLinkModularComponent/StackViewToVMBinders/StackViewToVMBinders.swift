@@ -342,27 +342,30 @@ class TextFieldViewModelBinder {
         driver
             .bind(to: labelAndTextView.rx.titles)
             .disposed(by: bag)
-        
+
         labelAndTextView.textField.rx.text.asObservable()
             .bind(to: viewmodel.rx.answer)
             .disposed(by: bag)
+        
     }
+    
 }
 
 // your inputs are "options" and txtField content: [String]
 class TextFieldWithOptionsViewModelBinder { // rename -LabelWithTextFieldViewModel- u -LabelWithTextViewModel-
     
-    func hookUp(view: ViewStacker, labelAndTextView: LabelAndTextView, viewmodel: LabelWithTextFieldViewModel, bag: DisposeBag) {
+    
+    func hookUp(view: ViewStacker, labelAndTextView: LabelAndTextView, viewmodel: SelectOptionTextFieldViewModel, bag: DisposeBag) {
         
-        let inputCreator = LabelAndTextFieldFromModelInputCreator(viewmodel: viewmodel)
+        let inputCreator = SelectOptionTextViewModelInputCreator(viewmodel: viewmodel)
         let driver = inputCreator.createTxtDriver()
         
         driver
             .bind(to: labelAndTextView.rx.texts)
             .disposed(by: bag)
         
-        labelAndTextView.textView.rx.text.asObservable()
-            .bind(to: viewmodel.rx.answer)
-            .disposed(by: bag)
+//        labelAndTextView.textView.rx.text.asObservable() // hard-coded off
+//            .bind(to: viewmodel.rx.answer)
+//            .disposed(by: bag)
     }
 }

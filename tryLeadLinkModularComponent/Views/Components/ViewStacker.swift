@@ -120,4 +120,8 @@ struct OptionTextAnswer: Answer { // every TextAnswer is only it's on (stackView
 struct TextAnswer: Answer {
     var questionId: Int // koji je ID pitanja
     var content = [String]()
+    init(questionId: Int, content: [String]) {
+        self.questionId = questionId
+        self.content = content
+    }
 }
