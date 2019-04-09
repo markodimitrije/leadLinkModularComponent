@@ -324,9 +324,12 @@ extension ViewController: UITextViewDelegate {
         }
         guard let childViewmodel = parentViewmodel.childViewmodels[textView.tag] as? SelectOptionTextFieldViewModel else {return}
         
-        let dataSourceAndDelegate = QuestionOptionsTableViewDataSourceAndDelegate.init(question: childViewmodel.question,
-                                                                                       answer: childViewmodel.answer as! OptionTextAnswer)
+        let dataSourceAndDelegate = QuestionOptionsTableViewDataSourceAndDelegate.init(
+            question: childViewmodel.question,
+            answer: childViewmodel.answer)
+        
         chooseOptionsVC.dataSourceAndDelegate = dataSourceAndDelegate
+        
         chooseOptionsVC.doneWithOptions.subscribe(onNext: { [weak self] (dataSource) in
             if let dataSource = dataSource as? QuestionOptionsTableViewDataSourceAndDelegate {
                 self?.navigationController?.popViewController(animated: true)

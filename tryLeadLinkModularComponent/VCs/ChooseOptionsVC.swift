@@ -35,50 +35,48 @@ import RxCocoa
     
     private func setUpBindings() {
         
+        dataSourceAndDelegate.tableView = tableView
+        dataSourceAndDelegate.observableSearch = searchBar.rx.text
+        
         _options.onNext(dataSourceAndDelegate) // mora da emituje odmah da bi postojao withLatestFrom
         
-        let control = searchBar.rx.text.asObservable()
-        control.subscribe(onNext: { search in
-            let newItems = self.dataSourceAndDelegate.question.options.filter {
-                return ($0 as NSString).contains(search ?? "")
-            }
-            print("newItems = \(newItems)")
-        }).disposed(by: bag)
-                
     }
  
     private let bag = DisposeBag()
  
  }
 
-extension ChooseOptionsVC: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return dataSourceAndDelegate?.numberOfSections(in: tableView) ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSourceAndDelegate?.tableView(tableView, numberOfRowsInSection: section) ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return dataSourceAndDelegate?.tableView(tableView, cellForRowAt: indexPath) ?? UITableViewCell.init()
-    }
-}
-
-extension ChooseOptionsVC: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        dataSourceAndDelegate?.tableView(tableView, didSelectRowAt: indexPath)
-    }
-}
-
-
 class QuestionOptionsTableViewDataSourceAndDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     lazy var observableAnswer = BehaviorRelay.init(value: answer)
+    var observableSearch: ControlProperty<String?>! {
+        didSet {
+            cleanSearch.subscribe(onNext: { (value) in
+                if value == "" {
+                    print("emitujem options = \(self.question.options)")
+                    self.items.accept(self.question.options)
+                } else {
+                    let contained = self.question.options.filter({ option -> Bool in
+                        return NSString.init(string: option).contains(value)
+                    })
+                    print("emitujem options = \(contained)")
+                    self.items.accept(contained)
+                }
+                self.tableView.reloadData()
+            }).disposed(by: bag)
+        }
+    }
     
+    private var cleanSearch: Observable<String> {
+        return observableSearch.map {$0 ?? ""}.asObservable()
+    }
+    
+    private var items = BehaviorRelay<[String]>(value: [])
+        
     var question: Question
+    var tableView: UITableView!
     private var answer: OptionTextAnswer?
+    
     
     init(question: Question, answer: OptionTextAnswer?) {
         self.question = question
@@ -90,23 +88,19 @@ class QuestionOptionsTableViewDataSourceAndDelegate: NSObject, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return question.options.count
+        //return question.options.count
+        return items.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "optionCell", for: indexPath)
-        let text = question.options[indexPath.row]
+        let text = items.value[indexPath.row]
         cell.textLabel?.text = text
         cell.accessoryType = .none
-        if let answer = self.answer, answer.content.contains(text) {
+        if let answer = self.observableAnswer.value, answer.content.contains(text) {
             cell.accessoryType = .checkmark
         }
         return cell
-    }
-    
-    private func updateModel(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -114,7 +108,8 @@ class QuestionOptionsTableViewDataSourceAndDelegate: NSObject, UITableViewDataSo
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         
         var newAnswer = observableAnswer.value ?? answer ?? OptionTextAnswer.init(multipleSelection: true, questionId: question.id, content: [])
-        let option = question.options[indexPath.row]
+        //let option = question.options[indexPath.row]
+        let option = items.value[indexPath.row]
         
         if let index = newAnswer.content.firstIndex(of: option) {
             newAnswer.content.remove(at: index)
@@ -123,8 +118,11 @@ class QuestionOptionsTableViewDataSourceAndDelegate: NSObject, UITableViewDataSo
             newAnswer.content.append(option)
             cell.accessoryType = .checkmark
         }
+        print("newAnswer.content = \(newAnswer.content)")
         observableAnswer.accept(newAnswer)
         
     }
+    
+    private let bag = DisposeBag()
     
 }
