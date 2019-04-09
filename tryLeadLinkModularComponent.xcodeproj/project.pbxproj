@@ -10,13 +10,11 @@
 		2DC791D9DDBE9D1CC9D96EEF /* Pods_tryLeadLinkModularComponent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2102075DD73E10FE0BE3C87 /* Pods_tryLeadLinkModularComponent.framework */; };
 		AD0F15C82258E7EB00C06555 /* LabelAndTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F15C72258E7EB00C06555 /* LabelAndTextView.swift */; };
 		AD0F15CA2258E81100C06555 /* LabelAndTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD0F15C92258E81100C06555 /* LabelAndTextView.xib */; };
-		AD0F15CC22590BCF00C06555 /* ChooseOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F15CB22590BCF00C06555 /* ChooseOptionsVC.swift */; };
 		AD0F15D0225917BD00C06555 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F15CF225917BD00C06555 /* Utilities.swift */; };
 		AD194030224BBB90002A3AE2 /* ViewmodelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD19402F224BBB90002A3AE2 /* ViewmodelFactory.swift */; };
 		AD50390B21CFA7970009EB0C /* RadioBtnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD50390921CFA7960009EB0C /* RadioBtnView.xib */; };
 		AD50390C21CFA7970009EB0C /* RadioBtnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD50390A21CFA7970009EB0C /* RadioBtnView.swift */; };
 		AD837AA521C7B4E700555917 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837AA421C7B4E700555917 /* AppDelegate.swift */; };
-		AD837AA721C7B4E700555917 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD837AA621C7B4E700555917 /* ViewController.swift */; };
 		AD837AAA21C7B4E700555917 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD837AA821C7B4E700555917 /* Main.storyboard */; };
 		AD837AAC21C7B4E900555917 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD837AAB21C7B4E900555917 /* Assets.xcassets */; };
 		AD837AAF21C7B4E900555917 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD837AAD21C7B4E900555917 /* LaunchScreen.storyboard */; };
@@ -39,23 +37,23 @@
 		ADB3EA5222493A5D00E2C289 /* ParentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3EA5122493A5D00E2C289 /* ParentViewModel.swift */; };
 		ADB78CAD224CC51A00D29FA6 /* RawModelTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB78CAC224CC51A00D29FA6 /* RawModelTypes.swift */; };
 		ADBF584D22469ED800BDD008 /* InputCreators.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF584C22469ED800BDD008 /* InputCreators.swift */; };
-		ADBF58502246C2B100BDD008 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF584F2246C2B100BDD008 /* DataProvider.swift */; };
 		ADBF585322479D4700BDD008 /* QuestionsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF585222479D4700BDD008 /* QuestionsScrollView.swift */; };
 		ADBF58552247A45200BDD008 /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF58542247A45200BDD008 /* SaveButton.swift */; };
+		ADFCDBCB225CB5B700A44B02 /* ChooseOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCDBC9225CB5B600A44B02 /* ChooseOptionsVC.swift */; };
+		ADFCDBCC225CB5B700A44B02 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCDBCA225CB5B700A44B02 /* ViewController.swift */; };
+		ADFCDBCE225CB5C400A44B02 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCDBCD225CB5C400A44B02 /* DataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		41D79BCD0AC25180BDDC736E /* Pods-tryLeadLinkModularComponent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tryLeadLinkModularComponent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tryLeadLinkModularComponent/Pods-tryLeadLinkModularComponent.debug.xcconfig"; sourceTree = "<group>"; };
 		AD0F15C72258E7EB00C06555 /* LabelAndTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAndTextView.swift; sourceTree = "<group>"; };
 		AD0F15C92258E81100C06555 /* LabelAndTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelAndTextView.xib; sourceTree = "<group>"; };
-		AD0F15CB22590BCF00C06555 /* ChooseOptionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseOptionsVC.swift; sourceTree = "<group>"; };
 		AD0F15CF225917BD00C06555 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		AD19402F224BBB90002A3AE2 /* ViewmodelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewmodelFactory.swift; sourceTree = "<group>"; };
 		AD50390921CFA7960009EB0C /* RadioBtnView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadioBtnView.xib; sourceTree = "<group>"; };
 		AD50390A21CFA7970009EB0C /* RadioBtnView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioBtnView.swift; sourceTree = "<group>"; };
 		AD837AA121C7B4E700555917 /* tryLeadLinkModularComponent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tryLeadLinkModularComponent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD837AA421C7B4E700555917 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AD837AA621C7B4E700555917 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AD837AA921C7B4E700555917 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD837AAB21C7B4E900555917 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD837AAE21C7B4E900555917 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -79,9 +77,11 @@
 		ADB3EA5122493A5D00E2C289 /* ParentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewModel.swift; sourceTree = "<group>"; };
 		ADB78CAC224CC51A00D29FA6 /* RawModelTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawModelTypes.swift; sourceTree = "<group>"; };
 		ADBF584C22469ED800BDD008 /* InputCreators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCreators.swift; sourceTree = "<group>"; };
-		ADBF584F2246C2B100BDD008 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		ADBF585222479D4700BDD008 /* QuestionsScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsScrollView.swift; sourceTree = "<group>"; };
 		ADBF58542247A45200BDD008 /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
+		ADFCDBC9225CB5B600A44B02 /* ChooseOptionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseOptionsVC.swift; sourceTree = "<group>"; };
+		ADFCDBCA225CB5B700A44B02 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ADFCDBCD225CB5C400A44B02 /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		B2102075DD73E10FE0BE3C87 /* Pods_tryLeadLinkModularComponent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tryLeadLinkModularComponent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B753BBDE7A61F3AD69DAA1E7 /* Pods-tryLeadLinkModularComponent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tryLeadLinkModularComponent.release.xcconfig"; path = "Pods/Target Support Files/Pods-tryLeadLinkModularComponent/Pods-tryLeadLinkModularComponent.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,8 +110,8 @@
 		AD0F15CD22590C4200C06555 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
-				AD837AA621C7B4E700555917 /* ViewController.swift */,
-				AD0F15CB22590BCF00C06555 /* ChooseOptionsVC.swift */,
+				ADFCDBC9225CB5B600A44B02 /* ChooseOptionsVC.swift */,
+				ADFCDBCA225CB5B700A44B02 /* ViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -237,7 +237,7 @@
 		ADBF584E2246C2A300BDD008 /* DataProvider */ = {
 			isa = PBXGroup;
 			children = (
-				ADBF584F2246C2B100BDD008 /* DataProvider.swift */,
+				ADFCDBCD225CB5C400A44B02 /* DataProvider.swift */,
 			);
 			path = DataProvider;
 			sourceTree = "<group>";
@@ -414,9 +414,9 @@
 				ADB78CAD224CC51A00D29FA6 /* RawModelTypes.swift in Sources */,
 				AD194030224BBB90002A3AE2 /* ViewmodelFactory.swift in Sources */,
 				AD837AC521C7C68000555917 /* LabelAndTextField.swift in Sources */,
-				AD837AA721C7B4E700555917 /* ViewController.swift in Sources */,
 				AD837ABC21C7C0F600555917 /* OneRowStacker.swift in Sources */,
 				AD0F15D0225917BD00C06555 /* Utilities.swift in Sources */,
+				ADFCDBCC225CB5B700A44B02 /* ViewController.swift in Sources */,
 				AD0F15C82258E7EB00C06555 /* LabelAndTextView.swift in Sources */,
 				AD50390C21CFA7970009EB0C /* RadioBtnView.swift in Sources */,
 				ADAAD6F721D0FBAC00B9D59E /* LabelBtnSwitchView.swift in Sources */,
@@ -424,16 +424,16 @@
 				AD837AA521C7B4E700555917 /* AppDelegate.swift in Sources */,
 				ADBF58552247A45200BDD008 /* SaveButton.swift in Sources */,
 				ADAD117E224AC3DE00A87D8D /* RxViewModel.swift in Sources */,
-				AD0F15CC22590BCF00C06555 /* ChooseOptionsVC.swift in Sources */,
 				ADAD117C224AC1F000A87D8D /* StackViewToVMBinders.swift in Sources */,
 				AD9EDEBF21D1837F0058814C /* ViewFactory.swift in Sources */,
 				ADB3EA5222493A5D00E2C289 /* ParentViewModel.swift in Sources */,
+				ADFCDBCB225CB5B700A44B02 /* ChooseOptionsVC.swift in Sources */,
+				ADFCDBCE225CB5C400A44B02 /* DataProvider.swift in Sources */,
 				ADB3EA5022493A1F00E2C289 /* ViewModels.swift in Sources */,
 				ADBF584D22469ED800BDD008 /* InputCreators.swift in Sources */,
 				ADAAD6EC21D0ECC500B9D59E /* CheckboxView.swift in Sources */,
 				ADBF585322479D4700BDD008 /* QuestionsScrollView.swift in Sources */,
 				ADAAD6F321D0F4CB00B9D59E /* Protocols.swift in Sources */,
-				ADBF58502246C2B100BDD008 /* DataProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

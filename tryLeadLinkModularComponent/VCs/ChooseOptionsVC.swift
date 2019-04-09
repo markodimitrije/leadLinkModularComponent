@@ -17,11 +17,13 @@ import RxCocoa
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
  
-    var dataSourceAndDelegate: QuestionOptionsTableViewDataSourceAndDelegate?
+    var dataSourceAndDelegate: QuestionOptionsTableViewDataSourceAndDelegate!
     
     private var _options = PublishSubject<UITableViewDataSource>.init()
-    public var options: Observable<UITableViewDataSource> {
-        return _options.asObservable()
+    
+    public var doneWithOptions: Observable<UITableViewDataSource> {
+        return doneBtn.rx.tap
+                .withLatestFrom(_options.asObservable())
     }
  
     override func viewDidLoad() {
@@ -32,10 +34,17 @@ import RxCocoa
     }
     
     private func setUpBindings() {
-        doneBtn.rx.tap
-            .subscribe {
-                print("report to parent vc .... ")
-            }.disposed(by: bag)
+        
+        _options.onNext(dataSourceAndDelegate) // mora da emituje odmah da bi postojao withLatestFrom
+        
+        let control = searchBar.rx.text.asObservable()
+        control.subscribe(onNext: { search in
+            let newItems = self.dataSourceAndDelegate.question.options.filter {
+                return ($0 as NSString).contains(search ?? "")
+            }
+            print("newItems = \(newItems)")
+        }).disposed(by: bag)
+                
     }
  
     private let bag = DisposeBag()
@@ -69,7 +78,7 @@ class QuestionOptionsTableViewDataSourceAndDelegate: NSObject, UITableViewDataSo
     lazy var observableAnswer = BehaviorRelay.init(value: answer)
     
     var question: Question
-    var answer: OptionTextAnswer?
+    private var answer: OptionTextAnswer?
     
     init(question: Question, answer: OptionTextAnswer?) {
         self.question = question

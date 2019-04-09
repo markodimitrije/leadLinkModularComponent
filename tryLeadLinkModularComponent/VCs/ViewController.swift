@@ -327,6 +327,16 @@ extension ViewController: UITextViewDelegate {
         let dataSourceAndDelegate = QuestionOptionsTableViewDataSourceAndDelegate.init(question: childViewmodel.question,
                                                                                        answer: childViewmodel.answer as! OptionTextAnswer)
         chooseOptionsVC.dataSourceAndDelegate = dataSourceAndDelegate
+        chooseOptionsVC.doneWithOptions.subscribe(onNext: { [weak self] (dataSource) in
+            if let dataSource = dataSource as? QuestionOptionsTableViewDataSourceAndDelegate {
+                self?.navigationController?.popViewController(animated: true)
+                guard let newContent = dataSource.observableAnswer.value?.content else {return}
+                childViewmodel.answer?.content = newContent
+                textView.text = newContent.reduce("", { ($0 + "\n" + $1) })
+                textView.tintColor = UIColor.clear
+            }
+        }).disposed(by: bag)
+        
         self.navigationController?.pushViewController(chooseOptionsVC, animated: true)
     }
     
@@ -338,7 +348,8 @@ func getOneRowHeightFor(componentType type: QuestionType) -> CGFloat {
     switch type {
         // sta sa textArea ?
     case .textField:
-        return CGFloat.init(100)
+        return CGFloat.init(200)
+//        return CGFloat.init(100)
     case .radioBtn:
         return CGFloat.init(50)
     case .checkbox:
