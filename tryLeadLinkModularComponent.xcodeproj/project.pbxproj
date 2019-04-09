@@ -42,6 +42,7 @@
 		ADFCDBCB225CB5B700A44B02 /* ChooseOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCDBC9225CB5B600A44B02 /* ChooseOptionsVC.swift */; };
 		ADFCDBCC225CB5B700A44B02 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCDBCA225CB5B700A44B02 /* ViewController.swift */; };
 		ADFCDBCE225CB5C400A44B02 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCDBCD225CB5C400A44B02 /* DataProvider.swift */; };
+		ADFCDBD4225D3B4F00A44B02 /* QuestionOptionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCDBD3225D3B4F00A44B02 /* QuestionOptionsDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		ADFCDBC9225CB5B600A44B02 /* ChooseOptionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseOptionsVC.swift; sourceTree = "<group>"; };
 		ADFCDBCA225CB5B700A44B02 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		ADFCDBCD225CB5C400A44B02 /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		ADFCDBD3225D3B4F00A44B02 /* QuestionOptionsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionOptionsDataSource.swift; sourceTree = "<group>"; };
 		B2102075DD73E10FE0BE3C87 /* Pods_tryLeadLinkModularComponent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tryLeadLinkModularComponent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B753BBDE7A61F3AD69DAA1E7 /* Pods-tryLeadLinkModularComponent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tryLeadLinkModularComponent.release.xcconfig"; path = "Pods/Target Support Files/Pods-tryLeadLinkModularComponent/Pods-tryLeadLinkModularComponent.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,6 +156,7 @@
 		AD837AA321C7B4E700555917 /* tryLeadLinkModularComponent */ = {
 			isa = PBXGroup;
 			children = (
+				ADFCDBD2225D3B3400A44B02 /* DataSource */,
 				AD0F15CE225917AC00C06555 /* Utilities */,
 				ADB78CAB224CC50900D29FA6 /* RawModelTypes */,
 				AD19402E224BBB70002A3AE2 /* Factory */,
@@ -261,6 +264,14 @@
 				ADAAD6F621D0FBAC00B9D59E /* LabelBtnSwitchView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		ADFCDBD2225D3B3400A44B02 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				ADFCDBD3225D3B4F00A44B02 /* QuestionOptionsDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		D5F79EF7EB63CF43FC122B81 /* Frameworks */ = {
@@ -415,6 +426,7 @@
 				AD194030224BBB90002A3AE2 /* ViewmodelFactory.swift in Sources */,
 				AD837AC521C7C68000555917 /* LabelAndTextField.swift in Sources */,
 				AD837ABC21C7C0F600555917 /* OneRowStacker.swift in Sources */,
+				ADFCDBD4225D3B4F00A44B02 /* QuestionOptionsDataSource.swift in Sources */,
 				AD0F15D0225917BD00C06555 /* Utilities.swift in Sources */,
 				ADFCDBCC225CB5B700A44B02 /* ViewController.swift in Sources */,
 				AD0F15C82258E7EB00C06555 /* LabelAndTextView.swift in Sources */,
