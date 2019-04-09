@@ -37,9 +37,9 @@ class QuestionOptionsTableViewDataSourceAndDelegate: NSObject, UITableViewDataSo
     private var options = BehaviorRelay<[String]>(value: [])
     private var answer: OptionTextAnswer?
     
-    init(question: Question, answer: OptionTextAnswer?) {
-        self.question = question
-        self.answer = answer
+    init(selectOptionTextViewModel: SelectOptionTextFieldViewModel) {
+        self.question = selectOptionTextViewModel.question
+        self.answer = selectOptionTextViewModel.answer
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

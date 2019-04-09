@@ -318,15 +318,16 @@ class ViewController: UIViewController {//}, RadioBtnListener {
 
 extension ViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.resignFirstResponder()
-        guard let chooseOptionsVC = UIStoryboard.main.instantiateViewController(withIdentifier: "ChooseOptionsVC") as? ChooseOptionsVC else {
-            return
-        }
-        guard let childViewmodel = parentViewmodel.childViewmodels[textView.tag] as? SelectOptionTextFieldViewModel else {return}
         
-        let dataSourceAndDelegate = QuestionOptionsTableViewDataSourceAndDelegate.init(
-            question: childViewmodel.question,
-            answer: childViewmodel.answer)
+        textView.resignFirstResponder()
+        
+        guard
+            let chooseOptionsVC = UIStoryboard.main.instantiateViewController(withIdentifier: "ChooseOptionsVC") as? ChooseOptionsVC,
+            let childViewmodel = parentViewmodel.childViewmodels[textView.tag] as? SelectOptionTextFieldViewModel else {
+                return
+        }
+        
+        let dataSourceAndDelegate = QuestionOptionsTableViewDataSourceAndDelegate(selectOptionTextViewModel: childViewmodel)
         
         chooseOptionsVC.dataSourceAndDelegate = dataSourceAndDelegate
         
