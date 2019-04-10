@@ -12,18 +12,18 @@ class QuestionsDataProvider {
     var questions = [SingleQuestion]()
     init(campaignId: Int) {
         // fetch iz realm by this: campaignId
-        guard //let radio = SingleQuestion.init(forQuestion: 0),
-//            let checkbox = SingleQuestion.init(forQuestion: 1),
-//            let radioWithInput = SingleQuestion.init(forQuestion: 2),
-//            let checkboxWithInput = SingleQuestion.init(forQuestion: 3),
-//            let checkbox = SingleQuestion.init(forQuestion: 4),
-//            let txtField = SingleQuestion.init(forQuestion: 5) else {
-//            let txtWithOptionsView = SingleQuestion.init(forQuestion: 7),
-            let txtWithOptionsView = SingleQuestion.init(forQuestion: 8) else {
+        guard let radioBtnWithInput = SingleQuestion.init(forQuestion: 0),
+            let checkboxWithInput = SingleQuestion.init(forQuestion: 1),
+            let switchOptions = SingleQuestion.init(forQuestion: 2),
+            let radioBtn = SingleQuestion.init(forQuestion: 3),
+            let checkbox = SingleQuestion.init(forQuestion: 4),
+            //let txtField = SingleQuestion.init(forQuestion: 5), PUCA !>!>?!?!??!??!?!?!?!?
+            let txtWithMultipleOptions = SingleQuestion.init(forQuestion: 7),
+            let txtWithSingleOptions = SingleQuestion.init(forQuestion: 8) else {
                 return
         }
         //questions = [radio, checkbox, radioWithInput, checkboxWithInput, switchBtns, txtField]
-        questions = [txtWithOptionsView]
+        questions = [radioBtnWithInput, checkboxWithInput, switchOptions, radioBtn, checkbox /*txtField*/, txtWithMultipleOptions, txtWithSingleOptions]
     }
 }
 
