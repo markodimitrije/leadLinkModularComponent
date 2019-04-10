@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LabelAndTextView: UIView, UITextViewDelegate {
+class LabelAndTextView: UIView {
     
     @IBOutlet weak var stackView: UIStackView!
     

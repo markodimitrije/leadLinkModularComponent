@@ -338,6 +338,7 @@ extension ViewController: UITextViewDelegate {
                 childViewmodel.answer?.content = newContent
                 textView.text = newContent.reduce("", { ($0 + "\n" + $1) })
                 textView.tintColor = UIColor.clear
+                //textView.sizeToFit()
             }
         }).disposed(by: bag)
         

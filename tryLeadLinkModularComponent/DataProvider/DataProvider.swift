@@ -18,12 +18,12 @@ class QuestionsDataProvider {
             let radioBtn = SingleQuestion.init(forQuestion: 3),
             let checkbox = SingleQuestion.init(forQuestion: 4),
             let txtField = SingleQuestion.init(forQuestion: 5),
-            let txtWithMultipleOptions = SingleQuestion.init(forQuestion: 7),
-            let txtWithSingleOptions = SingleQuestion.init(forQuestion: 8) else {
+            let txtWithSingleOptions = SingleQuestion.init(forQuestion: 8),
+            let txtWithMultipleOptions = SingleQuestion.init(forQuestion: 7) else {
                 return
         }
         //questions = [radio, checkbox, radioWithInput, checkboxWithInput, switchBtns, txtField]
-        questions = [radioBtnWithInput, checkboxWithInput, switchOptions, radioBtn, checkbox, txtField, txtWithMultipleOptions, txtWithSingleOptions]
+        questions = [radioBtnWithInput, checkboxWithInput, switchOptions, radioBtn, checkbox, txtField, txtWithSingleOptions, txtWithMultipleOptions]
     }
 }
 
