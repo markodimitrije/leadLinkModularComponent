@@ -65,7 +65,7 @@ class QuestionOptionsTableViewDataSourceAndDelegate: NSObject, UITableViewDataSo
         
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         
-        var newAnswer = observableAnswer.value ?? answer ?? OptionTextAnswer.init(multipleSelection: true, questionId: question.id, content: [])
+        var newAnswer = observableAnswer.value ?? answer ?? OptionTextAnswer.init(questionId: question.id, content: [])
         
         let option = options.value[indexPath.row]
         

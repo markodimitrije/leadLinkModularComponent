@@ -75,12 +75,12 @@ class SingleQuestion {
             let options = ["Lion", "Snake", "Bird", "Orca", "Dog", "Cat", "Wolf", "Whale" , "Dolphin", "Monkey", "Bee", "Eagle"]
             let q = Question.init(id: 44, type: QuestionType.textWithOptions, headlineText: "Your pets", inputTxt: "Select your pets", options: options, multipleSelection: true)
             //let answer = TextAnswer.init(questionId: 44, content: ["Bird", "Dog"])
-            let answer = OptionTextAnswer.init(multipleSelection: true, questionId: 44, content: ["Bird", "Dog"])
+            let answer = OptionTextAnswer.init(questionId: 44, content: ["Bird", "Dog"])
             (self.question, self.answer) = (q, answer)
         case 8:
             let options = ["Man", "Woman", "Child", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "S", "T", "U", "W", "F"]
             let q = Question.init(id: 88, type: QuestionType.textWithOptions, headlineText: "Your gender", inputTxt: "Select your gender", options: options, multipleSelection: false)
-            let answer = OptionTextAnswer.init(multipleSelection: false, questionId: 88, content: ["Man"])
+            let answer = OptionTextAnswer.init(questionId: 88, content: ["Man"])
             (self.question, self.answer) = (q, answer)
         default: return nil
         }

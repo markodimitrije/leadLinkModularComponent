@@ -113,7 +113,7 @@ struct SwitchAnswer: Answer {
     var content = [String]() // koji je text te opcije
 }
 struct OptionTextAnswer: Answer { // every TextAnswer is only it's on (stackView just shows them in one place)
-    var multipleSelection: Bool
+//    var multipleSelection: Bool - wrong solution
     var questionId: Int // koji je ID pitanja
     var content = [String]() // koji je od opcija izabrao (;1 ili vise njih; ako je izabrao sa searchVC)
 }
