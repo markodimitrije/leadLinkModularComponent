@@ -17,13 +17,13 @@ class QuestionsDataProvider {
             let switchOptions = SingleQuestion.init(forQuestion: 2),
             let radioBtn = SingleQuestion.init(forQuestion: 3),
             let checkbox = SingleQuestion.init(forQuestion: 4),
-            //let txtField = SingleQuestion.init(forQuestion: 5), PUCA !>!>?!?!??!??!?!?!?!?
+            let txtField = SingleQuestion.init(forQuestion: 5),
             let txtWithMultipleOptions = SingleQuestion.init(forQuestion: 7),
             let txtWithSingleOptions = SingleQuestion.init(forQuestion: 8) else {
                 return
         }
         //questions = [radio, checkbox, radioWithInput, checkboxWithInput, switchBtns, txtField]
-        questions = [radioBtnWithInput, checkboxWithInput, switchOptions, radioBtn, checkbox /*txtField*/, txtWithMultipleOptions, txtWithSingleOptions]
+        questions = [radioBtnWithInput, checkboxWithInput, switchOptions, radioBtn, checkbox, txtField, txtWithMultipleOptions, txtWithSingleOptions]
     }
 }
 
@@ -75,7 +75,7 @@ class SingleQuestion {
             let options = ["Lion", "Snake", "Bird", "Orca", "Dog", "Cat", "Wolf", "Whale" , "Dolphin", "Monkey", "Bee", "Eagle"]
             let q = Question.init(id: 44, type: QuestionType.textWithOptions, headlineText: "Your pets", inputTxt: "Select your pets", options: options, multipleSelection: true)
             //let answer = TextAnswer.init(questionId: 44, content: ["Bird", "Dog"])
-            let answer = OptionTextAnswer.init(questionId: 44, content: ["Bird", "Dog"])
+            let answer = OptionTextAnswer.init(questionId: 44, content: ["Bird", "Dog", "Wolf", "Whale"])
             (self.question, self.answer) = (q, answer)
         case 8:
             let options = ["Man", "Woman", "Child", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "S", "T", "U", "W", "F"]

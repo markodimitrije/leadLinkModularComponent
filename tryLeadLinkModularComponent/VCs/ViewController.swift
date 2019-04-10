@@ -41,7 +41,7 @@ class ViewController: UIViewController {//}, RadioBtnListener {
         
         self.view.insertSubview(scrollView, at: 0)
         
-    } 
+    }
     
     private func loadParentViewModel(questions: [SingleQuestion]) {
         
@@ -169,9 +169,9 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                              viewmodel: viewmodel as! SwitchBtnsViewModel,
                                              bag: bag)
         case .textField:
-            let res = getTextFieldView(question: singleQuestion.question,
-                                       answer: singleQuestion.answer,
-                                       frame: fr)
+            let res = getLabelAndTextField(question: singleQuestion.question,
+                                          answer: singleQuestion.answer,
+                                          frame: fr)
             stackerView = res.0; btnViews = res.1
             stackerView.frame.origin.y = lastVertPos
             
@@ -282,10 +282,10 @@ class ViewController: UIViewController {//}, RadioBtnListener {
         return (stackerView, btnViews)
     }
     
-    private func getTextFieldView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [LabelAndTextField]) {
+    private func getLabelAndTextField(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [LabelAndTextField]) {
         
         //let stackerView = viewFactory.getStackedLblAndTextView(question: question, answer: answer, frame: frame)
-        let stackerView = viewFactory.getStackedLblAndTextView(questionWithAnswers: [(question, answer)], frame: frame)
+        let stackerView = viewFactory.getStackedLblAndTextFieldView(questionWithAnswers: [(question, answer)], frame: frame)
         
         let views = stackerView.components.flatMap { view -> [LabelAndTextField] in
             return (view as? OneRowStacker)?.components as? [LabelAndTextField] ?? [ ]
@@ -352,8 +352,7 @@ func getOneRowHeightFor(componentType type: QuestionType) -> CGFloat {
     switch type {
         // sta sa textArea ?
     case .textField:
-        return CGFloat.init(200)
-//        return CGFloat.init(100)
+        return CGFloat.init(80)
     case .radioBtn:
         return CGFloat.init(50)
     case .checkbox:
