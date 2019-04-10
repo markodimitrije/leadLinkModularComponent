@@ -377,6 +377,7 @@ struct Question {
     var headlineText = ""
     var inputTxt = ""
     var options = [String]()
+    var multipleSelection = false
 }
 
 protocol StackViewToViewModelBinder {

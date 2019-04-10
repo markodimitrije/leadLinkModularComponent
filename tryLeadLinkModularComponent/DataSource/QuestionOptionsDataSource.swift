@@ -69,13 +69,20 @@ class QuestionOptionsTableViewDataSourceAndDelegate: NSObject, UITableViewDataSo
         
         let option = options.value[indexPath.row]
         
-        if let index = newAnswer.content.firstIndex(of: option) {
-            newAnswer.content.remove(at: index)
-            cell.accessoryType = .none
+        if question.multipleSelection {
+            if let index = newAnswer.content.firstIndex(of: option) {
+                newAnswer.content.remove(at: index)
+                cell.accessoryType = .none
+            } else {
+                newAnswer.content.append(option)
+                cell.accessoryType = .checkmark
+            }
         } else {
-            newAnswer.content.append(option)
+            newAnswer.content = [option]
+            _ = tableView.visibleCells.map {$0.accessoryType = .none}
             cell.accessoryType = .checkmark
         }
+        
         //        print("newAnswer.content = \(newAnswer.content)")
         observableAnswer.accept(newAnswer)
         
