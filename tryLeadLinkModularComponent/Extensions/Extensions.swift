@@ -27,6 +27,21 @@ extension UIView {
     func removeAllSubviews() {
         _ = subviews.map {$0.removeFromSuperview()}
     }
+    // increse or decrease just
+    func resizeHeight(by amount: CGFloat) {
+        let actualFrame = self.frame
+        let new = CGRect.init(origin: actualFrame.origin, size: CGSize.init(width: actualFrame.width, height: actualFrame.height + amount))
+        self.frame = new
+    }
+    func resizeWidth(by amount: CGFloat) {
+        let actualFrame = self.frame
+        let new = CGRect.init(origin: actualFrame.origin, size: CGSize.init(width: actualFrame.width + amount, height: actualFrame.height))
+        self.frame = new
+    }
+    func resize(byWidth width: CGFloat, byHeight height: CGFloat) {
+        self.resizeWidth(by: width)
+        self.resizeHeight(by: height)
+    }
 }
 
 class OptionsTextView: UITextView {
@@ -36,9 +51,18 @@ class OptionsTextView: UITextView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        formatLayout()
     }
-    private func formatLayout() {
-        self.contentInset = UIEdgeInsets.init(top: 20, left: 0, bottom: 0, right: 0)
+    func formatLayout() {
+        setCursor(toPosition: self.beginningOfDocument)
+        if let oneRowStacker = UIView.closestParentObject(for: self, ofType: OneRowStacker.self) {
+            oneRowStacker.resizeHeight(by: 20)
+            self.resizeHeight(by: 20)
+        }
+    }
+    
+    private func setCursor(toPosition position: UITextPosition) {
+        self.selectedTextRange = self.textRange(from: position, to: position)
     }
 }

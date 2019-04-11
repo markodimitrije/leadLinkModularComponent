@@ -109,11 +109,8 @@ class ViewController: UIViewController {//}, RadioBtnListener {
         let question = singleQuestion.question
         let viewmodel = parentViewmodel.childViewmodels[question.id]
         
-        let lastVertPos = CGFloat(0) // hard-coded, to be removed  ....
-        
         let height = getOneRowHeightFor(componentType: singleQuestion.question.type)
-        let origin = CGPoint.init(x: 0, y: lastVertPos)
-        let fr = CGRect.init(origin: origin, size: CGSize.init(width: viewFactory.bounds.width, height: height))
+        let fr = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: viewFactory.bounds.width, height: height))
         
         var stackerView: ViewStacker!
         var btnViews: [UIView]
@@ -123,7 +120,6 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                        answer: singleQuestion.answer,
                                        frame: fr)
             stackerView = res.0; btnViews = res.1
-            stackerView.frame.origin.y = lastVertPos
             
             radioBtnsViewModelBinder.hookUp(view: stackerView,
                                             btnViews: btnViews as! [RadioBtnView],
@@ -134,7 +130,6 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                           answer: singleQuestion.answer,
                                           frame: fr)
             stackerView = res.0; btnViews = res.1
-            stackerView.frame.origin.y = lastVertPos
             
             checkboxBtnsViewModelBinder.hookUp(view: stackerView,
                                                btnViews: btnViews as! [CheckboxView],
@@ -146,11 +141,6 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                                 answer: singleQuestion.answer,
                                                 frame: fr)
             stackerView = res.0; btnViews = res.1
-            stackerView.frame.origin.y = lastVertPos
-            
-            
-            
-            
             
             radioBtnsWithInputViewModelBinder.hookUp(view: stackerView,
                                                      btnViews: btnViews as! [RadioBtnView],
@@ -162,7 +152,6 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                                    answer: singleQuestion.answer,
                                                    frame: fr)
             stackerView = res.0; btnViews = res.1
-            stackerView.frame.origin.y = lastVertPos
             
             checkboxBtnsWithInputViewModelBinder.hookUp(view: stackerView,
                                                         btnViews: btnViews as! [CheckboxView],
@@ -174,7 +163,6 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                     answer: singleQuestion.answer,
                                     frame: fr)
             stackerView = res.0; btnViews = res.1
-            stackerView.frame.origin.y = lastVertPos
 
             switchBtnsViewModelBinder.hookUp(view: stackerView,
                                              btnViews: btnViews as! [LabelBtnSwitchView],
@@ -185,7 +173,6 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                           answer: singleQuestion.answer,
                                           frame: fr)
             stackerView = res.0; btnViews = res.1
-            stackerView.frame.origin.y = lastVertPos
             
             txtFieldViewModelBinder.hookUp(view: stackerView,
                                            labelAndTextView: btnViews.first as! LabelAndTextField,
@@ -196,12 +183,15 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                            answer: singleQuestion.answer,
                                            frame: fr)
             stackerView = res.0; btnViews = res.1
-            stackerView.frame.origin.y = lastVertPos
             
             txtViewModelBinder.hookUp(view: stackerView,
                                       labelAndTextView: btnViews.first as! LabelAndTextView,
                                       viewmodel: viewmodel as! SelectOptionTextFieldViewModel,
                                       bag: bag)
+            (btnViews.first as! LabelAndTextView).textView.sizeToFit()
+            
+            stackerView.resizeHeight(by: 20)
+            
             (btnViews.first as! LabelAndTextView).textView.delegate = self
             
         default: break
@@ -363,8 +353,11 @@ extension ViewController: UITextViewDelegate {
                     fatalError("error in view hierarchy or no index from tableView!!!")
                 }
                 
+                (textView as? OptionsTextView)?.formatLayout()
+                
                 self?.questionIdsViewSizes[index] = textView.bounds.size
                 self?.tableView.reloadData()
+                
             }
         }).disposed(by: bag)
         
@@ -425,12 +418,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.removeAllSubviews()
         
         if indexPath.row == parentViewmodel.childViewmodels.count { // save btn
-            cell.removeAllSubviews()
             cell.addSubview(saveBtn)
         } else {
-            cell.removeAllSubviews()
             let question = questions[indexPath.row]
             let stackerView = drawStackView(singleQuestion: question)
             stackerView.frame = cell.bounds
