@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,12 +28,8 @@
             <color key="backgroundColor" red="0.87784830729999996" green="1" blue="0.60875108509999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Ini-75-AJL" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="6c8-4E-AY3"/>
-                <constraint firstItem="Ini-75-AJL" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="6rp-my-fcF"/>
-                <constraint firstItem="Ini-75-AJL" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Uly-Q8-Adn"/>
-                <constraint firstItem="Ini-75-AJL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="WbF-d7-NPq"/>
                 <constraint firstItem="Ini-75-AJL" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Xli-lH-2ci"/>
                 <constraint firstItem="Ini-75-AJL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ilE-r0-QQ5"/>
-                <constraint firstItem="Ini-75-AJL" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="qR5-SQ-WhY"/>
                 <constraint firstItem="Ini-75-AJL" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ujF-14-se6"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

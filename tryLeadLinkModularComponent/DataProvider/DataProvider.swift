@@ -23,7 +23,9 @@ class QuestionsDataProvider {
                 return
         }
         //questions = [radio, checkbox, radioWithInput, checkboxWithInput, switchBtns, txtField]
-        questions = [radioBtnWithInput, checkboxWithInput, switchOptions, radioBtn, checkbox, txtField, txtWithSingleOptions, txtWithMultipleOptions]
+        //questions = [radioBtnWithInput, checkboxWithInput, switchOptions, radioBtn, checkbox, txtField, txtWithSingleOptions, txtWithMultipleOptions]
+        //questions = [radioBtnWithInput, checkboxWithInput, switchOptions] // ok
+        questions = [txtField, txtWithSingleOptions, txtWithMultipleOptions, radioBtnWithInput, checkboxWithInput, switchOptions, radioBtn, checkbox]
     }
 }
 

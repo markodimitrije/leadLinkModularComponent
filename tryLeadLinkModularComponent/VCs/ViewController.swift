@@ -15,7 +15,7 @@ class ViewController: UIViewController {//}, RadioBtnListener {
     lazy var viewFactory = ViewFactory.init(bounds: self.view.bounds)
     let viewmodelFactory = ViewmodelFactory.init()
     
-    var scrollView: QuestionsScrollView!
+    @IBOutlet weak var tableView: UITableView!
     
     var radioBtnsViewModelBinder = StackViewToRadioBtnsViewModelBinder()
     var radioBtnsWithInputViewModelBinder = StackViewToRadioBtnsWithInputViewModelBinder()
@@ -24,22 +24,28 @@ class ViewController: UIViewController {//}, RadioBtnListener {
     var switchBtnsViewModelBinder = StackViewToSwitchBtnsViewModelBinder()
     var txtFieldViewModelBinder = TextFieldViewModelBinder()
     let txtViewModelBinder = TextFieldWithOptionsViewModelBinder()
+    var questionIdsViewSizes = [Int: CGSize]()
+    let questions: [SingleQuestion] = {
+        return QuestionsDataProvider.init(campaignId: 1).questions
+    }()
     
     var parentViewmodel: ParentViewModel!
+    
+    var saveBtn: UIButton!
     
     private var bag = DisposeBag()
     
     override func viewDidLoad() { super.viewDidLoad()
         
-        scrollView = QuestionsScrollView.init(frame: self.view.frame)
-        
-        let questions = QuestionsDataProvider.init(campaignId: 1).questions
-        
         loadParentViewModel(questions: questions) // hard-coded campaignId...
         
-        renderOnScreen(questions: questions)
+        loadComponentSizes()
         
-        self.view.insertSubview(scrollView, at: 0)
+        loadSaveBtn()
+        
+        //renderOnScreen(questions: questions)
+        
+        //self.view.insertSubview(scrollView, at: 0)
         
     }
     
@@ -51,24 +57,30 @@ class ViewController: UIViewController {//}, RadioBtnListener {
         parentViewmodel = ParentViewModel.init(viewmodels: childViewmodels)
     }
 
-    private func renderOnScreen(questions: [SingleQuestion]) {
-        _ = questions.map(drawStackView)
+    private func loadComponentSizes() {
         
-        let saveBtn = SaveButton.init(frame: CGRect.init(origin: CGPoint.init(x: 200, y: scrollView.subviews.last!.frame.maxY),
-                                                         size: CGSize.init(width: 240, height: 44)))
+        _ = questions.enumerated().map({ (offset, singleQuestion) -> Void in
+            questionIdsViewSizes[offset] = drawStackView(singleQuestion: singleQuestion).bounds.size
+        })
+    }
+    
+    //private func renderOnScreen(questions: [SingleQuestion]) {
+        //_ = questions.map(drawStackView)
+    
+    private func loadSaveBtn() {
+    
+        self.saveBtn = SaveButton.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 240, height: 44)))
         
-        scrollView.add(confirmBtn: saveBtn)
-        
-        scrollView.contentSize.height = scrollView.subviews.last!.frame.maxY
+        tableView.index
         
         listenToSaveEvent()
-        
+
     }
     
     private func listenToSaveEvent() {
-        scrollView.confirmBtn?.rx.controlEvent(.touchUpInside)
+        saveBtn.rx.controlEvent(.touchUpInside)
             .subscribe(onNext: { [weak self] (_) in
-                
+
                 _ = self?.parentViewmodel.childViewmodels.compactMap({ viewmodelDict in
                     print("imam viewmodel = \(viewmodelDict.value)")
                     let viewmodel = viewmodelDict.value
@@ -92,12 +104,12 @@ class ViewController: UIViewController {//}, RadioBtnListener {
             .disposed(by: bag)
     }
     
-    private func drawStackView(singleQuestion: SingleQuestion) {
+    private func drawStackView(singleQuestion: SingleQuestion) -> ViewStacker {
         
         let question = singleQuestion.question
         let viewmodel = parentViewmodel.childViewmodels[question.id]
         
-        let lastVertPos = (scrollView.subviews.last?.frame)?.maxY ?? CGFloat(0)
+        let lastVertPos = CGFloat(0) // hard-coded, to be removed  ....
         
         let height = getOneRowHeightFor(componentType: singleQuestion.question.type)
         let origin = CGPoint.init(x: 0, y: lastVertPos)
@@ -194,10 +206,12 @@ class ViewController: UIViewController {//}, RadioBtnListener {
             
         default: break
         }
-        if let stackerView = stackerView {
-            print("stackerView.bounds.height = \(stackerView.bounds.height)")
-            self.scrollView.addSubview(stackerView)
-        }
+        
+        return stackerView
+//        if let stackerView = stackerView {
+//            print("stackerView.bounds.height = \(stackerView.bounds.height)")
+//            cell.addSubview(stackerView)
+//        }
     }
     
     // hocu da Tap na embeded radio btn (nalazi se digged in u ViewStacker-u) pogoni ostale btn-e da menjaju sliku + da save actual za MODEL
@@ -338,7 +352,19 @@ extension ViewController: UITextViewDelegate {
                 childViewmodel.answer?.content = newContent
                 textView.text = newContent.reduce("", { ($0 + "\n" + $1) })
                 textView.tintColor = UIColor.clear
-                //textView.sizeToFit()
+                if newContent.count > 1 {
+                    textView.sizeToFit()
+                } else {
+                    textView.frame = CGRect.init(origin: textView.frame.origin, size: CGSize.init(width: textView.bounds.width, height: 80))
+                }
+                
+                guard let cell = UIView.closestParentObject(for: textView, ofType: UITableViewCell.self),
+                    let index = self?.tableView.indexPath(for: cell)?.row else {
+                    fatalError("error in view hierarchy or no index from tableView!!!")
+                }
+                
+                self?.questionIdsViewSizes[index] = textView.bounds.size
+                self?.tableView.reloadData()
             }
         }).disposed(by: bag)
         
@@ -390,3 +416,32 @@ enum InternalError: Error {
     case viewmodelConversion
 }
 
+
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return parentViewmodel.childViewmodels.count + 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+        if indexPath.row == parentViewmodel.childViewmodels.count { // save btn
+            cell.removeAllSubviews()
+            cell.addSubview(saveBtn)
+        } else {
+            cell.removeAllSubviews()
+            let question = questions[indexPath.row]
+            let stackerView = drawStackView(singleQuestion: question)
+            stackerView.frame = cell.bounds
+            cell.addSubview(stackerView)
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return questionIdsViewSizes[indexPath.row]?.height ?? 0
+    }
+    
+}
