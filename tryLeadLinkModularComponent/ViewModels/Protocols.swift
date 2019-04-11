@@ -19,3 +19,9 @@ protocol ViewModelType: Hashable {
     associatedtype Output
     func transform(input: Input) -> Output
 }
+
+protocol StackViewToViewModelBinder {
+    associatedtype ViewModel: ViewModelType
+    associatedtype View: UIView
+    func hookUp(view: ViewStacker, btnViews: [View], viewmodel: ViewModel, bag: DisposeBag)
+}

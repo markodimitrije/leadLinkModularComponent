@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		2DC791D9DDBE9D1CC9D96EEF /* Pods_tryLeadLinkModularComponent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2102075DD73E10FE0BE3C87 /* Pods_tryLeadLinkModularComponent.framework */; };
 		7CC14A1A225E44E400FEECC5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC14A19225E44E400FEECC5 /* Extensions.swift */; };
+		7CC14A20225F7D2A00FEECC5 /* GlobalFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC14A1F225F7D2A00FEECC5 /* GlobalFuncs.swift */; };
+		7CC14A23225F7DBB00FEECC5 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC14A22225F7DBB00FEECC5 /* Models.swift */; };
+		7CC14A25225F7E1100FEECC5 /* AnswerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC14A24225F7E1100FEECC5 /* AnswerModel.swift */; };
+		7CC14A27225F831F00FEECC5 /* ViewStackerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC14A26225F831F00FEECC5 /* ViewStackerFactory.swift */; };
 		AD0F15C82258E7EB00C06555 /* LabelAndTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F15C72258E7EB00C06555 /* LabelAndTextView.swift */; };
 		AD0F15CA2258E81100C06555 /* LabelAndTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD0F15C92258E81100C06555 /* LabelAndTextView.xib */; };
 		AD0F15D0225917BD00C06555 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F15CF225917BD00C06555 /* Utilities.swift */; };
@@ -49,6 +53,10 @@
 /* Begin PBXFileReference section */
 		41D79BCD0AC25180BDDC736E /* Pods-tryLeadLinkModularComponent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tryLeadLinkModularComponent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tryLeadLinkModularComponent/Pods-tryLeadLinkModularComponent.debug.xcconfig"; sourceTree = "<group>"; };
 		7CC14A19225E44E400FEECC5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7CC14A1F225F7D2A00FEECC5 /* GlobalFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFuncs.swift; sourceTree = "<group>"; };
+		7CC14A22225F7DBB00FEECC5 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		7CC14A24225F7E1100FEECC5 /* AnswerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerModel.swift; sourceTree = "<group>"; };
+		7CC14A26225F831F00FEECC5 /* ViewStackerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStackerFactory.swift; sourceTree = "<group>"; };
 		AD0F15C72258E7EB00C06555 /* LabelAndTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAndTextView.swift; sourceTree = "<group>"; };
 		AD0F15C92258E81100C06555 /* LabelAndTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelAndTextView.xib; sourceTree = "<group>"; };
 		AD0F15CF225917BD00C06555 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -110,6 +118,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		7CC14A1E225F7D1800FEECC5 /* Globals */ = {
+			isa = PBXGroup;
+			children = (
+				7CC14A1F225F7D2A00FEECC5 /* GlobalFuncs.swift */,
+			);
+			path = Globals;
+			sourceTree = "<group>";
+		};
+		7CC14A21225F7DA800FEECC5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7CC14A22225F7DBB00FEECC5 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A7468B1BE798BA5FCF84DB18 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				AD9EDEBE21D1837F0058814C /* ViewFactory.swift */,
+				7CC14A26225F831F00FEECC5 /* ViewStackerFactory.swift */,
 				AD19402F224BBB90002A3AE2 /* ViewmodelFactory.swift */,
 			);
 			path = Factory;
@@ -148,6 +173,7 @@
 		AD837A9821C7B4E700555917 = {
 			isa = PBXGroup;
 			children = (
+				7CC14A24225F7E1100FEECC5 /* AnswerModel.swift */,
 				AD837AA321C7B4E700555917 /* tryLeadLinkModularComponent */,
 				AD837AA221C7B4E700555917 /* Products */,
 				A7468B1BE798BA5FCF84DB18 /* Pods */,
@@ -166,6 +192,7 @@
 		AD837AA321C7B4E700555917 /* tryLeadLinkModularComponent */ = {
 			isa = PBXGroup;
 			children = (
+				7CC14A1E225F7D1800FEECC5 /* Globals */,
 				7CC14A18225E44D200FEECC5 /* Extensions */,
 				ADFCDBD2225D3B3400A44B02 /* DataSource */,
 				AD0F15CE225917AC00C06555 /* Utilities */,
@@ -178,6 +205,7 @@
 				AD9F0E7321D3D9A5005BD0A7 /* MyRxExtensions */,
 				ADAAD6F121D0F4BE00B9D59E /* Protocols */,
 				AD837AA421C7B4E700555917 /* AppDelegate.swift */,
+				7CC14A21225F7DA800FEECC5 /* Models */,
 				AD837ABA21C7BA7100555917 /* Views */,
 				AD0F15CD22590C4200C06555 /* VCs */,
 				AD837AA821C7B4E700555917 /* Main.storyboard */,
@@ -432,6 +460,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CC14A25225F7E1100FEECC5 /* AnswerModel.swift in Sources */,
 				AD9F0E7521D3D9BB005BD0A7 /* MyRxExtensions.swift in Sources */,
 				ADB78CAD224CC51A00D29FA6 /* RawModelTypes.swift in Sources */,
 				AD194030224BBB90002A3AE2 /* ViewmodelFactory.swift in Sources */,
@@ -440,6 +469,8 @@
 				ADFCDBD4225D3B4F00A44B02 /* QuestionOptionsDataSource.swift in Sources */,
 				AD0F15D0225917BD00C06555 /* Utilities.swift in Sources */,
 				ADFCDBCC225CB5B700A44B02 /* ViewController.swift in Sources */,
+				7CC14A27225F831F00FEECC5 /* ViewStackerFactory.swift in Sources */,
+				7CC14A20225F7D2A00FEECC5 /* GlobalFuncs.swift in Sources */,
 				AD0F15C82258E7EB00C06555 /* LabelAndTextView.swift in Sources */,
 				AD50390C21CFA7970009EB0C /* RadioBtnView.swift in Sources */,
 				ADAAD6F721D0FBAC00B9D59E /* LabelBtnSwitchView.swift in Sources */,
@@ -458,6 +489,7 @@
 				ADAAD6EC21D0ECC500B9D59E /* CheckboxView.swift in Sources */,
 				ADBF585322479D4700BDD008 /* QuestionsScrollView.swift in Sources */,
 				ADAAD6F321D0F4CB00B9D59E /* Protocols.swift in Sources */,
+				7CC14A23225F7DBB00FEECC5 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

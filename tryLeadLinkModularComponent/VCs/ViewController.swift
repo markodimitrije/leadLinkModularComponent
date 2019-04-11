@@ -14,7 +14,8 @@ class ViewController: UIViewController {//}, RadioBtnListener {
     
     lazy var viewFactory = ViewFactory.init(bounds: self.view.bounds)
     let viewmodelFactory = ViewmodelFactory.init()
-    
+    lazy var viewStackerFactory = ViewStackerFactory.init(viewFactory: viewFactory, bag: bag)
+
     @IBOutlet weak var tableView: UITableView!
     
     var radioBtnsViewModelBinder = StackViewToRadioBtnsViewModelBinder()
@@ -29,7 +30,7 @@ class ViewController: UIViewController {//}, RadioBtnListener {
         return QuestionsDataProvider.init(campaignId: 1).questions
     }()
     
-    var parentViewmodel: ParentViewModel!
+    private var parentViewmodel: ParentViewModel!
     
     var saveBtn: UIButton!
     
@@ -42,10 +43,6 @@ class ViewController: UIViewController {//}, RadioBtnListener {
         loadComponentSizes()
         
         loadSaveBtn()
-        
-        //renderOnScreen(questions: questions)
-        
-        //self.view.insertSubview(scrollView, at: 0)
         
     }
     
@@ -63,9 +60,6 @@ class ViewController: UIViewController {//}, RadioBtnListener {
             questionIdsViewSizes[offset] = drawStackView(singleQuestion: singleQuestion).bounds.size
         })
     }
-    
-    //private func renderOnScreen(questions: [SingleQuestion]) {
-        //_ = questions.map(drawStackView)
     
     private func loadSaveBtn() {
     
@@ -104,6 +98,7 @@ class ViewController: UIViewController {//}, RadioBtnListener {
             .disposed(by: bag)
     }
     
+    
     private func drawStackView(singleQuestion: SingleQuestion) -> ViewStacker {
         
         let question = singleQuestion.question
@@ -116,9 +111,10 @@ class ViewController: UIViewController {//}, RadioBtnListener {
         var btnViews: [UIView]
         switch question.type {
         case .radioBtn:
-            let res = getRadioBtnsView(question: singleQuestion.question,
-                                       answer: singleQuestion.answer,
-                                       frame: fr)
+            
+            let res = viewStackerFactory.getRadioBtnsView(question: singleQuestion.question,
+                                                          answer: singleQuestion.answer,
+                                                          frame: fr)
             stackerView = res.0; btnViews = res.1
             
             radioBtnsViewModelBinder.hookUp(view: stackerView,
@@ -126,9 +122,9 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                             viewmodel: viewmodel as! RadioViewModel,
                                             bag: bag)
         case .checkbox:
-            let res = getCheckboxBtnsView(question: singleQuestion.question,
-                                          answer: singleQuestion.answer,
-                                          frame: fr)
+            let res = viewStackerFactory.getCheckboxBtnsView(question: singleQuestion.question,
+                                                             answer: singleQuestion.answer,
+                                                             frame: fr)
             stackerView = res.0; btnViews = res.1
             
             checkboxBtnsViewModelBinder.hookUp(view: stackerView,
@@ -137,9 +133,9 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                                bag: bag)
 
         case .radioBtnWithInput:
-            let res = getRadioBtnsWithInputView(question: singleQuestion.question,
-                                                answer: singleQuestion.answer,
-                                                frame: fr)
+            let res = viewStackerFactory.getRadioBtnsWithInputView(question: singleQuestion.question,
+                                                                   answer: singleQuestion.answer,
+                                                                   frame: fr)
             stackerView = res.0; btnViews = res.1
             
             radioBtnsWithInputViewModelBinder.hookUp(view: stackerView,
@@ -148,9 +144,9 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                                      bag: bag)
 
         case .checkboxWithInput:
-            let res = getCheckboxBtnsWithInputView(question: singleQuestion.question,
-                                                   answer: singleQuestion.answer,
-                                                   frame: fr)
+            let res = viewStackerFactory.getCheckboxBtnsWithInputView(question: singleQuestion.question,
+                                                                      answer: singleQuestion.answer,
+                                                                      frame: fr)
             stackerView = res.0; btnViews = res.1
             
             checkboxBtnsWithInputViewModelBinder.hookUp(view: stackerView,
@@ -159,9 +155,9 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                                         bag: bag)
             
         case .switchBtn:
-            let res = getSwitchBtns(question: singleQuestion.question,
-                                    answer: singleQuestion.answer,
-                                    frame: fr)
+            let res = viewStackerFactory.getSwitchBtns(question: singleQuestion.question,
+                                                       answer: singleQuestion.answer,
+                                                       frame: fr)
             stackerView = res.0; btnViews = res.1
 
             switchBtnsViewModelBinder.hookUp(view: stackerView,
@@ -169,9 +165,9 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                              viewmodel: viewmodel as! SwitchBtnsViewModel,
                                              bag: bag)
         case .textField:
-            let res = getLabelAndTextField(question: singleQuestion.question,
-                                          answer: singleQuestion.answer,
-                                          frame: fr)
+            let res = viewStackerFactory.getLabelAndTextField(question: singleQuestion.question,
+                                                              answer: singleQuestion.answer,
+                                                              frame: fr)
             stackerView = res.0; btnViews = res.1
             
             txtFieldViewModelBinder.hookUp(view: stackerView,
@@ -179,9 +175,9 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                                            viewmodel: viewmodel as! LabelWithTextFieldViewModel,
                                            bag: bag)
         case .textWithOptions:
-            let res = getLabelAndTextView(question: singleQuestion.question,
-                                           answer: singleQuestion.answer,
-                                           frame: fr)
+            let res = viewStackerFactory.getLabelAndTextView(question: singleQuestion.question,
+                                                             answer: singleQuestion.answer,
+                                                             frame: fr)
             stackerView = res.0; btnViews = res.1
             
             txtViewModelBinder.hookUp(view: stackerView,
@@ -198,120 +194,6 @@ class ViewController: UIViewController {//}, RadioBtnListener {
         }
         
         return stackerView
-        
-    }
-    
-    // hocu da Tap na embeded radio btn (nalazi se digged in u ViewStacker-u) pogoni ostale btn-e da menjaju sliku + da save actual za MODEL
-    // s druge strane, ANSWER bi trebalo da pogoni sve btns, jer moze da se upari i preko "id" i preko "value"
-    
-    private func getRadioBtnsView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [RadioBtnView]) {
-        
-        let stackerView = viewFactory.getStackedRadioBtns(question: question, answer: answer, frame: frame)
-        
-        let btnViews = stackerView.components.flatMap { view -> [RadioBtnView] in
-            return (view as? OneRowStacker)?.components as? [RadioBtnView] ?? [ ]
-        }
-        
-        _ = btnViews.enumerated().map { $0.element.radioBtn.tag = $0.offset } // dodeli svakome unique TAG
-        
-        return (stackerView, btnViews)
-        
-    }
-    
-    private func getCheckboxBtnsView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [CheckboxView]) {
-        
-        let stackerView = viewFactory.getStackedCheckboxBtns(question: question, answer: answer, frame: frame)
-        
-        let btnViews = stackerView.components.flatMap { view -> [CheckboxView] in
-            return (view as? OneRowStacker)?.components as? [CheckboxView] ?? [ ]
-        }
-        
-        _ = btnViews.enumerated().map { $0.element.radioBtn.tag = $0.offset } // dodeli svakome unique TAG
-        
-        return (stackerView, btnViews)
-        
-    }
-    
-    private func getRadioBtnsWithInputView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [UIView]) {
-        
-        let stackerView = viewFactory.getStackedRadioBtnsWithInput(question: question, answer: answer, frame: frame)
-        
-        let elements = stackerView.components.flatMap { view -> [UIView] in
-            return (view as? OneRowStacker)?.components ?? [ ]
-        }
-        
-        _ = elements.enumerated().map {
-            if $0.offset == elements.count - 1 {
-                $0.element.tag = $0.offset
-            } else if let btnView = $0.element as? RadioBtnView  {
-                btnView.radioBtn.tag = $0.offset
-            }
-        } // dodeli svakome unique TAG
-        
-        return (stackerView, elements)
-        
-    }
-   
-    private func getCheckboxBtnsWithInputView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [UIView]) {
-        
-        let stackerView = viewFactory.getStackedCheckboxBtnsWithInput(question: question, answer: answer, frame: frame)
-        
-        let elements = stackerView.components.flatMap { view -> [UIView] in
-            return (view as? OneRowStacker)?.components ?? [ ]
-        }
-        
-        _ = elements.enumerated().map {
-            if $0.offset == elements.count - 1 {
-                $0.element.tag = $0.offset
-            } else if let btnView = $0.element as? CheckboxView  {
-                btnView.radioBtn.tag = $0.offset
-            }
-        } // dodeli svakome unique TAG
-        return (stackerView, elements)
-    }
-    
-    private func getSwitchBtns(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [UIView]) {
-        
-        let stackerView = viewFactory.getStackedSwitchBtns(question: question, answer: answer, frame: frame)
-        
-        let btnViews = stackerView.components.flatMap { view -> [LabelBtnSwitchView] in
-            return (view as? OneRowStacker)?.components as? [LabelBtnSwitchView] ?? [ ]
-        }
-        
-        _ = btnViews.enumerated().map { $0.element.switcher.tag = $0.offset } // dodeli svakome unique TAG
-        
-        return (stackerView, btnViews)
-    }
-    
-    private func getLabelAndTextField(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [LabelAndTextField]) {
-        
-        //let stackerView = viewFactory.getStackedLblAndTextView(question: question, answer: answer, frame: frame)
-        let stackerView = viewFactory.getStackedLblAndTextFieldView(questionWithAnswers: [(question, answer)], frame: frame)
-        
-        let views = stackerView.components.flatMap { view -> [LabelAndTextField] in
-            return (view as? OneRowStacker)?.components as? [LabelAndTextField] ?? [ ]
-        }
-        
-        _ = views.enumerated().map { $0.element.textField.tag = $0.offset } // dodeli svakome unique TAG
-        
-        return (stackerView, views)
-        
-    }
-    
-    // refactor ovo, mora biti samo 1 !!!
-    private func getLabelAndTextView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [LabelAndTextView]) {
-        
-        //let stackerView = viewFactory.getStackedLblAndTextView(question: question, answer: answer, frame: frame)
-        let stackerView = viewFactory.getStackedLblAndTextView(questionWithAnswers: [(question, answer)], frame: frame)
-        
-        let views = stackerView.components.flatMap { view -> [LabelAndTextView] in
-            return (view as? OneRowStacker)?.components as? [LabelAndTextView] ?? [ ]
-        }
-        
-        //_ = views.enumerated().map { $0.element.textView.tag = $0.offset } // dodeli svakome unique TAG
-        _ = views.enumerated().map { $0.element.textView.tag = question.id } // dodeli mu unique TAG kakav je questionId !!
-        
-        return (stackerView, views)
         
     }
     
@@ -360,52 +242,7 @@ extension ViewController: UITextViewDelegate {
         
         self.navigationController?.pushViewController(chooseOptionsVC, animated: true)
     }
-    
 }
-
-
-
-func getOneRowHeightFor(componentType type: QuestionType) -> CGFloat {
-    switch type {
-        // sta sa textArea ?
-    case .textField:
-        return CGFloat.init(80)
-    case .radioBtn:
-        return CGFloat.init(50)
-    case .checkbox:
-        return CGFloat.init(50)
-    case .radioBtnWithInput:
-        return CGFloat.init(50)
-    case .checkboxWithInput:
-        return CGFloat.init(50)
-    case .switchBtn:
-        return CGFloat.init(50)
-    default:
-        return 0.0
-    }
-}
-
-// QuestionType
-
-struct Question {
-    var id: Int
-    var type: QuestionType
-    var headlineText = ""
-    var inputTxt = ""
-    var options = [String]()
-    var multipleSelection = false
-}
-
-protocol StackViewToViewModelBinder {
-    associatedtype ViewModel: ViewModelType
-    associatedtype View: UIView
-    func hookUp(view: ViewStacker, btnViews: [View], viewmodel: ViewModel, bag: DisposeBag)
-}
-
-enum InternalError: Error {
-    case viewmodelConversion
-}
-
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
