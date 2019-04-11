@@ -87,8 +87,8 @@ class ViewStackerFactory {
             
         case .switchBtn:
             let res = self.getSwitchBtns(question: singleQuestion.question,
-                                                       answer: singleQuestion.answer,
-                                                       frame: fr)
+                                         answer: singleQuestion.answer,
+                                         frame: fr)
             stackerView = res.0; btnViews = res.1
             
             switchBtnsViewModelBinder.hookUp(view: stackerView,
@@ -97,8 +97,8 @@ class ViewStackerFactory {
                                              bag: bag)
         case .textField:
             let res = self.getLabelAndTextField(question: singleQuestion.question,
-                                                              answer: singleQuestion.answer,
-                                                              frame: fr)
+                                                answer: singleQuestion.answer,
+                                                frame: fr)
             stackerView = res.0; btnViews = res.1
             
             txtFieldViewModelBinder.hookUp(view: stackerView,
@@ -119,7 +119,7 @@ class ViewStackerFactory {
             
             stackerView.resizeHeight(by: 20)
             
-            (btnViews.first as! LabelAndTextView).textView.delegate = delegate as! UITextViewDelegate
+            (btnViews.first as! LabelAndTextView).textView.delegate = delegate
             
         default: break
         }

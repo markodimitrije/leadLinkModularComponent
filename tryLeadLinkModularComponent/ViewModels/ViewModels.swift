@@ -197,6 +197,8 @@ class LabelWithTextFieldViewModel: NSObject, ViewModelType, Questanable {
         
         let withAnswer = Observable.merge(Observable.of(answer?.content ?? [ ]), input.content)
         
+        print("withAnswer = \(withAnswer)")
+        
         return Output.init(content: withAnswer)
     }
     

@@ -55,7 +55,7 @@ class ViewController: UIViewController {//}, RadioBtnListener {
             let (offset, singleQuestion) = arg
             guard let viewmodel = parentViewmodel.childViewmodels[singleQuestion.question.id] else {return}
             questionIdsViewSizes[offset] = viewStackerFactory.drawStackView(singleQuestion: singleQuestion,
-                                                                                   viewmodel: viewmodel).bounds.size
+                                                                            viewmodel: viewmodel).bounds.size
         })
     }
     

@@ -187,7 +187,7 @@ class LabelAndTextFieldFromModelInputCreator {
     func createTxtDriver() -> Observable<(String, String)> {
 
         let headline = viewmodel.question.headlineText
-        let text = (viewmodel.answer?.content ?? [ ]).reduce("", {$0 + "\n" + $1})
+        let text = (viewmodel.answer?.content ?? [ ]).reduce("", {$0 + "\n" + $1}).trimmingCharacters(in: CharacterSet.init(charactersIn: "\n")) // remove enter on start end end
         return Observable.from([(headline, text)])//.asDriver(onErrorJustReturn: ("",""))
 
     }
