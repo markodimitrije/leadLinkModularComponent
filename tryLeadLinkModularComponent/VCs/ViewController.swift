@@ -198,10 +198,7 @@ class ViewController: UIViewController {//}, RadioBtnListener {
         }
         
         return stackerView
-//        if let stackerView = stackerView {
-//            print("stackerView.bounds.height = \(stackerView.bounds.height)")
-//            cell.addSubview(stackerView)
-//        }
+        
     }
     
     // hocu da Tap na embeded radio btn (nalazi se digged in u ViewStacker-u) pogoni ostale btn-e da menjaju sliku + da save actual za MODEL
@@ -421,6 +418,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.removeAllSubviews()
         
         if indexPath.row == parentViewmodel.childViewmodels.count { // save btn
+            saveBtn.center = CGPoint.init(x: cell.bounds.midX, y: cell.bounds.midY)
             cell.addSubview(saveBtn)
         } else {
             let question = questions[indexPath.row]
@@ -433,7 +431,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return questionIdsViewSizes[indexPath.row]?.height ?? 0
+        return questionIdsViewSizes[indexPath.row]?.height ?? saveBtn.bounds.height
     }
     
 }
