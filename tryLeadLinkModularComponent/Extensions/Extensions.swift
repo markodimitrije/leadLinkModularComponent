@@ -55,11 +55,20 @@ class OptionsTextView: UITextView {
         formatLayout()
     }
     func formatLayout() {
-        setCursor(toPosition: self.beginningOfDocument)
+        self.tintColor = UIColor.clear
         if let oneRowStacker = UIView.closestParentObject(for: self, ofType: OneRowStacker.self) {
             oneRowStacker.resizeHeight(by: 20)
             self.resizeHeight(by: 20)
         }
+    }
+    
+    func formatLayout(accordingToOptions options: [String]) {
+        if options.count > 1 {
+            self.sizeToFit()
+        } else {
+            self.frame = CGRect.init(origin: self.frame.origin, size: CGSize.init(width: self.bounds.width, height: 80))
+        }
+        formatLayout()
     }
     
     private func setCursor(toPosition position: UITextPosition) {

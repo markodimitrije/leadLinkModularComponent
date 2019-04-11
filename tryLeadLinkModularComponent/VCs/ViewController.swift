@@ -31,11 +31,11 @@ class ViewController: UIViewController {//}, RadioBtnListener {
     
     override func viewDidLoad() { super.viewDidLoad()
         
+        self.saveBtn = SaveButton()
+        
         loadParentViewModel(questions: questions)
         
         loadComponentSizes()
-        
-        self.saveBtn = SaveButton()
         
         listenToSaveEvent()
         
@@ -109,19 +109,13 @@ extension ViewController: UITextViewDelegate {
                 guard let newContent = dataSource.observableAnswer.value?.content else {return}
                 childViewmodel.answer?.content = newContent
                 textView.text = newContent.reduce("", { ($0 + "\n" + $1) })
-                textView.tintColor = UIColor.clear
-                if newContent.count > 1 {
-                    textView.sizeToFit()
-                } else {
-                    textView.frame = CGRect.init(origin: textView.frame.origin, size: CGSize.init(width: textView.bounds.width, height: 80))
-                }
                 
                 guard let cell = UIView.closestParentObject(for: textView, ofType: UITableViewCell.self),
                     let index = self?.tableView.indexPath(for: cell)?.row else {
                     fatalError("error in view hierarchy or no index from tableView!!!")
                 }
                 
-                (textView as? OptionsTextView)?.formatLayout()
+                (textView as? OptionsTextView)?.formatLayout(accordingToOptions: newContent)
                 
                 self?.questionIdsViewSizes[index] = textView.bounds.size
                 self?.tableView.reloadData()
