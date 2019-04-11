@@ -14,16 +14,121 @@ class ViewStackerFactory {
     
     private var viewFactory: ViewFactory
     private var bag: DisposeBag
+    private var delegate: UITextViewDelegate?
     
-    init(viewFactory: ViewFactory, bag: DisposeBag) {
+    private let radioBtnsViewModelBinder = StackViewToRadioBtnsViewModelBinder()
+    private let radioBtnsWithInputViewModelBinder = StackViewToRadioBtnsWithInputViewModelBinder()
+    private let checkboxBtnsViewModelBinder = StackViewToCheckboxBtnsViewModelBinder()
+    private let checkboxBtnsWithInputViewModelBinder = StackViewToCheckboxBtnsWithInputViewModelBinder()
+    private let switchBtnsViewModelBinder = StackViewToSwitchBtnsViewModelBinder()
+    private let txtFieldViewModelBinder = TextFieldViewModelBinder()
+    private let txtViewModelBinder = TextFieldWithOptionsViewModelBinder()
+    
+    init(viewFactory: ViewFactory, bag: DisposeBag, delegate: UITextViewDelegate?) {
         self.viewFactory = viewFactory
         self.bag = bag
+        self.delegate = delegate
     }
     
-    // hocu da Tap na embeded radio btn (nalazi se digged in u ViewStacker-u) pogoni ostale btn-e da menjaju sliku + da save actual za MODEL
-    // s druge strane, ANSWER bi trebalo da pogoni sve btns, jer moze da se upari i preko "id" i preko "value"
+    func drawStackView(singleQuestion: SingleQuestion, viewmodel: Questanable) -> ViewStacker {
+        
+        let question = singleQuestion.question
+        //let viewmodel = parentViewmodel.childViewmodels[question.id]
+        
+        let height = getOneRowHeightFor(componentType: singleQuestion.question.type)
+        let fr = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: viewFactory.bounds.width, height: height))
+        
+        var stackerView: ViewStacker!
+        var btnViews: [UIView]
+        switch question.type {
+        case .radioBtn:
+            
+            let res = self.getRadioBtnsView(question: singleQuestion.question,
+                                                          answer: singleQuestion.answer,
+                                                          frame: fr)
+            stackerView = res.0; btnViews = res.1
+            
+            radioBtnsViewModelBinder.hookUp(view: stackerView,
+                                            btnViews: btnViews as! [RadioBtnView],
+                                            viewmodel: viewmodel as! RadioViewModel,
+                                            bag: bag)
+        case .checkbox:
+            let res = self.getCheckboxBtnsView(question: singleQuestion.question,
+                                                             answer: singleQuestion.answer,
+                                                             frame: fr)
+            stackerView = res.0; btnViews = res.1
+            
+            checkboxBtnsViewModelBinder.hookUp(view: stackerView,
+                                               btnViews: btnViews as! [CheckboxView],
+                                               viewmodel: viewmodel as! CheckboxViewModel,
+                                               bag: bag)
+            
+        case .radioBtnWithInput:
+            let res = self.getRadioBtnsWithInputView(question: singleQuestion.question,
+                                                                   answer: singleQuestion.answer,
+                                                                   frame: fr)
+            stackerView = res.0; btnViews = res.1
+            
+            radioBtnsWithInputViewModelBinder.hookUp(view: stackerView,
+                                                     btnViews: btnViews as! [RadioBtnView],
+                                                     viewmodel: viewmodel as! RadioWithInputViewModel,
+                                                     bag: bag)
+            
+        case .checkboxWithInput:
+            let res = self.getCheckboxBtnsWithInputView(question: singleQuestion.question,
+                                                                      answer: singleQuestion.answer,
+                                                                      frame: fr)
+            stackerView = res.0; btnViews = res.1
+            
+            checkboxBtnsWithInputViewModelBinder.hookUp(view: stackerView,
+                                                        btnViews: btnViews as! [CheckboxView],
+                                                        viewmodel: viewmodel as! CheckboxWithInputViewModel,
+                                                        bag: bag)
+            
+        case .switchBtn:
+            let res = self.getSwitchBtns(question: singleQuestion.question,
+                                                       answer: singleQuestion.answer,
+                                                       frame: fr)
+            stackerView = res.0; btnViews = res.1
+            
+            switchBtnsViewModelBinder.hookUp(view: stackerView,
+                                             btnViews: btnViews as! [LabelBtnSwitchView],
+                                             viewmodel: viewmodel as! SwitchBtnsViewModel,
+                                             bag: bag)
+        case .textField:
+            let res = self.getLabelAndTextField(question: singleQuestion.question,
+                                                              answer: singleQuestion.answer,
+                                                              frame: fr)
+            stackerView = res.0; btnViews = res.1
+            
+            txtFieldViewModelBinder.hookUp(view: stackerView,
+                                           labelAndTextView: btnViews.first as! LabelAndTextField,
+                                           viewmodel: viewmodel as! LabelWithTextFieldViewModel,
+                                           bag: bag)
+        case .textWithOptions:
+            let res = self.getLabelAndTextView(question: singleQuestion.question,
+                                                             answer: singleQuestion.answer,
+                                                             frame: fr)
+            stackerView = res.0; btnViews = res.1
+            
+            txtViewModelBinder.hookUp(view: stackerView,
+                                      labelAndTextView: btnViews.first as! LabelAndTextView,
+                                      viewmodel: viewmodel as! SelectOptionTextFieldViewModel,
+                                      bag: bag)
+            (btnViews.first as! LabelAndTextView).textView.sizeToFit()
+            
+            stackerView.resizeHeight(by: 20)
+            
+            (btnViews.first as! LabelAndTextView).textView.delegate = delegate as! UITextViewDelegate
+            
+        default: break
+        }
+        
+        return stackerView
+        
+    }
     
-     func getRadioBtnsView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [RadioBtnView]) {
+    func getRadioBtnsView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [RadioBtnView]) {
         
         let stackerView = viewFactory.getStackedRadioBtns(question: question, answer: answer, frame: frame)
         

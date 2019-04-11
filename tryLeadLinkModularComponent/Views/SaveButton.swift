@@ -14,6 +14,10 @@ class SaveButton: UIButton {
         setColorAndText()
     }
     
+    convenience init() {
+        self.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 240, height: 44)))
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setColorAndText()

@@ -363,9 +363,5 @@ class TextFieldWithOptionsViewModelBinder { // rename -LabelWithTextFieldViewMod
         driver
             .bind(to: labelAndTextView.rx.texts)
             .disposed(by: bag)
-        
-//        labelAndTextView.textView.rx.text.asObservable() // hard-coded off
-//            .bind(to: viewmodel.rx.answer)
-//            .disposed(by: bag)
     }
 }

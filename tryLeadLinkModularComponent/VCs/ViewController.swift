@@ -14,35 +14,30 @@ class ViewController: UIViewController {//}, RadioBtnListener {
     
     lazy var viewFactory = ViewFactory.init(bounds: self.view.bounds)
     let viewmodelFactory = ViewmodelFactory.init()
-    lazy var viewStackerFactory = ViewStackerFactory.init(viewFactory: viewFactory, bag: bag)
+    lazy var viewStackerFactory = ViewStackerFactory.init(viewFactory: viewFactory,
+                                                          bag: bag,
+                                                          delegate: self)
 
     @IBOutlet weak var tableView: UITableView!
     
-    var radioBtnsViewModelBinder = StackViewToRadioBtnsViewModelBinder()
-    var radioBtnsWithInputViewModelBinder = StackViewToRadioBtnsWithInputViewModelBinder()
-    var checkboxBtnsViewModelBinder = StackViewToCheckboxBtnsViewModelBinder()
-    var checkboxBtnsWithInputViewModelBinder = StackViewToCheckboxBtnsWithInputViewModelBinder()
-    var switchBtnsViewModelBinder = StackViewToSwitchBtnsViewModelBinder()
-    var txtFieldViewModelBinder = TextFieldViewModelBinder()
-    let txtViewModelBinder = TextFieldWithOptionsViewModelBinder()
-    var questionIdsViewSizes = [Int: CGSize]()
     let questions: [SingleQuestion] = {
-        return QuestionsDataProvider.init(campaignId: 1).questions
+        return QuestionsDataProvider.init(campaignId: 1).questions // hard-coded campaignId...
     }()
     
     private var parentViewmodel: ParentViewModel!
-    
-    var saveBtn: UIButton!
-    
+    private var questionIdsViewSizes = [Int: CGSize]()
+    private var saveBtn: UIButton!
     private var bag = DisposeBag()
     
     override func viewDidLoad() { super.viewDidLoad()
         
-        loadParentViewModel(questions: questions) // hard-coded campaignId...
+        loadParentViewModel(questions: questions)
         
         loadComponentSizes()
         
-        loadSaveBtn()
+        self.saveBtn = SaveButton()
+        
+        listenToSaveEvent()
         
     }
     
@@ -56,19 +51,12 @@ class ViewController: UIViewController {//}, RadioBtnListener {
 
     private func loadComponentSizes() {
         
-        _ = questions.enumerated().map({ (offset, singleQuestion) -> Void in
-            questionIdsViewSizes[offset] = drawStackView(singleQuestion: singleQuestion).bounds.size
+        _ = questions.enumerated().map({ (arg) -> Void in
+            let (offset, singleQuestion) = arg
+            guard let viewmodel = parentViewmodel.childViewmodels[singleQuestion.question.id] else {return}
+            questionIdsViewSizes[offset] = viewStackerFactory.drawStackView(singleQuestion: singleQuestion,
+                                                                                   viewmodel: viewmodel).bounds.size
         })
-    }
-    
-    private func loadSaveBtn() {
-    
-        self.saveBtn = SaveButton.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 240, height: 44)))
-        
-        tableView.index
-        
-        listenToSaveEvent()
-
     }
     
     private func listenToSaveEvent() {
@@ -96,105 +84,6 @@ class ViewController: UIViewController {//}, RadioBtnListener {
                 })
             })
             .disposed(by: bag)
-    }
-    
-    
-    private func drawStackView(singleQuestion: SingleQuestion) -> ViewStacker {
-        
-        let question = singleQuestion.question
-        let viewmodel = parentViewmodel.childViewmodels[question.id]
-        
-        let height = getOneRowHeightFor(componentType: singleQuestion.question.type)
-        let fr = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: viewFactory.bounds.width, height: height))
-        
-        var stackerView: ViewStacker!
-        var btnViews: [UIView]
-        switch question.type {
-        case .radioBtn:
-            
-            let res = viewStackerFactory.getRadioBtnsView(question: singleQuestion.question,
-                                                          answer: singleQuestion.answer,
-                                                          frame: fr)
-            stackerView = res.0; btnViews = res.1
-            
-            radioBtnsViewModelBinder.hookUp(view: stackerView,
-                                            btnViews: btnViews as! [RadioBtnView],
-                                            viewmodel: viewmodel as! RadioViewModel,
-                                            bag: bag)
-        case .checkbox:
-            let res = viewStackerFactory.getCheckboxBtnsView(question: singleQuestion.question,
-                                                             answer: singleQuestion.answer,
-                                                             frame: fr)
-            stackerView = res.0; btnViews = res.1
-            
-            checkboxBtnsViewModelBinder.hookUp(view: stackerView,
-                                               btnViews: btnViews as! [CheckboxView],
-                                               viewmodel: viewmodel as! CheckboxViewModel,
-                                               bag: bag)
-
-        case .radioBtnWithInput:
-            let res = viewStackerFactory.getRadioBtnsWithInputView(question: singleQuestion.question,
-                                                                   answer: singleQuestion.answer,
-                                                                   frame: fr)
-            stackerView = res.0; btnViews = res.1
-            
-            radioBtnsWithInputViewModelBinder.hookUp(view: stackerView,
-                                                     btnViews: btnViews as! [RadioBtnView],
-                                                     viewmodel: viewmodel as! RadioWithInputViewModel,
-                                                     bag: bag)
-
-        case .checkboxWithInput:
-            let res = viewStackerFactory.getCheckboxBtnsWithInputView(question: singleQuestion.question,
-                                                                      answer: singleQuestion.answer,
-                                                                      frame: fr)
-            stackerView = res.0; btnViews = res.1
-            
-            checkboxBtnsWithInputViewModelBinder.hookUp(view: stackerView,
-                                                        btnViews: btnViews as! [CheckboxView],
-                                                        viewmodel: viewmodel as! CheckboxWithInputViewModel,
-                                                        bag: bag)
-            
-        case .switchBtn:
-            let res = viewStackerFactory.getSwitchBtns(question: singleQuestion.question,
-                                                       answer: singleQuestion.answer,
-                                                       frame: fr)
-            stackerView = res.0; btnViews = res.1
-
-            switchBtnsViewModelBinder.hookUp(view: stackerView,
-                                             btnViews: btnViews as! [LabelBtnSwitchView],
-                                             viewmodel: viewmodel as! SwitchBtnsViewModel,
-                                             bag: bag)
-        case .textField:
-            let res = viewStackerFactory.getLabelAndTextField(question: singleQuestion.question,
-                                                              answer: singleQuestion.answer,
-                                                              frame: fr)
-            stackerView = res.0; btnViews = res.1
-            
-            txtFieldViewModelBinder.hookUp(view: stackerView,
-                                           labelAndTextView: btnViews.first as! LabelAndTextField,
-                                           viewmodel: viewmodel as! LabelWithTextFieldViewModel,
-                                           bag: bag)
-        case .textWithOptions:
-            let res = viewStackerFactory.getLabelAndTextView(question: singleQuestion.question,
-                                                             answer: singleQuestion.answer,
-                                                             frame: fr)
-            stackerView = res.0; btnViews = res.1
-            
-            txtViewModelBinder.hookUp(view: stackerView,
-                                      labelAndTextView: btnViews.first as! LabelAndTextView,
-                                      viewmodel: viewmodel as! SelectOptionTextFieldViewModel,
-                                      bag: bag)
-            (btnViews.first as! LabelAndTextView).textView.sizeToFit()
-            
-            stackerView.resizeHeight(by: 20)
-            
-            (btnViews.first as! LabelAndTextView).textView.delegate = self
-            
-        default: break
-        }
-        
-        return stackerView
-        
     }
     
 }
@@ -258,12 +147,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             saveBtn.center = CGPoint.init(x: cell.bounds.midX, y: cell.bounds.midY)
             cell.addSubview(saveBtn)
         } else {
-            let question = questions[indexPath.row]
-            let stackerView = drawStackView(singleQuestion: question)
-            stackerView.frame = cell.bounds
-            cell.addSubview(stackerView)
+            let singleQuestion = questions[indexPath.row]
+            if let viewmodel = parentViewmodel.childViewmodels[singleQuestion.question.id] {
+                let stackerView = viewStackerFactory.drawStackView(singleQuestion: singleQuestion, viewmodel: viewmodel)
+                stackerView.frame = cell.bounds
+                cell.addSubview(stackerView)
+            }
         }
-        
         return cell
     }
     
