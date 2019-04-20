@@ -29,7 +29,7 @@ extension URLRequest {
 }
 
 extension URL {
-    func url<T: Decodable>(forType type: T.Type) -> URL? {
+    static func getResourceUrl<T: Decodable>(forType type: T.Type) -> URL? {
         switch type {
         case is Question.Type:
             return URL.init(string: "https://9d07a6b1-15b1-40e1-aa73-729460aa72c8.mock.pstmn.io/questions")
