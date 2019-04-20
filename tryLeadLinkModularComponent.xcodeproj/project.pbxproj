@@ -33,6 +33,7 @@
 		7CCFEAF4226B242F004F4838 /* LogoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCFEAE2226B242F004F4838 /* LogoInfo.swift */; };
 		7CCFEAF6226B3A73004F4838 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCFEAF5226B3A73004F4838 /* URL+Extensions.swift */; };
 		7CCFEAF8226B3D1D004F4838 /* Model+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCFEAF7226B3D1D004F4838 /* Model+Extensions.swift */; };
+		7CCFEAFA226B41AA004F4838 /* CodesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCFEAF9226B41AA004F4838 /* CodesVC.swift */; };
 		AD0F15C82258E7EB00C06555 /* LabelAndTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F15C72258E7EB00C06555 /* LabelAndTextView.swift */; };
 		AD0F15CA2258E81100C06555 /* LabelAndTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD0F15C92258E81100C06555 /* LabelAndTextView.xib */; };
 		AD0F15D0225917BD00C06555 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F15CF225917BD00C06555 /* Utilities.swift */; };
@@ -97,6 +98,7 @@
 		7CCFEAE2226B242F004F4838 /* LogoInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoInfo.swift; sourceTree = "<group>"; };
 		7CCFEAF5226B3A73004F4838 /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		7CCFEAF7226B3D1D004F4838 /* Model+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+Extensions.swift"; sourceTree = "<group>"; };
+		7CCFEAF9226B41AA004F4838 /* CodesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodesVC.swift; sourceTree = "<group>"; };
 		AD0F15C72258E7EB00C06555 /* LabelAndTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAndTextView.swift; sourceTree = "<group>"; };
 		AD0F15C92258E81100C06555 /* LabelAndTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelAndTextView.xib; sourceTree = "<group>"; };
 		AD0F15CF225917BD00C06555 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			children = (
 				ADFCDBC9225CB5B600A44B02 /* ChooseOptionsVC.swift */,
 				ADFCDBCA225CB5B700A44B02 /* ViewController.swift */,
+				7CCFEAF9226B41AA004F4838 /* CodesVC.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				ADAAD6F321D0F4CB00B9D59E /* Protocols.swift in Sources */,
 				7CC14A23225F7DBB00FEECC5 /* Models.swift in Sources */,
 				7CCFEAEB226B242F004F4838 /* RealmOrganization.swift in Sources */,
+				7CCFEAFA226B41AA004F4838 /* CodesVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
