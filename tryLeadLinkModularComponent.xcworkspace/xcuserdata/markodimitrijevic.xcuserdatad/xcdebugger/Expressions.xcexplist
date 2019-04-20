@@ -3,26 +3,34 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ViewController.getLabelAndTextField(question:answer:frame:):ViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "stackerView.components">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ViewController.loadComponentSizes():ViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "questionIdsViewSizes">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "closure #1 in ViewController.textViewDidBeginEditing(_:):ViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "textView.bounds">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.drawStackView(singleQuestion:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "res">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppDelegate.getData&lt;A&gt;(from:):AppDelegate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "try? JSONEncoder.init().encode(codable)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.getLabelAndTextField(question:answer:frame:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "stackerView.components">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -35,15 +43,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ViewController.viewDidLoad():ViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ViewController.drawStackView(singleQuestion:):ViewController.swift">
+         contextName = "ViewController.loadComponentSizes():ViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "res">
+               value = "questionIdsViewSizes">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.viewDidLoad():ViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
