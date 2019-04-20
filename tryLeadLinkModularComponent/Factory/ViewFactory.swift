@@ -18,21 +18,21 @@ class ViewFactory {
         self.bounds = bounds
     }
     
-    func getStackedRadioBtns(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
+    func getStackedRadioBtns(question: PresentQuestion, answer: Answering?, frame: CGRect) -> ViewStacker {
         
         //return produceStackWithSameComponents(ofType: RadioBtnView.self, count: question.options.count, inOneRow: 3)!
         return produceStackWithSameComponents(ofType: RadioBtnView.self, count: question.options.count, inOneRow: 1)!
         
     }
     
-    func getStackedCheckboxBtns(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
+    func getStackedCheckboxBtns(question: PresentQuestion, answer: Answering?, frame: CGRect) -> ViewStacker {
         
         //return produceStackWithSameComponents(ofType: CheckboxView.self, count: question.options.count, inOneRow: 3)!
         return produceStackWithSameComponents(ofType: CheckboxView.self, count: question.options.count, inOneRow: 1)!
         
     }
     
-    func getStackedRadioBtnsWithInput(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
+    func getStackedRadioBtnsWithInput(question: PresentQuestion, answer: Answering?, frame: CGRect) -> ViewStacker {
         
         //let stacker = produceStackWithSameComponents(ofType: RadioBtnView.self, count: question.options.count, inOneRow: 3)!
         let stacker = produceStackWithSameComponents(ofType: RadioBtnView.self, count: question.options.count, inOneRow: 1)!
@@ -54,7 +54,7 @@ class ViewFactory {
         
     }
     
-    func getStackedCheckboxBtnsWithInput(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
+    func getStackedCheckboxBtnsWithInput(question: PresentQuestion, answer: Answering?, frame: CGRect) -> ViewStacker {
         
         //let stacker = produceStackWithSameComponents(ofType: RadioBtnView.self, count: question.options.count, inOneRow: 3)!
         let stacker = produceStackWithSameComponents(ofType: CheckboxView.self, count: question.options.count, inOneRow: 1)!
@@ -76,20 +76,20 @@ class ViewFactory {
         
     }
     
-    func getStackedSwitchBtns(question: Question, answer: Answer?, frame: CGRect) -> ViewStacker {
+    func getStackedSwitchBtns(question: PresentQuestion, answer: Answering?, frame: CGRect) -> ViewStacker {
         
         return produceStackWithSameComponents(ofType: LabelBtnSwitchView.self, count: question.options.count, inOneRow: 1)!
         
     }
     
-    func getStackedLblAndTextFieldView(questionWithAnswers: [(Question, Answer?)], frame: CGRect) -> ViewStacker {
+    func getStackedLblAndTextFieldView(questionWithAnswers: [(PresentQuestion, Answering?)], frame: CGRect) -> ViewStacker {
         
         //return produceStackWithSameComponents(ofType: RadioBtnView.self, count: question.options.count, inOneRow: 3)!
         return produceStackWithSameComponents(ofType: LabelAndTextField.self, count: questionWithAnswers.count, inOneRow: 1)!
         
     }
     
-    func getStackedLblAndTextView(questionWithAnswers: [(Question, Answer?)], frame: CGRect) -> ViewStacker {
+    func getStackedLblAndTextView(questionWithAnswers: [(PresentQuestion, Answering?)], frame: CGRect) -> ViewStacker {
         
         //return produceStackWithSameComponents(ofType: LabelAndTextView.self, count: question.options.count, inOneRow: 3)!
         return produceStackWithSameComponents(ofType: LabelAndTextView.self, count: questionWithAnswers.count, inOneRow: 1)!

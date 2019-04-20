@@ -10,14 +10,14 @@ import Foundation
 
 // QuestionType
 
-struct Question {
-    var id: Int
-    var type: QuestionType
-    var headlineText = ""
-    var inputTxt = ""
-    var options = [String]()
-    var multipleSelection = false
-}
+//struct Question {
+//    var id: Int
+//    var type: QuestionType
+//    var headlineText = ""
+//    var inputTxt = ""
+//    var options = [String]()
+//    var multipleSelection = false
+//}
 
 enum InternalError: Error {
     case viewmodelConversion

@@ -128,7 +128,7 @@ class ViewStackerFactory {
         
     }
     
-    func getRadioBtnsView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [RadioBtnView]) {
+    func getRadioBtnsView(question: PresentQuestion, answer: Answering?, frame: CGRect) -> (ViewStacker, [RadioBtnView]) {
         
         let stackerView = viewFactory.getStackedRadioBtns(question: question, answer: answer, frame: frame)
         
@@ -142,7 +142,7 @@ class ViewStackerFactory {
         
     }
     
-    func getCheckboxBtnsView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [CheckboxView]) {
+    func getCheckboxBtnsView(question: PresentQuestion, answer: Answering?, frame: CGRect) -> (ViewStacker, [CheckboxView]) {
     
         let stackerView = viewFactory.getStackedCheckboxBtns(question: question, answer: answer, frame: frame)
         
@@ -156,7 +156,7 @@ class ViewStackerFactory {
         
     }
     
-    func getRadioBtnsWithInputView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [UIView]) {
+    func getRadioBtnsWithInputView(question: PresentQuestion, answer: Answering?, frame: CGRect) -> (ViewStacker, [UIView]) {
         
         let stackerView = viewFactory.getStackedRadioBtnsWithInput(question: question, answer: answer, frame: frame)
         
@@ -176,7 +176,7 @@ class ViewStackerFactory {
         
     }
     
-    func getCheckboxBtnsWithInputView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [UIView]) {
+    func getCheckboxBtnsWithInputView(question: PresentQuestion, answer: Answering?, frame: CGRect) -> (ViewStacker, [UIView]) {
         
         let stackerView = viewFactory.getStackedCheckboxBtnsWithInput(question: question, answer: answer, frame: frame)
         
@@ -194,7 +194,7 @@ class ViewStackerFactory {
         return (stackerView, elements)
     }
     
-    func getSwitchBtns(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [UIView]) {
+    func getSwitchBtns(question: PresentQuestion, answer: Answering?, frame: CGRect) -> (ViewStacker, [UIView]) {
         
         let stackerView = viewFactory.getStackedSwitchBtns(question: question, answer: answer, frame: frame)
         
@@ -207,7 +207,7 @@ class ViewStackerFactory {
         return (stackerView, btnViews)
     }
     
-    func getLabelAndTextField(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [LabelAndTextField]) {
+    func getLabelAndTextField(question: PresentQuestion, answer: Answering?, frame: CGRect) -> (ViewStacker, [LabelAndTextField]) {
         
         //let stackerView = viewFactory.getStackedLblAndTextView(question: question, answer: answer, frame: frame)
         let stackerView = viewFactory.getStackedLblAndTextFieldView(questionWithAnswers: [(question, answer)], frame: frame)
@@ -223,7 +223,7 @@ class ViewStackerFactory {
     }
     
     // refactor ovo, mora biti samo 1 !!!
-    func getLabelAndTextView(question: Question, answer: Answer?, frame: CGRect) -> (ViewStacker, [LabelAndTextView]) {
+    func getLabelAndTextView(question: PresentQuestion, answer: Answering?, frame: CGRect) -> (ViewStacker, [LabelAndTextView]) {
         
         //let stackerView = viewFactory.getStackedLblAndTextView(question: question, answer: answer, frame: frame)
         let stackerView = viewFactory.getStackedLblAndTextView(questionWithAnswers: [(question, answer)], frame: frame)

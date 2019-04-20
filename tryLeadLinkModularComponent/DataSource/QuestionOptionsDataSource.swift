@@ -31,7 +31,7 @@ class QuestionOptionsTableViewDataSourceAndDelegate: NSObject, UITableViewDataSo
         }
     }
     
-    var question: Question
+    var question: PresentQuestion
     var tableView: UITableView!
     
     private var options = BehaviorRelay<[String]>(value: [])

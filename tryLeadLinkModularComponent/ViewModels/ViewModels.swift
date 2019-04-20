@@ -12,10 +12,10 @@ import RxCocoa
 
 class RadioViewModel: NSObject, ViewModelType, Questanable {
     
-    var question: Question
+    var question: PresentQuestion
     var answer: RadioAnswer?
     
-    init(question: Question, answer: RadioAnswer?) {
+    init(question: PresentQuestion, answer: RadioAnswer?) {
         self.question = question
         self.answer = answer
     }
@@ -43,10 +43,10 @@ class RadioViewModel: NSObject, ViewModelType, Questanable {
 
 class CheckboxViewModel: NSObject, ViewModelType, Questanable {
     
-    var question: Question
+    var question: PresentQuestion
     var answer: CheckboxAnswer?
     
-    init(question: Question, answer: CheckboxAnswer?) {
+    init(question: PresentQuestion, answer: CheckboxAnswer?) {
         self.question = question
         self.answer = answer
     }
@@ -76,10 +76,10 @@ class CheckboxViewModel: NSObject, ViewModelType, Questanable {
 
 class RadioWithInputViewModel: NSObject, ViewModelType, Questanable {
     
-    var question: Question
+    var question: PresentQuestion
     var answer: RadioAnswer?
     
-    init(question: Question, answer: RadioAnswer?) {
+    init(question: PresentQuestion, answer: RadioAnswer?) {
         self.question = question
         self.answer = answer
     }
@@ -109,10 +109,10 @@ class RadioWithInputViewModel: NSObject, ViewModelType, Questanable {
 
 class CheckboxWithInputViewModel: NSObject, ViewModelType, Questanable {
     
-    var question: Question
+    var question: PresentQuestion
     var answer: CheckboxAnswer?
     
-    init(question: Question, answer: CheckboxAnswer?) {
+    init(question: PresentQuestion, answer: CheckboxAnswer?) {
         self.question = question
         self.answer = answer
     }
@@ -142,10 +142,10 @@ class CheckboxWithInputViewModel: NSObject, ViewModelType, Questanable {
 
 class SwitchBtnsViewModel: NSObject, ViewModelType, Questanable {
     
-    var question: Question
+    var question: PresentQuestion
     var answer: SwitchAnswer?
     
-    init(question: Question, answer: SwitchAnswer?) {
+    init(question: PresentQuestion, answer: SwitchAnswer?) {
         self.question = question
         self.answer = answer
     }
@@ -176,10 +176,10 @@ class SwitchBtnsViewModel: NSObject, ViewModelType, Questanable {
 
 class LabelWithTextFieldViewModel: NSObject, ViewModelType, Questanable {
     
-    var question: Question
+    var question: PresentQuestion
     var answer: TextAnswer?
     
-    init(question: Question, answer: TextAnswer?) {
+    init(question: PresentQuestion, answer: TextAnswer?) {
         self.question = question
         self.answer = answer
     }
@@ -208,10 +208,10 @@ class LabelWithTextFieldViewModel: NSObject, ViewModelType, Questanable {
 
 class SelectOptionTextFieldViewModel: NSObject, ViewModelType, Questanable {
     
-    var question: Question
+    var question: PresentQuestion
     var answer: OptionTextAnswer?
     
-    init(question: Question, answer: OptionTextAnswer?) {
+    init(question: PresentQuestion, answer: OptionTextAnswer?) {
         self.question = question
         self.answer = answer
     }

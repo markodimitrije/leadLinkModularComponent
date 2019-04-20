@@ -23,5 +23,5 @@ class ParentViewModel {
 }
 
 protocol Questanable {
-    var question: Question {get set}
+    var question: PresentQuestion {get set}
 }
